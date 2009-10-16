@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:i="http://www.springframework.org/schema/integration"
+       xmlns:file="http://www.springframework.org/schema/integration/file"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/integration
+			http://www.springframework.org/schema/integration/spring-integration.xsd
+			http://www.springframework.org/schema/integration/file
+			http://www.springframework.org/schema/integration/file/spring-integration-file.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <import resource="classpath:diary-file-exchanger.xml"/>
+    <i:channel id="incomingChanges">
+        <i:queue capacity="10"/>
+    </i:channel>
+
+    <i:channel id="outgoingChanges">
+        <i:queue capacity="10"/>
+    </i:channel>
+
+    <i:poller default="true">
+        <i:interval-trigger interval="100"/>
+    </i:poller>
+
+    <bean id="config" class="com.manning.siia.trip.diary.ExchangerIntegrationTest$Config"/>
+</beans>

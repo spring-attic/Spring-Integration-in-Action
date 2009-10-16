@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <start id="file-header"/> -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:i="http://www.springframework.org/schema/integration"
+       xmlns:file="http://www.springframework.org/schema/integration/file"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/integration
+			http://www.springframework.org/schema/integration/spring-integration.xsd
+			http://www.springframework.org/schema/integration/file
+			http://www.springframework.org/schema/integration/file/spring-integration-file.xsd">
+    <!-- <end id="file-header"/> -->
+
+    <!-- <start id="file-inbound-config" -->
+    <file:inbound-channel-adapter channel="incomingChanges" directory="#{config.diary.store}"
+                                  filter="onlyNewChangesFilter"/>
+
+    <bean id="onlyNewChangesFilter" class="org.springframework.integration.file.CompositeFileListFilter">
+        <constructor-arg>
+            <list>
+                <bean class="org.springframework.integration.file.AcceptOnceFileListFilter"/>
+                <bean class="com.manning.siia.trip.diary.RefuseWrittenByThisProcess">
+                    <constructor-arg value="#{config.processId}"/>
+                </bean>
+            </list>
+        </constructor-arg>
+    </bean>
+    <!-- <end id="file-inbound-config"/> -->
+
+    <!-- <start id="file-outbound-config/> -->
+    <file:outbound-channel-adapter channel="outgoingChanges" directory="#{config.diary.store}"
+                                   auto-create-directory="true" filename-generator="nameGenerator"/>
+
+    <bean id="nameGenerator" class="com.manning.siia.trip.diary.ChangeFileNameGenerator">
+        <constructor-arg value="#{config.processId}"/>
+    </bean>
+    <!-- <end id="file-outbound-config"/> -->
+</beans>
