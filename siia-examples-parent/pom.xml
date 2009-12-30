@@ -11,7 +11,7 @@
     <properties>
         <junit.version>4.7</junit.version>
         <spring.version>3.0.0.RELEASE</spring.version>
-        <spring.integration.version>2.0.0.BUILD-SNAPSHOT</spring.integration.version>
+        <spring.integration.version>2.0.0.M2</spring.integration.version>
         <joda.time.version>1.6</joda.time.version>
     </properties>
     <dependencyManagement>
@@ -20,6 +20,7 @@
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
                 <version>${junit.version}</version>
+                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.springframework.integration</groupId>
@@ -65,7 +66,7 @@
             <dependency>
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-all</artifactId>
-                <version>1.8.0</version>
+                <version>1.8.1</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
