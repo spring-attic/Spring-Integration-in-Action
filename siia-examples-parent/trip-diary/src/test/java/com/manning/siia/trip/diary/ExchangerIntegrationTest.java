@@ -76,7 +76,7 @@ public class ExchangerIntegrationTest {
 
 	@Test
 	public void fileReaderShouldGetInputDir() {
-		Object inputDir = new DirectFieldAccessor(fileReader).getPropertyValue("inputDirectory");
+		Object inputDir = new DirectFieldAccessor(fileReader).getPropertyValue("directory");
 		System.out.println(inputDir);
 		assertThat(inputDir, is(notNullValue()));
 	}
@@ -86,7 +86,7 @@ public class ExchangerIntegrationTest {
 		File file = parent.newFile(Long.toString(System.currentTimeMillis()) + processId);
 		System.out.println(file);
 		file.createNewFile();
-			Object inputDir = new DirectFieldAccessor(fileReader).getPropertyValue("inputDirectory");
+			Object inputDir = new DirectFieldAccessor(fileReader).getPropertyValue("directory");
 		System.out.println(inputDir);
 		Message<?> received = incomingChanges.receive();
 		assertThat(received, is(notNullValue()));

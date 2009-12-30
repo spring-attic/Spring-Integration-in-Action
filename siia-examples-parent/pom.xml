@@ -9,15 +9,16 @@
     <name>parent</name>
     <url>http://maven.apache.org</url>
     <properties>
-        <junit.version>4.7.0</junit.version>
-        <spring.version>3.0.0.RC1</spring.version>
+        <junit.version>4.7</junit.version>
+        <spring.version>3.0.0.RELEASE</spring.version>
         <spring.integration.version>2.0.0.BUILD-SNAPSHOT</spring.integration.version>
+        <joda.time.version>1.6</joda.time.version>
     </properties>
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>org.junit</groupId>
-                <artifactId>com.springsource.org.junit</artifactId>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
                 <version>${junit.version}</version>
             </dependency>
             <dependency>
@@ -47,8 +48,13 @@
             </dependency>
             <dependency>
                 <groupId>org.apache.commons</groupId>
-                <artifactId>com.springsource.org.apache.commons.logging</artifactId>
+                <artifactId>org.apache.commons.logging</artifactId>
                 <version>1.1.1</version>
+            </dependency>
+            <dependency>
+                <groupId>joda-time</groupId>
+                <artifactId>joda-time</artifactId>
+                <version>${joda.time.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
@@ -67,6 +73,7 @@
                 <artifactId>commons-io</artifactId>
                 <version>1.4</version>
             </dependency>
+
         </dependencies>
     </dependencyManagement>
     <modules>
@@ -85,39 +92,4 @@
             </plugin>
         </plugins>
     </build>
-    <repositories>
-        <repository>
-            <id>spring-maven-snapshot</id>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-            <name>Springframework Maven SNAPSHOT Repository</name>
-            <url>http://s3.amazonaws.com/maven.springframework.org/snapshot</url>
-        </repository>
-        <repository>
-            <id>spring-maven-milestone</id>
-            <name>Springframework Maven Repository</name>
-            <url>http://s3.amazonaws.com/maven.springframework.org/milestone</url>
-        </repository>
-        <repository>
-            <id>com.springsource.repository.bundles.release</id>
-            <name>SpringSource Enterprise Bundle Repository - SpringSource Bundle Releases</name>
-            <url>http://repository.springsource.com/maven/bundles/release</url>
-        </repository>
-        <repository>
-            <id>com.springsource.repository.bundles.external</id>
-            <name>SpringSource Enterprise Bundle Repository - External Bundle Releases</name>
-            <url>http://repository.springsource.com/maven/bundles/external</url>
-        </repository>
-        <repository>
-            <id>com.springsource.repository.bundles.milestone</id>
-            <name>SpringSource Enterprise Bundle Repository - SpringSource Bundle Milestones</name>
-            <url>http://repository.springsource.com/maven/bundles/milestone</url>
-        </repository>
-        <repository>
-            <id>com.springsource.repository.bundles.snapshot</id>
-            <name>SpringSource Enterprise Bundle Repository - SpringSource Bundle Snapshots</name>
-            <url>http://repository.springsource.com/maven/bundles/snapshot</url>
-        </repository>
-    </repositories>
 </project>
