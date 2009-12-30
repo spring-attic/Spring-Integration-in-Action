@@ -9,19 +9,11 @@
 			http://www.springframework.org/schema/integration
 			http://www.springframework.org/schema/integration/spring-integration.xsd
 			">
-    <!-- <end id="main-message-flow-header"/> -->
 
-    <!-- incoming posts from the trip UI end up here -->
-    <i:channel id="tripCommands"/>
+    <import resource="main-message-flow.xml" />
 
-    <i:splitter id="tripCommandSplitter" expression="payload.subCommands"
-            input-channel="tripCommands" output-channel="subCommands"/>
-
-    <!-- TODO fill this out
-    <i:payload-type-router id="subCommands">
-        <i:mapping type=""/>
-    </i:payload-type-router>
-    -->
-
+    <i:channel id="subCommands">
+        <i:queue capacity="10"/>
+    </i:channel>
 
 </beans>
