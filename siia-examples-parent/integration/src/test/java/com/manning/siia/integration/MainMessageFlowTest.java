@@ -28,6 +28,12 @@ import static org.mockito.Mockito.mock;
 @RunWith(SpringJUnit4ClassRunner.class)
 public class MainMessageFlowTest {
 
+    @Test
+    public void shouldLoadContext() {
+        // spring does the job
+    }
+
+    //<start id="split-into-subcommands"/>
     @Autowired
     @Qualifier("tripCommands")
     MessageChannel tripCommands;
@@ -35,11 +41,6 @@ public class MainMessageFlowTest {
     @Autowired
     @Qualifier("subCommands")
     PollableChannel subCommands;
-
-    @Test
-    public void shouldLoadContext() {
-        // spring does the job
-    }
 
     @Test
     public void splitterShouldSplitIntoSubcommands() {
@@ -56,4 +57,6 @@ public class MainMessageFlowTest {
         assertThat(received.size(), is(3));
        // assertThat(received, hasItems(hasPayload(carCommand), hasPayload(flightCommand), hasPayload(hotelCommand)));
     }
+    //<end id="split-into-subcommands"/>
+
 }
