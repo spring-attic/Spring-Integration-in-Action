@@ -13,15 +13,19 @@
     <i:channel id="flight-notifications"/>
 
     <i:chain input-channel="flight-notifications" output-channel="trip-notifications">
-        <i:header-enricher >
+        <i:header-enricher>
             <i:header name="affectedTrips" expression="payload.flight.relatedTrips(tripRepository)"/>
         </i:header-enricher>
         <i:splitter id="flightToTripNotificationsSplitter"/>
     </i:chain>
 
-    <i:channel id="trip-notifications"/>
+    <!-- <start id="trip-notifications-to-sms-notifier"/> -->
+    <i:channel id="trip-notifications">
+        <i:queue capacity="1000"/>
+    </i:channel>
 
     <i:outbound-channel-adapter id="smsNotifier" channel="trip-notifications" ref="smsNotifierBean" method="notify"/>
+    <!-- <end id="trip-notifications-to-sms-notifier"/> -->
 
     <bean id="flightToTripNotificationsSplitterBean"
           class="com.manning.siia.integration.notifications.FlightToTripNotificationsSplitter"/>

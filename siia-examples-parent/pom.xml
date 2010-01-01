@@ -32,6 +32,14 @@
                 <artifactId>spring-integration-core</artifactId>
                 <version>${spring.integration.version}</version>
             </dependency>
+            <!-- <start id="spring-integration-test-dep"/> --> <!--
+            <dependency>
+                <groupId>org.springframework.integration</groupId>
+                <artifactId>spring-integration-test</artifactId>
+                <version>${spring.integration.version}</version>
+                <scope>test</scope>
+            </dependency>
+            --> <!-- <end id="spring-integration-test-dep"/> -->
             <dependency>
                 <groupId>org.springframework.integration</groupId>
                 <artifactId>spring-integration-file</artifactId>
