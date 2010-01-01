@@ -1,0 +1,16 @@
+<trip id="123">
+    <leg>
+        <flight>
+            <from>LHR</from>
+            <to>JFK</to>
+            <departs>2010-01-30T09:30:00Z</departs>
+            <arrives>2010-01-30T16:30:00Z</arrives>
+        </flight>
+        <carRental>
+            <pickupLocation>JFK</pickupLocation>
+        </carRental>
+        <hotel>
+            <location></location>
+        </hotel>
+     </leg>
+</trip>

@@ -1,17 +1,22 @@
 package com.manning.siia.domain.hotel;
 
+import com.manning.siia.domain.Location;
+
 
 public class Hotel {
 
-    private final long hotelId;
+    private long hotelId;
 
-    private final String hotelDescription;
+    private String hotelDescription;
 
-    private final String hotelName;
+    private String hotelName;
 
-    public Hotel(long hotelId, String hotelDescription, String hotelName) {
+    private Location location;
+
+    public Hotel(long hotelId, String hotelDescription, String hotelName, Location location) {
         this.hotelId = hotelId;
         this.hotelDescription = hotelDescription;
         this.hotelName = hotelName;
+        this.location = location;
     }
 }
