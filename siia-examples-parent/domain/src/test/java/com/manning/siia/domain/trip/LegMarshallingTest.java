@@ -4,7 +4,9 @@ import static org.custommonkey.xmlunit.XMLAssert.*;
 
 import com.manning.siia.domain.Location;
 import com.manning.siia.domain.binding.JodaDateTimeBinder;
+import org.joda.time.Chronology;
 import org.joda.time.DateTime;
+import org.joda.time.chrono.ISOChronology;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
@@ -35,7 +37,7 @@ public class LegMarshallingTest {
     @Test
     public void testMarshallingLeg() throws Exception{
         long day = 24 * 60 * 60 * 1000;
-        Leg leg = new Leg(new DateTime(day), new DateTime(day * 2),
+        Leg leg = new Leg(new DateTime(day, ISOChronology.getInstanceUTC()), new DateTime(day * 2, ISOChronology.getInstanceUTC()),
                 new Location("UK", "London"), new Location("US", "New York"));
 
         StringWriter writer = new StringWriter();
