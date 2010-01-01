@@ -1,5 +1,6 @@
 package com.manning.siia.domain.trip;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -14,6 +15,6 @@ public class Trip {
     }
 
     public List<Leg> getLegs() {
-        return legs;
+        return Collections.unmodifiableList(legs);
     }
 }
