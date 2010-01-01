@@ -1,6 +1,8 @@
 package com.manning.siia.domain.binding;
 
+import org.joda.time.Chronology;
 import org.joda.time.DateTime;
+import org.joda.time.chrono.ISOChronology;
 
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 import java.util.Date;
@@ -12,7 +14,7 @@ import java.util.Date;
 public class JodaDateTimeBinder extends XmlAdapter<Date, DateTime> {
     @Override
     public DateTime unmarshal(Date v) throws Exception {
-        return new DateTime(v.getTime());
+        return new DateTime(v.getTime(), ISOChronology.getInstanceUTC());
     }
 
     @Override
