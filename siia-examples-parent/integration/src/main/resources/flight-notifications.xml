@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:i="http://www.springframework.org/schema/integration"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/integration
+			http://www.springframework.org/schema/integration/spring-integration.xsd
+			">
+
+    <!-- contains non personalized notifications about flights -->
+    <i:channel id="flight-notifications"/>
+
+    <i:chain input-channel="flight-notifications" output-channel="trip-notifications">
+        <i:header-enricher>
+            <i:header name="affectedTrips" expression="payload.flight.relatedTrips(tripRepository)"/>
+        </i:header-enricher>
+        <i:splitter id="flightToTripNotificationsSplitter"/>
+    </i:chain>
+
+    <!-- <start id="trip-notifications-to-sms-notifier"/> -->
+    <i:channel id="trip-notifications">
+        <i:queue capacity="1000"/>
+    </i:channel>
+
+    <i:outbound-channel-adapter id="smsNotifier" channel="trip-notifications" ref="smsNotifierBean" method="notify"/>
+    <!-- <end id="trip-notifications-to-sms-notifier"/> -->
+
+    <bean id="flightToTripNotificationsSplitterBean"
+          class="com.manning.siia.integration.notifications.FlightToTripNotificationsSplitter"/>
+    <bean id="tripRepository" class="com.manning.siia.domain.trip.TripRepository"/>
+    <bean id="smsNotifierBean" class="com.manning.siia.integration.notifications.SmsNotifiable"/>
+
+
+</beans>

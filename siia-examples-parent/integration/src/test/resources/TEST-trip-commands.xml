@@ -10,7 +10,7 @@
 			http://www.springframework.org/schema/integration/spring-integration.xsd
 			">
 
-    <import resource="main-message-flow.xml" />
+    <import resource="trip-commands.xml" />
 
     <i:channel id="subCommands">
         <i:queue capacity="10"/>

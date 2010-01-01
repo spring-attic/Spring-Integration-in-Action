@@ -24,9 +24,9 @@ import static org.mockito.Mockito.mock;
 /**
  * Tests verifying the flow of messages through the system whilst mocking out most business code.
  */
-@ContextConfiguration("classpath:TEST-main-message-flow.xml")
+@ContextConfiguration("classpath:TEST-trip-commands.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
-public class MainMessageFlowTest {
+public class TripCommandsTest {
 
     @Test
     public void shouldLoadContext() {
