@@ -1,0 +1,32 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:i="http://www.springframework.org/schema/integration"
+       xmlns:si-xml="http://www.springframework.org/schema/integration/xml"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/integration
+			http://www.springframework.org/schema/integration/spring-integration.xsd
+			http://www.springframework.org/schema/integration/xml
+           http://www.springframework.org/schema/integration/xml/spring-integration-xml.xsd
+			">
+
+    <bean id="legMarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+        <property name="classesToBeBound">
+            <value>
+                com.manning.siia.domain.trip.LegQuoteRequest
+            </value>
+        </property>
+    </bean>
+
+    <i:channel id="legQuoteRequests" />
+
+    <i:chain  input-channel="legQuoteRequests" output-channel="legQuotes">
+        <si-xml:marshalling-transformer marshaller="legMarshaller"/>
+    </i:chain>
+
+    <i:channel id="legQuotes">
+        <i:queue />
+    </i:channel>
+
+</beans>

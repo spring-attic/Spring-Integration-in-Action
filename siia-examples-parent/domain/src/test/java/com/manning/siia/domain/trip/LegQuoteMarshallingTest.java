@@ -36,9 +36,9 @@ public class LegQuoteMarshallingTest {
 
     LegQuoteRequest exampleLegQuote;
 
-    DateTime startLegDateTime;
+    DateTime startLegDateTime = new DateTime("2010-01-03T00:00:00Z");;
 
-    DateTime endLegDateTime;
+    DateTime endLegDateTime = new DateTime("2010-01-07T00:00:00Z");
 
     Location london = new Location("UK", "London");
     Location buenosAires = new Location("AR", "Buenos Aires");
@@ -58,10 +58,6 @@ public class LegQuoteMarshallingTest {
     public void setUp() {
         this.marshaller = new Jaxb2Marshaller();
         this.marshaller.setClassesToBeBound(new Class[]{LegQuoteRequest.class});
-
-        this.startLegDateTime = new DateTime("2010-01-03T00:00:00Z");
-        this.endLegDateTime = new DateTime("2010-01-07T00:00:00Z");
-
         this.exampleLegQuote = new LegQuoteRequest(new Leg(startLegDateTime, endLegDateTime, london, buenosAires));
 
         CarCriteria carCriteria = new CarCriteria();
