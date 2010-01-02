@@ -31,7 +31,6 @@ public class LegMarshallingTest {
     public void setUp() {
         this.marshaller = new Jaxb2Marshaller();
         this.marshaller.setClassesToBeBound(new Class[]{Leg.class});
-        this.marshaller.setAdapters(new XmlAdapter[]{new JodaDateTimeBinder()});
     }
 
     @Test
