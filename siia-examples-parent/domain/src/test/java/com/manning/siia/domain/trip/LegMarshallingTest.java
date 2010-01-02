@@ -20,8 +20,8 @@ import java.util.Date;
 public class LegMarshallingTest {
 
     final String marshalledLeg = "<?xml version='1.0' encoding='UTF-8' standalone='yes'?>" +
-            "<leg><startOfLegDate>1970-01-02T01:00:00+01:00</startOfLegDate>" +
-            "<endOfLegDate>1970-01-03T01:00:00+01:00</endOfLegDate>" +
+            "<leg><startOfLegDate>1970-01-02T00:00:00Z</startOfLegDate>" +
+            "<endOfLegDate>1970-01-03T00:00:00Z</endOfLegDate>" +
             "<startLocation city='London' countryCode='UK'/>" +
             "<endLocation city='New York' countryCode='US'/></leg>";
 
