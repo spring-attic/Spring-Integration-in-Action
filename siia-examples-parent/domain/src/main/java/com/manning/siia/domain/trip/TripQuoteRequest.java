@@ -1,6 +1,5 @@
 package com.manning.siia.domain.trip;
 
-import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
 
@@ -10,21 +9,21 @@ import java.util.List;
 
 public class TripQuoteRequest {
 
-    private List<LegQuoteRequest> legQuoteRequests;
+    private List<LegQuoteCommand> legQuoteCommands;
 
     private TripQuoteRequest() {
     }
 
-    public TripQuoteRequest(List<LegQuoteRequest> legQuoteRequests){
-        this.legQuoteRequests = legQuoteRequests;
+    public TripQuoteRequest(List<LegQuoteCommand> legQuoteCommands){
+        this.legQuoteCommands = legQuoteCommands;
     }
 
-    public List<LegQuoteRequest> getLegQuoteRequests() {
-        return legQuoteRequests;
+    public List<LegQuoteCommand> getLegQuoteRequests() {
+        return legQuoteCommands;
     }
 
-    public void setLegQuoteRequests(List<LegQuoteRequest> legQuoteRequests) {
-        this.legQuoteRequests = legQuoteRequests;
+    public void setLegQuoteRequests(List<LegQuoteCommand> legQuoteCommands) {
+        this.legQuoteCommands = legQuoteCommands;
     }
     
 }

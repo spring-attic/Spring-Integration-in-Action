@@ -1,5 +1,6 @@
 package com.manning.siia.domain.trip;
 
+import com.manning.siia.domain.Command;
 import com.manning.siia.domain.car.CarCriteria;
 import com.manning.siia.domain.flight.FlightCriteria;
 import com.manning.siia.domain.hotel.HotelCriteria;
@@ -9,8 +10,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 /**
  * @author Jonas Partner
  */
-@XmlRootElement
-public class LegQuoteRequest {
+@XmlRootElement(name = "legQuote")
+public class LegQuoteCommand implements Command {
 
     private Leg leg;
 
@@ -20,9 +21,9 @@ public class LegQuoteRequest {
 
     private CarCriteria carCriteria;
 
-    private LegQuoteRequest(){}
+    private LegQuoteCommand(){}
 
-    public LegQuoteRequest(Leg leg){
+    public LegQuoteCommand(Leg leg){
         this.leg= leg;
     }
 

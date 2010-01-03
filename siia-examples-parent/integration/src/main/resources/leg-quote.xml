@@ -14,7 +14,7 @@
     <bean id="legMarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
         <property name="classesToBeBound">
             <value>
-                com.manning.siia.domain.trip.LegQuoteRequest
+                com.manning.siia.domain.trip.LegQuoteCommand
             </value>
         </property>
     </bean>

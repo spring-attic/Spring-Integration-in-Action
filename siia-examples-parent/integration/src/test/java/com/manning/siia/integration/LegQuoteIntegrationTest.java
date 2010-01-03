@@ -10,12 +10,11 @@ import com.manning.siia.domain.flight.FlightSeatClass;
 import com.manning.siia.domain.hotel.HotelCriteria;
 import com.manning.siia.domain.hotel.RoomType;
 import com.manning.siia.domain.trip.Leg;
-import com.manning.siia.domain.trip.LegQuoteRequest;
+import com.manning.siia.domain.trip.LegQuoteCommand;
 import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.integration.channel.MessageChannelTemplate;
 import org.springframework.integration.channel.PollableChannel;
 import org.springframework.integration.core.Message;
 import org.springframework.integration.core.MessageChannel;
@@ -36,7 +35,7 @@ public class LegQuoteIntegrationTest {
     Location london = new Location("UK", "London");
     Location buenosAires = new Location("AR", "Buenos Aires");
 
-    LegQuoteRequest exampleLegQuote;
+    LegQuoteCommand exampleLegQuote;
 
     @Resource(name = "legQuoteRequests")
     MessageChannel quoteRequestsChannel;
@@ -46,7 +45,7 @@ public class LegQuoteIntegrationTest {
 
     @Before
     public void setUp() {
-        this.exampleLegQuote = new LegQuoteRequest(new Leg(startLegDateTime, endLegDateTime, london, buenosAires));
+        this.exampleLegQuote = new LegQuoteCommand(new Leg(startLegDateTime, endLegDateTime, london, buenosAires));
 
         CarCriteria carCriteria = new CarCriteria();
         carCriteria.setCarType(CarType.Compact);
