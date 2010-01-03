@@ -21,6 +21,9 @@ public class LegQuoteCommand implements Command {
 
     private CarCriteria carCriteria;
 
+    /**
+     * Private constructor for use by JAXB
+     */
     private LegQuoteCommand(){}
 
     public LegQuoteCommand(Leg leg){

@@ -3,18 +3,14 @@ package com.manning.siia.domain.trip;
 import static org.custommonkey.xmlunit.XMLAssert.*;
 
 import com.manning.siia.domain.Location;
-import com.manning.siia.domain.binding.JodaDateTimeBinder;
-import org.joda.time.Chronology;
 import org.joda.time.DateTime;
 import org.joda.time.chrono.ISOChronology;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 
-import javax.xml.bind.annotation.adapters.XmlAdapter;
 import javax.xml.transform.stream.StreamResult;
 import java.io.StringWriter;
-import java.util.Date;
 
 
 public class LegMarshallingTest {

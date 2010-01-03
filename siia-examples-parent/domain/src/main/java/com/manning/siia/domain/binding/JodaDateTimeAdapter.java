@@ -13,7 +13,7 @@ import java.util.TimeZone;
 /**
  * @author Jonas Partner
  */
-public class JodaDateTimeBinder extends XmlAdapter<Calendar, DateTime> {
+public class JodaDateTimeAdapter extends XmlAdapter<Calendar, DateTime> {
     @Override
     public DateTime unmarshal(Calendar cal) throws Exception {
         return new DateTime(cal.getTime(), ISOChronology.getInstanceUTC());

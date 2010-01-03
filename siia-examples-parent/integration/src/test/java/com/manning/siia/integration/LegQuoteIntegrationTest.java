@@ -15,21 +15,30 @@ import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.integration.channel.PollableChannel;
 import org.springframework.integration.core.Message;
 import org.springframework.integration.core.MessageChannel;
 import org.springframework.integration.message.MessageBuilder;
+import org.springframework.oxm.Marshaller;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.xml.transform.StringResult;
+import org.w3c.dom.Document;
 
 import javax.annotation.Resource;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMResult;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import java.io.StringWriter;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"/leg-quote.xml"})
 public class LegQuoteIntegrationTest {
 
     DateTime startLegDateTime = new DateTime("2010-01-03T00:00:00Z");
-    
+
     DateTime endLegDateTime = new DateTime("2010-01-07T00:00:00Z");
 
     Location london = new Location("UK", "London");
@@ -37,11 +46,14 @@ public class LegQuoteIntegrationTest {
 
     LegQuoteCommand exampleLegQuote;
 
-    @Resource(name = "legQuoteRequests")
+    @Resource(name = "javaLegQuoteCommands")
     MessageChannel quoteRequestsChannel;
 
-    @Resource(name = "legQuotes")
+    @Resource(name = "splitQuotes")
     PollableChannel quoteChannel;
+
+    @Autowired
+    Marshaller marshaller;
 
     @Before
     public void setUp() {
@@ -62,10 +74,20 @@ public class LegQuoteIntegrationTest {
 
 
     @Test
-    public void endToEndLegQuoteTest() {
-       this.quoteRequestsChannel.send(MessageBuilder.withPayload(exampleLegQuote).build(), 1000);
-        Message asXml = this.quoteChannel.receive();
-        assertNotNull(asXml);
+    public void endToEndLegQuoteTest() throws Exception {
+        this.quoteRequestsChannel.send(MessageBuilder.withPayload(exampleLegQuote).build(), 1000);
+        for (int i = 0; i < 3; i++) {
+            Message asXml = this.quoteChannel.receive(5000);
+            assertNotNull(asXml);
+            System.out.println(asXml);
+            System.out.println(xmlDocToString((Document) asXml.getPayload()));
+        }
+    }
+
+    public String xmlDocToString(Document doc) throws Exception {
+        StringResult res = new StringResult();
+        TransformerFactory.newInstance().newTransformer().transform(new DOMSource(doc), res);
+        return res.getWriter().toString();
     }
 
 }

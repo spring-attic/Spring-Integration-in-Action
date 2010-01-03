@@ -1,8 +1,7 @@
 package com.manning.siia.domain.trip;
 
 import com.manning.siia.domain.Location;
-import com.manning.siia.domain.binding.JodaDateTimeBinder;
-import com.manning.siia.domain.car.CarRental;
+import com.manning.siia.domain.binding.JodaDateTimeAdapter;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.joda.time.DateTime;
 
@@ -13,10 +12,10 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @XmlRootElement
 public class Leg {
 
-    @XmlElement @XmlJavaTypeAdapter(JodaDateTimeBinder.class)
+    @XmlElement @XmlJavaTypeAdapter(JodaDateTimeAdapter.class)
     private DateTime startOfLegDate;
 
-    @XmlElement @XmlJavaTypeAdapter(JodaDateTimeBinder.class)
+    @XmlElement @XmlJavaTypeAdapter(JodaDateTimeAdapter.class)
     private DateTime endOfLegDate;
 
     @XmlElement

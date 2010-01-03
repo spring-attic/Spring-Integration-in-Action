@@ -44,7 +44,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
-          <!-- also relates to INT-955 which should be fixed in M3 -->
+        <!-- also relates to INT-955 which should be fixed in M3 -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-oxm</artifactId>
@@ -57,6 +57,10 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-beans</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.ws</groupId>
+            <artifactId>spring-xml</artifactId>
         </dependency>
     </dependencies>
 </project>
