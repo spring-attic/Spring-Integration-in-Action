@@ -35,7 +35,21 @@
         <si-xml:xpath-expression expression="/legQuote/*"/>
     </si-xml:xpath-splitter>
 
-    <si:channel id="splitQuotes">
+     <si:channel id="splitQuotes" />
+    <si-xml:xpath-router id="quoteRequestRouter" input-channel="splitQuotes" resolution-required="true">
+        <si-xml:xpath-expression expression="local-name(/*)" />
+    </si-xml:xpath-router>
+
+
+    <si:channel id="carQuote">
+        <si:queue/>
+    </si:channel>
+
+    <si:channel id="flightQuote">
+        <si:queue/>
+    </si:channel>
+
+    <si:channel id="hotelQuote">
         <si:queue/>
     </si:channel>
 

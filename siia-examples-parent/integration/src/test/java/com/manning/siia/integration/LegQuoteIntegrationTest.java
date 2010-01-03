@@ -49,8 +49,15 @@ public class LegQuoteIntegrationTest {
     @Resource(name = "javaLegQuoteCommands")
     MessageChannel quoteRequestsChannel;
 
-    @Resource(name = "splitQuotes")
-    PollableChannel quoteChannel;
+    @Resource(name = "carQuote")
+    PollableChannel carQuotesChannel;
+
+    @Resource(name = "flightQuote")
+    PollableChannel flightQuotesChannel;
+
+    @Resource(name = "hotelQuote")
+    PollableChannel hotelQuotesChannel;
+
 
     @Autowired
     Marshaller marshaller;
@@ -76,12 +83,19 @@ public class LegQuoteIntegrationTest {
     @Test
     public void endToEndLegQuoteTest() throws Exception {
         this.quoteRequestsChannel.send(MessageBuilder.withPayload(exampleLegQuote).build(), 1000);
-        for (int i = 0; i < 3; i++) {
-            Message asXml = this.quoteChannel.receive(5000);
+
+            Message asXml = this.carQuotesChannel.receive(5000);
             assertNotNull(asXml);
+            System.out.println(xmlDocToString((Document) asXml.getPayload()));
+
+            asXml = this.flightQuotesChannel.receive(5000);
             System.out.println(asXml);
             System.out.println(xmlDocToString((Document) asXml.getPayload()));
-        }
+
+            asXml = this.hotelQuotesChannel.receive(5000);
+            System.out.println(asXml);
+            System.out.println(xmlDocToString((Document) asXml.getPayload()));
+
     }
 
     public String xmlDocToString(Document doc) throws Exception {
