@@ -14,6 +14,7 @@
         <spring.webservices.version>1.5.8</spring.webservices.version>
         <spring.integration.version>2.0.0.M2</spring.integration.version>
         <joda.time.version>1.6</joda.time.version>
+        <log4j.version>1.2.12</log4j.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -113,7 +114,11 @@
                 <artifactId>commons-io</artifactId>
                 <version>1.4</version>
             </dependency>
-
+            <dependency>
+                <artifactId>log4j</artifactId>
+                <groupId>log4j</groupId>
+                <version>1.2.12</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <modules>

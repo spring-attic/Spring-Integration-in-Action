@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="flightQuote" type="flightQuoteType"/>
+  <xs:complexType name="endLocationType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="city"/>
+        <xs:attribute type="xs:string" name="countryCode"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="flightQuoteType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="requiredSeatClass"/>
+      <xs:element type="xs:string" name="returnRequired"/>
+      <xs:element type="xs:dateTime" name="startOfLegDate"/>
+      <xs:element type="xs:dateTime" name="endOfLegDate"/>
+      <xs:element type="startLocationType" name="startLocation"/>
+      <xs:element type="endLocationType" name="endLocation"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="startLocationType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="city"/>
+        <xs:attribute type="xs:string" name="countryCode"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+</xs:schema>

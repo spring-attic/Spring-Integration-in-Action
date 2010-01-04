@@ -31,25 +31,49 @@
                              xsl-resource="classpath:/xsl/enrichCriteriaWithLeg.xsl"/>
 
     <si:channel id="xslTransformedLegQuote"/>
+
     <si-xml:xpath-splitter create-documents="true" input-channel="xslTransformedLegQuote" output-channel="splitQuotes">
         <si-xml:xpath-expression expression="/legQuote/*"/>
     </si-xml:xpath-splitter>
 
-     <si:channel id="splitQuotes" />
-    <si-xml:xpath-router id="quoteRequestRouter" input-channel="splitQuotes" resolution-required="true">
-        <si-xml:xpath-expression expression="local-name(/*)" />
+    <si:channel id="splitQuotes"/>
+    <si-xml:xpath-router id="quoteRequestRouter" input-channel="splitQuotes" 
+                         channel-resolver="quoteChannelMap">
+        <si-xml:xpath-expression expression="local-name(/*)"/>
     </si-xml:xpath-router>
 
+    <bean id="quoteChannelMap" class="org.springframework.integration.channel.MapBasedChannelResolver">
+        <property name="channelMap">
+            <map>
+                <entry key="carQuote" value-ref="carQuoteChannel"/>
+                <entry key="flightQuote" value-ref="flightQuoteChannel"/>
+                <entry key="hotelQuote" value-ref="hotelQuoteChannel"/>
+            </map>
+        </property>
+    </bean>
 
-    <si:channel id="carQuote">
+    <si:channel id="carQuoteChannel">
         <si:queue/>
     </si:channel>
 
-    <si:channel id="flightQuote">
+
+    <si:channel id="flightQuoteChannel" />
+    <si-xml:validating-router id="flightQuoteValidator" input-channel="flightQuoteChannel"
+                              valid-channel="validFlightQuoteChannel" invalid-channel="invalidRequests "
+                              schema-location="classpath:xsd/flightQuote.xsd" />
+
+    <si:channel id="validFlightQuoteChannel">
         <si:queue/>
     </si:channel>
 
-    <si:channel id="hotelQuote">
+
+
+    <si:channel id="hotelQuoteChannel">
+        <si:queue/>
+    </si:channel>
+
+
+    <si:channel id="invalidRequests">
         <si:queue/>
     </si:channel>
 

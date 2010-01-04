@@ -49,13 +49,13 @@ public class LegQuoteIntegrationTest {
     @Resource(name = "javaLegQuoteCommands")
     MessageChannel quoteRequestsChannel;
 
-    @Resource(name = "carQuote")
+    @Resource(name = "carQuoteChannel")
     PollableChannel carQuotesChannel;
 
-    @Resource(name = "flightQuote")
+    @Resource(name = "validFlightQuoteChannel")
     PollableChannel flightQuotesChannel;
 
-    @Resource(name = "hotelQuote")
+    @Resource(name = "hotelQuoteChannel")
     PollableChannel hotelQuotesChannel;
 
 
