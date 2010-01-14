@@ -9,23 +9,8 @@
 
     <si:channel id="payments"/>
 
-    <si:channel id="invoices"/>
-
-    <si:channel id="credit-card-payments"/>
-
-    <si:channel id="paypal-payments"/>
-
-    <si:router method="routePaymentSettlement" input-channel="payments">
-        <bean class="com.manning.siia.integration.routing.PaymentSettlementRouter"/>
-    </si:router>
-
-    <si:channel id="visa-payments"/>
-
-    <si:channel id="american-express-payments"/>
-
-    <si:channel id="mastercard-payments"/>
-
-
-    <si:router expression="payload.creditCardType" channel-resolver=""/>
+    <si:service-activator input-channel="payments" method="processPayment">
+        <bean class="com.manning.siia.domain.payment.PaymentManager"/>
+    </si:service-activator>
 
 </beans>
