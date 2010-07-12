@@ -48,6 +48,10 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.integration</groupId>
+            <artifactId>spring-integration-http</artifactId>
+        </dependency>
         <!-- also relates to INT-955 which should be fixed in M3 -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -70,6 +74,6 @@
             <artifactId>log4j</artifactId>
             <groupId>log4j</groupId>
             <scope>test</scope>
-       </dependency>
+        </dependency>
     </dependencies>
 </project>
