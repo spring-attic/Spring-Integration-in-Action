@@ -9,12 +9,13 @@
     <name>parent</name>
     <url>http://maven.apache.org</url>
     <properties>
-        <junit.version>4.7</junit.version>
-        <spring.version>3.0.0.RELEASE</spring.version>
-        <spring.webservices.version>1.5.8</spring.webservices.version>
-        <spring.integration.version>2.0.0.M2</spring.integration.version>
-        <joda.time.version>1.6</joda.time.version>
-        <log4j.version>1.2.12</log4j.version>
+      <junit.version>4.7</junit.version>
+      <spring.version>3.0.3.RELEASE</spring.version>
+      <spring.webservices.version>1.5.9</spring.webservices.version>
+      <spring.integration.version>2.0.0.M5</spring.integration.version>
+      <joda.time.version>1.6</joda.time.version>
+      <log4j.version>1.2.12</log4j.version>
+      <hamcrest.version>1.1</hamcrest.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -109,6 +110,11 @@
                 <version>1.8.1</version>
                 <scope>test</scope>
             </dependency>
+          <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-all</artifactId>
+            <version>${hamcrest.version}</version>
+          </dependency>
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-io</artifactId>

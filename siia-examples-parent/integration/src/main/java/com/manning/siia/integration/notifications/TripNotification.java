@@ -14,4 +14,12 @@ public class TripNotification {
         this.trip = trip;
         this.message = message;
     }
+
+    public Trip getTrip() {
+        return trip;
+    }
+
+    public String getMessage() {
+        return message;
+    }
 }
