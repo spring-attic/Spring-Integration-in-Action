@@ -7,9 +7,8 @@ import org.junit.runner.RunWith;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.integration.channel.PollableChannel;
 import org.springframework.integration.core.Message;
-import org.springframework.integration.core.MessageChannel;
 import org.springframework.integration.message.MessageBuilder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -17,9 +16,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.util.concurrent.CountDownLatch;
 
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
-import static org.mockito.Mockito.doAnswer;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 /**
  *
@@ -35,8 +32,7 @@ public class FlightNotificationsTest {
 
     /* <start id="trip-notifications-to-sms-notifier-test"/> */
     @Autowired
-    @Qualifier("trip-notifications")
-    MessageChannel tripNotifications;
+    PollableChannel tripNotifications;
 
     @Autowired
     SmsNotifiable smsNotifier;
@@ -56,6 +52,8 @@ public class FlightNotificationsTest {
         verify(smsNotifier).notify(notification);
     }
     /* <end id="trip-notifications-to-sms-notifier-test"/> */
+
+
     
     /* <start id="counts-down-latch"/> */
     private Answer countsDownLatch(final CountDownLatch notifierInvoked) {
