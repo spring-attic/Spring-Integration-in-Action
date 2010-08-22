@@ -15,13 +15,6 @@
     <i:channel id="tripCommands"/>
 
     <i:splitter id="tripCommandSplitter" expression="payload.subCommands"
-            input-channel="tripCommands" output-channel="subCommands"/>
-
-    <!-- TODO fill this out
-    <i:payload-type-router id="subCommands">
-        <i:mapping type=""/>
-    </i:payload-type-router>
-    -->
-
+            input-channel="tripCommands" output-channel="javaLegQuoteCommands"/>
 
 </beans>

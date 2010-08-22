@@ -1,7 +1,7 @@
 package com.manning.siia.integration;
 
 import com.manning.siia.domain.Command;
-import com.manning.siia.domain.CreateTripCommand;
+import com.manning.siia.domain.trip.CreateTripCommand;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
