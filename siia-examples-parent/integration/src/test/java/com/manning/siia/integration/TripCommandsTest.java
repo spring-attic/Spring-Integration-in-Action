@@ -2,10 +2,11 @@ package com.manning.siia.integration;
 
 import com.manning.siia.domain.Command;
 import com.manning.siia.domain.trip.CreateTripCommand;
+import com.manning.siia.domain.trip.Leg;
+import com.manning.siia.domain.trip.Trip;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.integration.channel.PollableChannel;
 import org.springframework.integration.core.Message;
 import org.springframework.integration.core.MessageChannel;
@@ -16,8 +17,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.Matchers.hasItems;
+import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertThat;
-import static org.hamcrest.CoreMatchers.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 
@@ -35,12 +38,10 @@ public class TripCommandsTest {
 
     //<start id="split-into-subcommands"/>
     @Autowired
-    @Qualifier("tripCommands")
     MessageChannel tripCommands;
 
     @Autowired
-    @Qualifier("subCommands")
-    PollableChannel subCommands;
+    PollableChannel javaLegQuoteCommands;
 
     @Test
     public void splitterShouldSplitIntoSubcommands() {
@@ -53,10 +54,37 @@ public class TripCommandsTest {
 
         tripCommands.send(tripCommandMessage);
         List<Message<? extends Object>> received =
-                Arrays.asList(subCommands.receive(100), subCommands.receive(100), subCommands.receive(100));
+                Arrays.asList(javaLegQuoteCommands.receive(100), javaLegQuoteCommands.receive(100), javaLegQuoteCommands.receive(100));
         assertThat(received.size(), is(3));
-       // assertThat(received, hasItems(hasPayload(carCommand), hasPayload(flightCommand), hasPayload(hotelCommand)));
     }
     //<end id="split-into-subcommands"/>
 
+    @Autowired
+    MessageChannel legQuotes;
+
+    @Autowired PollableChannel tripQuotes;
+
+    @Test
+    public void shouldAggregateQuotedLegsIntoTripSuggestion() {
+        Leg fakeLeg1 = mock(Leg.class);
+        Leg fakeLeg2 = mock(Leg.class);
+        Message<Leg> firstLegMessage =
+                createLegMessage(fakeLeg1, 1, 2);
+        Message<Leg> secondLegMessage =
+                createLegMessage(fakeLeg2, 2, 2);
+        legQuotes.send(firstLegMessage);
+        legQuotes.send(secondLegMessage);
+        Message<?> message = tripQuotes.receive(2000);
+        assertThat(message, is(notNullValue()));
+        assertThat(((Trip)message.getPayload()).getLegs()
+                , hasItems(fakeLeg1, fakeLeg2));
+    }
+
+    private Message<Leg> createLegMessage(Leg fakeLeg1,int sequenceNumber, int sequenceSize ) {
+        return MessageBuilder.withPayload(fakeLeg1)
+                .setCorrelationId("wouldBeSetBySplitter")
+                .setSequenceNumber(sequenceNumber)
+                .setSequenceSize(sequenceSize)
+                .build();
+    }
 }

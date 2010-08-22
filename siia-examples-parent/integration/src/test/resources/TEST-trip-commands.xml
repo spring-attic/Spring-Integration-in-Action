@@ -15,5 +15,9 @@
     <i:channel id="javaLegQuoteCommands">
         <i:queue capacity="10"/>
     </i:channel>
+    
+    <i:channel id="tripQuotes">
+        <i:queue capacity="10"/>
+    </i:channel>
 
 </beans>
