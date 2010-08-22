@@ -10,11 +10,8 @@
             http://www.springframework.org/schema/integration/xml/spring-integration-xml.xsd">
 
     <bean id="legMarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
-        <property name="classesToBeBound">
-            <value>
-                com.manning.siia.domain.trip.LegQuoteCommand
-            </value>
-        </property>
+        <property name="classesToBeBound"
+                  value="com.manning.siia.domain.trip.LegQuoteCommand"/>
     </bean>
 
     <si:channel id="javaLegQuoteCommands"/>
@@ -37,7 +34,7 @@
     </si-xml:xpath-splitter>
 
     <si:channel id="splitQuotes"/>
-    <si-xml:xpath-router id="quoteRequestRouter" input-channel="splitQuotes" 
+    <si-xml:xpath-router id="quoteRequestRouter" input-channel="splitQuotes"
                          channel-resolver="quoteChannelMap">
         <si-xml:xpath-expression expression="local-name(/*)"/>
     </si-xml:xpath-router>
@@ -55,7 +52,6 @@
     <si:channel id="carQuoteChannel">
         <si:queue/>
     </si:channel>
-
 
     <si:channel id="flightQuoteChannel" />
     <si-xml:validating-router id="flightQuoteValidator" input-channel="flightQuoteChannel"
