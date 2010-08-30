@@ -1,0 +1,10 @@
+*/target/
+.classpath
+.project
+.settings
+.springBeans
+.pydevproject
+*.iml
+.DS_Store
+**/.DS_Store
+MANIFEST.MF
