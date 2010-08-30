@@ -8,7 +8,7 @@
         <groupId>com.manning.siia</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <groupId>com.manning.sia</groupId>
+    <groupId>com.manning.siia</groupId>
     <artifactId>integration</artifactId>
     <version>1.0-SNAPSHOT</version>
     <name>integration</name>
