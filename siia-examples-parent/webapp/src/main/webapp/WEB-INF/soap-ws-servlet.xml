@@ -10,14 +10,8 @@
 			http://www.springframework.org/schema/integration/ws
             http://www.springframework.org/schema/integration/ws/spring-integration-ws-1.0.xsd">
 
-    
 
-    <si:channel id="tripQuoteRequestsChannel"/>
-    <si:channel id="tripQuoteResponseChannel" />
-    
-    
-    <bean id="tripQuoteProcessor" class="com.manning.siia.TripQuoteRequestProcessor"/>
-    <si:service-activator ref="tripQuoteProcessor" input-channel="tripQuoteRequestsChannel"
-                          output-channel="tripQuoteRequestsChannel" />
+    <si-ws:inbound-gateway request-channel="tripQuoteRequestsChannel" />
+
 
 </beans>

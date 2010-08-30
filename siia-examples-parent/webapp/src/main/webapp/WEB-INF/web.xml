@@ -23,16 +23,24 @@
     <param-name>contextConfigLocation</param-name>
     <param-value>
       classpath:trips-applicationContext.xml
-
-    </param-value>
+   </param-value>
   </context-param>
 
 
-  <servlet>
-    <servlet-name>tracking</servlet-name>
-    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-  </servlet>
+<servlet>
+    <servlet-name>soap-quote</servlet-name>
+    <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
+    <init-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>/WEB-INF/soap-ws-servlet.xml</param-value>
+     </init-param>
+     <load-on-startup>1</load-on-startup>
+</servlet>
 
+<servlet-mapping>
+     <servlet-name>soap-quote</servlet-name>
+     <url-pattern>/soapquoteservice</url-pattern>
+</servlet-mapping>
 
 
 </web-app>

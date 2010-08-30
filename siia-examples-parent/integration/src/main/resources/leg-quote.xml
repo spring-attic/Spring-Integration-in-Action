@@ -58,10 +58,10 @@
                               valid-channel="validFlightQuoteChannel" invalid-channel="invalidRequests "
                               schema-location="classpath:xsd/flightQuote.xsd" />
 
+    
     <si:channel id="validFlightQuoteChannel">
         <si:queue/>
     </si:channel>
-
 
 
     <si:channel id="hotelQuoteChannel">
