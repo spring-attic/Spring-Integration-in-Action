@@ -45,5 +45,13 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
         </dependency>
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+        </dependency>
+        <dependency>
+                <artifactId>log4j</artifactId>
+                <groupId>log4j</groupId>
+        </dependency>
     </dependencies>
 </project>

@@ -101,8 +101,8 @@
                 <version>${spring.webservices.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>org.apache.commons.logging</artifactId>
+                <groupId>commons-logging</groupId>
+                <artifactId>commons-logging</artifactId>
                 <version>1.1.1</version>
             </dependency>
             <dependency>

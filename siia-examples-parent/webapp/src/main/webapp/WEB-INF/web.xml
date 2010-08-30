@@ -22,12 +22,8 @@
   <context-param>
     <param-name>contextConfigLocation</param-name>
     <param-value>
-      classpath:/com/pathfinder/internal/applicationContext.xml
+      classpath:trips-applicationContext.xml
 
-      classpath:context-infrastructure.xml
-      classpath:context-application.xml
-      classpath:context-domain.xml
-      classpath:context-interfaces.xml
     </param-value>
   </context-param>
 
