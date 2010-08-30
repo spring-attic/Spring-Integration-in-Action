@@ -11,7 +11,12 @@
             http://www.springframework.org/schema/integration/ws/spring-integration-ws-1.0.xsd">
 
 
-    <si-ws:inbound-gateway request-channel="tripQuoteRequestsChannel" />
+    <si-ws:inbound-gateway id="tripInboundGateway"
+                           request-channel="tripQuoteRequestsChannel"
+                           reply-channel="tripQuoteResponseChannel"/>
 
+    <bean class="org.springframework.ws.server.endpoint.mapping.UriEndpointMapping">
+        <property name="defaultEndpoint" ref="tripInboundGateway"/>
+    </bean>
 
 </beans>

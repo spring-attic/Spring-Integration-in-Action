@@ -17,7 +17,7 @@
     
     
     <bean id="tripQuoteProcessor" class="com.manning.siia.TripQuoteRequestProcessor"/>
-    <si:service-activator ref="tripQuoteProcessor" input-channel="tripQuoteRequestsChannel"
-                          output-channel="tripQuoteRequestsChannel" />
+    <si:service-activator ref="tripQuoteProcessor" method="processTripRequest" input-channel="tripQuoteRequestsChannel"
+                          output-channel="tripQuoteResponseChannel" />
 
 </beans>
