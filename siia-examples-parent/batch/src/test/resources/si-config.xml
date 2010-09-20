@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:si="http://www.springframework.org/schema/integration"
+       xmlns:si-file="http://www.springframework.org/schema/integration/file"
+       xmlns:si-mail="http://www.springframework.org/schema/integration/mail"
+       xmlns:si-stream="http://www.springframework.org/schema/integration/stream"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/integration
+			http://www.springframework.org/schema/integration/spring-integration.xsd
+			http://www.springframework.org/schema/integration/mail
+			http://www.springframework.org/schema/integration/mail/spring-integration-mail.xsd
+			http://www.springframework.org/schema/integration/stream
+			http://www.springframework.org/schema/integration/stream/spring-integration-stream.xsd
+			http://www.springframework.org/schema/integration/file
+			http://www.springframework.org/schema/integration/file/spring-integration-file.xsd
+       ">
+
+    <si:poller default="true" fixed-rate="10000"/>
+
+    <si-file:inbound-channel-adapter directory="classpath:/data/paymentImport" channel="files"/>
+
+    <si:channel id="requests"/>
+
+    <si:channel id="statuses">
+        <si:queue capacity="10"/>
+    </si:channel>
+
+    <si:channel id="files"/>
+
+    <si:channel id="jobExecutions"/>
+
+    <si:channel id="chunks"/>
+
+    <si:channel id="jobRestarts">
+        <si:queue capacity="10"/>
+    </si:channel>
+
+    <si:channel id="mailNotifications"/>
+
+    <si:channel id="notifiableExecutions"/>
+
+    <si:channel id="chunkExecutions"/>
+
+
+    <si:service-activator method="launch" input-channel="requests" output-channel="statuses">
+        <bean id="messageHandler" class="org.springframework.batch.integration.launch.JobLaunchingMessageHandler">
+            <constructor-arg ref="jobRunner"/>
+        </bean>
+    </si:service-activator>
+
+    <si:transformer input-channel="files" output-channel="requests">
+        <bean class="com.manning.siia.batch.FileMessageToJobRequestTransformer">
+            <property name="job" ref="importPayments"/>
+            <property name="fileParameterName" value="input.file.name"/>
+        </bean>
+    </si:transformer>
+
+    <si:gateway id="notificationExecutionsListener"
+                service-interface="org.springframework.batch.core.JobExecutionListener"
+                default-request-channel="jobExecutions"/>
+
+    <si:router id="executionsRouter" input-channel="jobExecutions">
+        <bean class="com.manning.siia.batch.JobExecutionsRouter"/>
+    </si:router>
+
+    <si:transformer id="mailBodyTransformer" input-channel="notifiableExecutions" output-channel="mailNotifications">
+        <bean class="com.manning.siia.batch.ExecutionsToMailTransformer"/>
+    </si:transformer>
+
+    <si-mail:outbound-channel-adapter id="notificationsSender" channel="mailNotifications" mail-sender="mailSender"/>
+    
+     <bean id="mailSender" class="com.manning.siia.batch.StubJavaMailSender">
+		<constructor-arg>
+			<bean class="javax.mail.internet.MimeMessage">
+				<constructor-arg type="javax.mail.Session"><null/></constructor-arg>
+			</bean>
+		</constructor-arg>
+	</bean>
+
+    <si:chain input-channel="jobRestarts">
+    <si:delayer default-delay="10000"/>
+    <si:service-activator >
+        <bean class="com.manning.siia.batch.JobRestart"/>
+    </si:service-activator>
+
+    </si:chain>
+
+    <si-stream:stdout-channel-adapter channel="chunkExecutions"/>
+
+    <si:service-activator input-channel="chunks">
+        <bean class="org.springframework.batch.integration.chunk.ChunkProcessorChunkHandler">
+            <property name="chunkProcessor">
+                <bean class="org.springframework.batch.core.step.item.SimpleChunkProcessor">
+                    <property name="itemWriter">
+                        <bean class="com.manning.siia.batch.PaymentWriter">
+                            <property name="dataSource" ref="dataSource"/>
+                        </bean>
+                    </property>
+                </bean>
+            </property>
+        </bean>
+    </si:service-activator>
+
+</beans>

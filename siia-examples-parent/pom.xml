@@ -51,7 +51,11 @@
                 <artifactId>spring-integration-file</artifactId>
                 <version>${spring.integration.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>org.springframework.integration</groupId>
+                <artifactId>spring-integration-stream</artifactId>
+                <version>${spring.integration.version}</version>
+            </dependency>
             <!-- <start id="spring-integration-test-dep"/> -->
             <dependency>
                 <groupId>org.springframework.integration</groupId>
@@ -107,6 +111,16 @@
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
+                <artifactId>spring-core</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-jdbc</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
                 <artifactId>spring-beans</artifactId>
                 <version>${spring.version}</version>
             </dependency>
@@ -136,7 +150,6 @@
                 <artifactId>spring-xml</artifactId>
                 <version>${spring.webservices.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>org.springframework.ws</groupId>
                 <artifactId>spring-ws-core</artifactId>
@@ -194,6 +207,7 @@
         <module>simple-injection</module>
         <module>coupling</module>
         <module>business</module>
+        <module>batch</module>
         <module>home-cooking</module>
     </modules>
     <build>

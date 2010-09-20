@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:batch="http://www.springframework.org/schema/batch"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+       http://www.springframework.org/schema/batch
+           http://www.springframework.org/schema/batch/spring-batch.xsd">
+
+   <batch:job id="importPayments">
+       <batch:step id="loadPayments">
+           <batch:tasklet>
+               <batch:chunk reader="itemReader" writer="itemWriter" commit-interval="5">
+                   <!--<batch:skippable-exception-classes>-->
+                       <!--<batch:include class="org.springframework.batch.item.file.FlatFileParseException"/>-->
+                   <!--</batch:skippable-exception-classes>-->
+               </batch:chunk>
+           </batch:tasklet>
+       </batch:step>
+       <batch:listeners>
+           <batch:listener>
+               <bean class="com.manning.siia.batch.PaymentJobExecutionListener"/>
+           </batch:listener>
+            <batch:listener>
+               <bean class="com.manning.siia.batch.PaymentChunkListener"/>
+           </batch:listener>
+       </batch:listeners>
+   </batch:job>
+
+
+    <bean id="itemReader" class="org.springframework.batch.item.file.FlatFileItemReader" scope="step">
+        <property name="resource" value="file:///#{jobParameters['input.file.name']}" />
+        <property name="lineMapper">
+            <bean class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
+                <property name="lineTokenizer">
+                    <bean class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer">
+                        <property name="names" value="source,destination,amount,date" />
+                    </bean>
+                </property>
+                <property name="fieldSetMapper">
+                    <bean class="com.manning.siia.batch.PaymentFieldSetMapper" />
+                </property>
+            </bean>
+        </property>
+    </bean>
+
+    <jdbc:embedded-database id="dataSource" type="HSQL"/>
+
+    <jdbc:initialize-database data-source="dataSource">
+        <jdbc:script location="classpath:/org/springframework/batch/core/schema-drop-hsqldb.sql"/>
+        <jdbc:script location="classpath:/org/springframework/batch/core/schema-hsqldb.sql"/>
+        <jdbc:script location="classpath:dbinit.sql"/>
+    </jdbc:initialize-database>
+
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="itemWriter" class="com.manning.siia.batch.PaymentWriter">
+        <constructor-arg ref="dataSource"/>
+    </bean>
+
+    <bean id="chunkItemWriter" class="org.springframework.batch.integration.chunk.ChunkMessageChannelItemWriter">
+        <property name="messagingOperations" >
+            <bean class="org.springframework.integration.core.MessagingTemplate">
+                <property name="defaultChannel" value="chunks"/>
+            </bean>
+        </property>
+    </bean>
+
+
+
+    <batch:job-repository data-source="dataSource" id="jobRepository" transaction-manager="transactionManager"
+            table-prefix="BATCH_"/>
+    
+    <bean id="jobRunner" class="org.springframework.batch.core.launch.support.SimpleJobLauncher">
+        <property name="jobRepository" ref="jobRepository"/>
+
+    </bean>
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+
+    
+</beans>

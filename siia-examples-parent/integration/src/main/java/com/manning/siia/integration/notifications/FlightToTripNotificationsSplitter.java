@@ -18,7 +18,7 @@ public class FlightToTripNotificationsSplitter {
 
     @Splitter
     public List<TripNotification> generateTripNotificationsFrom(FlightNotification flightNotification,
-                                                                @Header("affectedTrips") List<Trip> affectedTrips) {
+        @Header("affectedTrips") List<Trip> affectedTrips) {
         List<TripNotification> notifications = new ArrayList<TripNotification>(affectedTrips.size());
         for (Trip trip : affectedTrips) {
             notifications.add(new TripNotification(trip, flightNotification.getMessage()));
