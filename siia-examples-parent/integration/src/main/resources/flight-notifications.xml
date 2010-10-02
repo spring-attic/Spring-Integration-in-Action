@@ -17,7 +17,7 @@
         <i:header-enricher>
             <i:header name="affectedTrips" expression="payload.findRelatedTrips(@tripRepository)"/>
         </i:header-enricher>
-        <i:splitter id="flightToTripNotificationsSplitter">
+        <i:splitter>
             <bean class="com.manning.siia.integration.notifications.FlightToTripNotificationsSplitter"/>
         </i:splitter>
     </i:chain>

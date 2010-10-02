@@ -9,6 +9,13 @@
 
     <si-http:inbound-gateway id="httpTripInboundGateway"
                              request-channel="tripQuoteRequestsChannel"
-                             reply-channel="tripQuoteResponseChannel"/>
+                             reply-channel="tripQuoteResponseChannel"
+            extract-reply-payload=""
+            reply-key=""
+            reply-timeout=""
+            request-mapper=""
+            supported-methods=""
+            view=""
+            />
 
 </beans>

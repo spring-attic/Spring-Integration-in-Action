@@ -7,10 +7,10 @@ import com.manning.siia.domain.trip.Trip;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.integration.channel.PollableChannel;
-import org.springframework.integration.core.Message;
-import org.springframework.integration.core.MessageChannel;
-import org.springframework.integration.message.MessageBuilder;
+import org.springframework.integration.Message;
+import org.springframework.integration.MessageChannel;
+import org.springframework.integration.core.PollableChannel;
+import org.springframework.integration.support.MessageBuilder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -51,7 +51,7 @@ public class TripCommandsTest {
         final Command flightCommand = mock(Command.class);
         final Command hotelCommand = mock(Command.class);
         given(tripCommand.getSubCommands()).willReturn(Arrays.asList(carCommand, flightCommand, hotelCommand));
-
+        long myLong = Long.valueOf("123");
         tripCommands.send(tripCommandMessage);
         List<Message<? extends Object>> received =
                 Arrays.asList(javaLegQuoteCommands.receive(100), javaLegQuoteCommands.receive(100), javaLegQuoteCommands.receive(100));

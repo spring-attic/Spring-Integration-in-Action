@@ -4,10 +4,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.integration.channel.MessageChannelTemplate;
-import org.springframework.integration.core.Message;
-import org.springframework.integration.core.MessageChannel;
-import org.springframework.integration.message.MessageBuilder;
+import org.springframework.integration.Message;
+import org.springframework.integration.MessageChannel;
+import org.springframework.integration.core.MessagingTemplate;
+import org.springframework.integration.support.MessageBuilder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -16,12 +16,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration(locations = {"classpath:weather-endpoint.xml"})
 public class WeatherTest {
 
-    private MessageChannelTemplate channelTemplate;
+    private MessagingTemplate channelTemplate;
 
 
     @Autowired @Qualifier("weatherRequests")
     public void setChannel(MessageChannel messageChannel){
-        this.channelTemplate = new MessageChannelTemplate(messageChannel);    
+        this.channelTemplate = new MessagingTemplate(messageChannel);
     }
 
     @Test

@@ -15,7 +15,7 @@
  */
 package com.manning.siia.trip.diary;
 
-import org.springframework.integration.file.AbstractFileListFilter;
+import org.springframework.integration.file.entries.AbstractEntryListFilter;
 
 import java.io.File;
 
@@ -26,7 +26,7 @@ import java.io.File;
  *         Date: Aug 30, 2009
  *         Time: 7:41:52 PM
  */
-public class RefuseWrittenByThisProcess extends AbstractFileListFilter {
+public class RefuseWrittenByThisProcess extends AbstractEntryListFilter<File> {
     private final String processName;
 
     public RefuseWrittenByThisProcess(String processName) {
@@ -35,7 +35,7 @@ public class RefuseWrittenByThisProcess extends AbstractFileListFilter {
 
 
     @Override
-    protected boolean accept(File file) {
+    public boolean accept(File file) {
         return file.getName().endsWith(processName);
     }
 }

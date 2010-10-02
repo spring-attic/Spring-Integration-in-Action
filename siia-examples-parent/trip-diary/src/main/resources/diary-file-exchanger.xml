@@ -17,10 +17,10 @@
     <file:inbound-channel-adapter channel="incomingChanges" directory="#{config.diary.store}"
                                   filter="onlyNewChangesFilter"/>
 
-    <bean id="onlyNewChangesFilter" class="org.springframework.integration.file.CompositeFileListFilter">
+    <bean id="onlyNewChangesFilter" class="org.springframework.integration.file.entries.CompositeEntryListFilter">
         <constructor-arg>
             <list>
-                <bean class="org.springframework.integration.file.AcceptOnceFileListFilter"/>
+                <bean class="org.springframework.integration.file.entries.AcceptOnceEntryFileListFilter"/>
                 <bean class="com.manning.siia.trip.diary.RefuseWrittenByThisProcess">
                     <constructor-arg value="#{config.processId}"/>
                 </bean>

@@ -1,7 +1,7 @@
 package com.manning.siia.trip.diary;
 
+import org.springframework.integration.Message;
 import org.springframework.integration.file.FileNameGenerator;
-import org.springframework.integration.core.Message;
 
 /**
  * @author Iwein Fuld
@@ -17,4 +17,5 @@ public class ChangeFileNameGenerator implements FileNameGenerator {
     public String generateFileName(Message<?> message) {
         return Long.toString(System.currentTimeMillis()) + "_" + processId;
     }
+
 }

@@ -19,14 +19,6 @@
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
 
-    <context-param>
-        <param-name>contextConfigLocation</param-name>
-        <param-value>
-            classpath:trips-applicationContext.xml
-            /WEB-INF/http-ws-servlet.xml
-        </param-value>
-    </context-param>
-
 
     <servlet>
         <servlet-name>soap-quote</servlet-name>
@@ -47,11 +39,19 @@
     <servlet>
         <servlet-name>httpTripInboundGateway</servlet-name>
         <servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>
+                classpath:trips-applicationContext.xml
+                /WEB-INF/http-ws-servlet.xml
+            </param-value>
+        </init-param>
     </servlet>
 
     <servlet-mapping>
         <servlet-name>httpTripInboundGateway</servlet-name>
         <url-pattern>/httpquote</url-pattern>
     </servlet-mapping>
+
 
 </web-app>
