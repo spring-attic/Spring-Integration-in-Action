@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<legQuote>
+    <carCriteria>
+        <carType>Compact</carType>
+    </carCriteria>
+    <flightCriteria>
+        <requiredSeatClass>Business</requiredSeatClass>
+        <returnRequired>true</returnRequired>
+    </flightCriteria>
+    <hotelCriteria>
+        <roomType>Double</roomType>
+        <smokingRoom>false</smokingRoom>
+    </hotelCriteria>
+    <leg>
+        <startOfLegDate>2010-01-03T00:00:00Z</startOfLegDate>
+        <endOfLegDate>2010-01-07T00:00:00Z</endOfLegDate>
+        <startLocation city='London' countryCode='UK'/>
+        <endLocation city='Buenos Aires' countryCode='AR'/>
+    </leg>
+</legQuote>

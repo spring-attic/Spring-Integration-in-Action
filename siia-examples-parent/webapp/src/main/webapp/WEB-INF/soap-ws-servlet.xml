@@ -13,10 +13,21 @@
 
     <si-ws:inbound-gateway id="tripInboundGateway"
                            request-channel="tripQuoteRequestsChannel"
-                           reply-channel="tripQuoteResponseChannel"/>
+                           reply-channel="tripQuoteResponseChannel" marshaller="jaxbMarshaller"
+                           unmarshaller="jaxbMarshaller"/>
 
     <bean class="org.springframework.ws.server.endpoint.mapping.UriEndpointMapping">
         <property name="defaultEndpoint" ref="tripInboundGateway"/>
     </bean>
+
+    <bean id="jaxbMarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+       <property name="classesToBeBound">
+            <list>
+                <value>com.manning.siia.domain.trip.LegQuoteCommand</value>
+                <value>com.manning.siia.OkResponse</value>
+            </list>
+        </property>
+    </bean>
+
 
 </beans>

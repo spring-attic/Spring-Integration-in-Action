@@ -4,7 +4,19 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="webServiceTemplate" class="org.springframework.ws.client.core.WebServiceTemplate">
-        <property name="defaultUri" value="http://localhost:8080/siia-webapp/soapquoteservice" />
+        <property name="defaultUri" value="http://localhost:8080/siia-webapp/soapquoteservice"/>
+        <property name="marshaller" ref="jaxbMarshaller" />
+        <property name="unmarshaller" ref="jaxbMarshaller" />
+
+    </bean>
+
+    <bean id="jaxbMarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+        <property name="classesToBeBound">
+            <list>
+                <value>com.manning.siia.domain.trip.LegQuoteCommand</value>
+                <value>com.manning.siia.OkResponse</value>
+            </list>
+        </property>
     </bean>
 
 </beans>

@@ -15,10 +15,17 @@
         <param-value>/WEB-INF/log4j.properties</param-value>
     </context-param>
 
+
+    <context-param>
+        <param-name>log4jConfigLocation</param-name>
+        <param-value>/WEB-INF/log4j.properties</param-value>
+    </context-param>
+
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
 
+    <!-- SOAP services -->
 
     <servlet>
         <servlet-name>soap-quote</servlet-name>
@@ -35,6 +42,9 @@
         <servlet-name>soap-quote</servlet-name>
         <url-pattern>/soapquoteservice</url-pattern>
     </servlet-mapping>
+
+
+    <!-- HTTP services -->
 
     <servlet>
         <servlet-name>httpTripInboundGateway</servlet-name>
