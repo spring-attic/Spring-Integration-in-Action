@@ -28,7 +28,7 @@ public class WeatherTest {
     public void testCambridge(){
         Message message = MessageBuilder.withPayload("cambridge,uk").build();
         Message response = channelTemplate.sendAndReceive(message);
-        System.out.println(response);
+        System.out.println(response.getPayload());
     }
 
 }
