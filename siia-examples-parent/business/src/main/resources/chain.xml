@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mail="http://www.springframework.org/schema/integration/mail"
+       xmlns="http://www.springframework.org/schema/integration"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/mail/spring-integration.xsd
+       http://www.springframework.org/schema/integration/mail http://www.springframework.org/schema/integration/mail/spring-integration-mail.xsd">
+
+    <chain input-channel="passengers">
+        <transformer ref="frequentFlyerService" method="configureProfile"/>
+        <header-enricher>
+            <header name="#{MailHeaders.TO}" value="#{payload.emailAddress}"/>
+        </header-enricher>
+        <mail:outbound-channel-adapter mail-sender="mailSender"/>
+    </chain>
+
+    <beans:bean class="com.manning.siia.business.StubFrequentFlyerService"/>
+
+
+</beans:beans>

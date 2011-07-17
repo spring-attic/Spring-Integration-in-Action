@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns="http://www.springframework.org/schema/integration"
+             xmlns:mail="http://www.springframework.org/schema/integration/mail"
+             xmlns:jms="http://www.springframework.org/schema/integration/jms"
+             xmlns:file="http://www.springframework.org/schema/integration/file"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/mail/spring-integration.xsd
+       http://www.springframework.org/schema/integration/mail http://www.springframework.org/schema/integration/mail/spring-integration-mail.xsd
+       http://www.springframework.org/schema/integration/file http://www.springframework.org/schema/integration/mail/spring-integration-file.xsd
+       http://www.springframework.org/schema/integration/jms http://www.springframework.org/schema/integration/jms/spring-integration-jms.xsd">
+
+    <gateway service-interface="com.manning.siia.FlightStatusNotificationPublisher">
+        <method name="notify" request-channel="flightStatusNotifications"/>
+    </gateway>
+
+    <mail:outbound-channel-adapter channel="flightStatusNotifications" mail-sender="mailSender"/>
+
+    <jms:outbound-channel-adapter channel="flightStatusNotifications" destination="flightStatusQueue"/>
+
+    <file:file-to-string-transformer input-channel="flightStatusNotifications" output-channel="flightStatusFilesOut"/>
+
+    <file:outbound-channel-adapter channel="flightStatusFilesOut" directory="/siia/flightStatus/"/>
+</beans:beans>
