@@ -7,6 +7,8 @@ import org.springframework.integration.support.channel.ChannelResolver;
 
 
 /**
+ * A simple example of a {@link ChannelResolver}
+ *
  * @author Marius Bogoevici
  */
 public class CreditCardPaymentChannelResolver implements ChannelResolver
@@ -18,6 +20,6 @@ public class CreditCardPaymentChannelResolver implements ChannelResolver
    @Override
    public MessageChannel resolveChannelName(String s)
    {
-      return (MessageChannel)applicationContext.getBean(s);
+      return (MessageChannel)applicationContext.getBean(s + "-payments");
    }
 }

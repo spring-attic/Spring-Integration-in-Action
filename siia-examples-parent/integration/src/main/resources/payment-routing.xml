@@ -9,23 +9,35 @@
 
     <si:channel id="payments"/>
 
-    <si:channel id="invoices"/>
+    <si:channel id="invoices">
+       <si:queue/>
+    </si:channel>
 
     <si:channel id="credit-card-payments"/>
 
-    <si:channel id="paypal-payments"/>
+    <si:channel id="paypal-payments">
+       <si:queue/>
+    </si:channel>
 
     <si:router method="routePaymentSettlement" input-channel="payments">
         <bean class="com.manning.siia.integration.routing.PaymentSettlementRouter"/>
     </si:router>
 
-    <si:channel id="visa-payments"/>
+    <si:channel id="visa-payments">
+       <si:queue/>
+    </si:channel>
 
-    <si:channel id="american-express-payments"/>
+    <si:channel id="american-express-payments">
+       <si:queue/>
+    </si:channel>
 
-    <si:channel id="mastercard-payments"/>
+    <si:channel id="mastercard-payments">
+       <si:queue/>
+    </si:channel>
 
 
-    <si:router expression="payload.creditCardType" channel-resolver=""/>
+    <si:router expression="payload.creditCardType" channel-resolver="creditCardPaymentsChannelResolver" input-channel="credit-card-payments"/>
+
+    <bean id="creditCardPaymentsChannelResolver" class="com.manning.siia.integration.routing.CreditCardPaymentChannelResolver"/>
 
 </beans>

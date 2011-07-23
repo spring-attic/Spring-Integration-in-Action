@@ -1,5 +1,6 @@
 package com.manning.siia.integration.notifications;
 
+import com.apple.concurrent.Dispatch;
 import com.manning.siia.domain.flight.Flight;
 import com.manning.siia.domain.trip.Trip;
 import com.manning.siia.domain.trip.TripRepository;
@@ -13,6 +14,8 @@ import java.util.List;
 public class FlightNotification {
     private final String message;
     private final Flight flight;
+
+    private Priority priority;
 
     public FlightNotification(String message, Flight flight) {
         this.message = message;
@@ -29,5 +32,13 @@ public class FlightNotification {
 
     public List<Trip> findRelatedTrips(TripRepository tripRepository) {
         return tripRepository.findTripsRelatedTo(this.flight);
+    }
+
+    public Priority getPriority() {
+        return priority;
+    }
+
+    public void setPriority(Priority priority) {
+        this.priority = priority;
     }
 }
