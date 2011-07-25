@@ -1,6 +1,5 @@
 package com.manning.siia.integration.notifications;
 
-import com.apple.concurrent.Dispatch;
 import com.manning.siia.domain.flight.Flight;
 import com.manning.siia.domain.trip.Trip;
 import com.manning.siia.domain.trip.TripRepository;
