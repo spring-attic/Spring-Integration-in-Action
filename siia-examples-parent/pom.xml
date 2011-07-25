@@ -97,6 +97,11 @@
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
+                <artifactId>spring-core</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
                 <artifactId>spring-context-support</artifactId>
                 <version>${spring.version}</version>
             </dependency>
@@ -189,6 +194,7 @@
         <module>simple-injection</module>
         <module>coupling</module>
         <module>business</module>
+        <module>home-cooking</module>
     </modules>
     <build>
         <plugins>

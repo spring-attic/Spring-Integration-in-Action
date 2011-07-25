@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+			 xmlns:i="http://www.springframework.org/schema/integration"
+			 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			 xsi:schemaLocation="
+           http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd
+       ">
+
+	<i:chain id="splitRecipesIntoIngredients" input-channel="recipes" output-channel="ingredients">
+		<i:header-enricher>
+			<i:header name="recipe" expression="payload"/>
+		</i:header-enricher>
+		<i:splitter expression="payload.ingredients"/>
+	</i:chain>
+
+</beans>

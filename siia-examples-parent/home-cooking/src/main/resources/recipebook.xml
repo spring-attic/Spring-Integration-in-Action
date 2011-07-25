@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:i="http://www.springframework.org/schema/integration"
+       xmlns:file="http://www.springframework.org/schema/integration/file"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:si-xml="http://www.springframework.org/schema/integration/xml"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd
+           http://www.springframework.org/schema/integration/file http://www.springframework.org/schema/integration/file/spring-integration-file.xsd http://www.springframework.org/schema/integration/xml http://www.springframework.org/schema/integration/xml/spring-integration-xml.xsd">
+
+	<file:inbound-channel-adapter id="recipebook" directory="#{conf.get('recipebook.location')}"
+	                              filename-pattern=".*\.xml$" channel="recipeFiles"
+	                              auto-create-directory="true"/>
+
+	<i:channel id="recipeFiles" />
+
+	<i:chain id="filesToRecipes" input-channel="recipeFiles" output-channel="recipes">
+		<file:file-to-string-transformer/>
+		<si-xml:unmarshalling-transformer unmarshaller="xstreamUnmarshaller"/>
+	</i:chain>
+
+	<bean id="xstreamUnmarshaller" class="org.springframework.oxm.xstream.XStreamMarshaller">
+		<property name="autodetectAnnotations" value="true"/>
+		<property name="annotatedClasses">
+			<array>
+				<value>com.manning.siia.kitchen.domain.Recipe</value>
+				<value>com.manning.siia.kitchen.domain.Ingredient</value>
+			</array>
+		</property>
+	</bean>
+
+</beans>

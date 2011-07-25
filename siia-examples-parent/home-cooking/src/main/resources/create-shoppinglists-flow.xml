@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:i="http://www.springframework.org/schema/integration"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd">
+
+	<bean id="shoppingListWriter" class="com.manning.siia.kitchen.ShoppingListWriter" />
+
+	<i:chain id="ingredientsToShoppingLists" input-channel="ingredients" output-channel="shoppinglists">
+		<i:header-enricher>
+			<i:header name="$sequenceSize" expression="headers[recipe].itemsOfType(payload.type)" overwrite="true"/>
+		</i:header-enricher>
+		<i:aggregator ref="shoppingListWriter" release-strategy="shoppingListWriter" />
+	</i:chain>
+
+</beans>

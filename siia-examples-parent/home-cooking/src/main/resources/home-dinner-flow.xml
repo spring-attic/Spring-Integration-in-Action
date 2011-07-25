@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:i="http://www.springframework.org/schema/integration"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd
+           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd">
+	<import resource="recipebook.xml"/>
+
+	<i:channel id="recipes"/>
+
+	<import resource="split-recipe-flow.xml"/>
+
+	<i:channel id="ingredients"/>
+
+	<import resource="create-shoppinglists-flow.xml"/>
+
+	<i:channel id="shoppinglists"/>
+
+	<import resource="shopping-flow.xml"/>
+
+	<i:channel id="grocerybags"/>
+
+	<import resource="grocery-unpacker-flow.xml"/>
+
+	<i:channel id="products"/>
+
+	<import resource="kitchen.xml"/>
+
+	<i:channel id="meals">
+		<i:queue capacity="50"/>
+	</i:channel>
+
+	<i:poller default="true" fixed-rate="1000"/>
+
+	<util:properties id="conf" location="kitchen.properties"/>
+</beans>
