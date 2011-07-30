@@ -1,9 +1,9 @@
-package com.manning.siia.coupling.original;
+package siia.fundamentals.original;
 
-import com.manning.siia.coupling.Booking;
-import com.manning.siia.coupling.BookingDao;
-import com.manning.siia.coupling.MealPreference;
-import com.manning.siia.coupling.MockBookingDao;
+import siia.fundamentals.Booking;
+import siia.fundamentals.BookingDao;
+import siia.fundamentals.MealPreference;
+import siia.fundamentals.SimpleBookingDao;
 
 import org.springframework.ws.client.core.WebServiceOperations;
 import org.springframework.ws.client.core.WebServiceTemplate;
@@ -13,21 +13,20 @@ import org.springframework.xml.transform.StringSource;
 import javax.xml.transform.Source;
 
 /**
- * Strongly coupled version of the {@link com.manning.siia.coupling.BookingService}.
+ * Strongly coupled version of the {@link siia.fundamentals.BookingService}.
  * <ul>
  *     <li>Dependencies are created by the class itself, rather than being injected;</li>
  *     <li>The meal preference update is strongly tied to a web service invocation</li>
  * </ul>
  *
  *
- * @author Marius Bogoevici
  */
 public class BookingService {
     private final BookingDao bookingDao;
     private final WebServiceOperations mealPreferenceWebServiceInvoker;
 
     public BookingService() {
-        this.bookingDao = new MockBookingDao();
+        this.bookingDao = new SimpleBookingDao();
         WebServiceTemplate template = new WebServiceTemplate();
         template.setDefaultUri(System.getProperty(
                 "meal.preference.service.uri"));
@@ -45,10 +44,17 @@ public class BookingService {
                 mealUpdateSource, result);
     }
 
-    public Source buildMealPreferenceUpdateRequest(Booking booking, MealPreference mealPreference) {
+    public Source buildMealPreferenceUpdateRequest(
+        Booking booking, MealPreference mealPreference) {
 
-        return new StringSource("<updateMealPreference><flightRef>" + booking.getFlightRef() +
-                "</flightRef><mealPreference>" + mealPreference +
-                "</mealPreference></updateMealPreference>");
+        return new StringSource(
+            "<updateMealPreference>" +
+                "<flightRef>" +
+                    booking.getFlightRef() +
+                "</flightRef>" +
+                "<mealPreference>" +
+                    mealPreference +
+                "</mealPreference>" +
+            "</updateMealPreference>");
     }
 }

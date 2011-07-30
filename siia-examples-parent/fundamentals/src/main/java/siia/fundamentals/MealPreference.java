@@ -1,8 +1,5 @@
-package com.manning.siia.coupling;
+package siia.fundamentals;
 
-/**
- * @author Marius Bogoevici
- */
 public class MealPreference {
 
     private Long bookingReference;
@@ -24,8 +21,7 @@ public class MealPreference {
     @Override
     public String toString() {
         return "MealPreference{" +
-                "bookingReference=" + bookingReference +
-                ", flightReference=" + flightReference +
-                '}';
+                "bookingReference=" + bookingReference +", " +
+                "flightReference=" + flightReference + '}';
     }
 }

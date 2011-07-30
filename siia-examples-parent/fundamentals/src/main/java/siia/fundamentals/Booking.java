@@ -1,8 +1,5 @@
-package com.manning.siia.coupling;
+package siia.fundamentals;
 
-/**
- * @author Marius Bogoevici
- */
 public class Booking {
 
     private Long flightRef;

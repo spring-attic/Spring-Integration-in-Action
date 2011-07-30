@@ -1,0 +1,53 @@
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns="http://www.springframework.org/schema/integration"
+             xmlns:stream="http://www.springframework.org/schema/integration/stream"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/integration
+			http://www.springframework.org/schema/integration/spring-integration.xsd
+			http://www.springframework.org/schema/integration/stream
+			http://www.springframework.org/schema/integration/stream/spring-integration-stream.xsd">
+
+  <beans:bean id="bookingDao"
+              class="siia.fundamentals.SimpleBookingDao"/>
+
+  <channel id="mealPreferenceUpdatesChannel"/>
+
+  <beans:bean id="bookingService"
+              class="siia.fundamentals.BookingService">
+      <beans:constructor-arg ref="bookingDao"/>
+  </beans:bean>
+
+  <service-activator input-channel="mealPreferenceUpdatesChannel"
+                     output-channel="bookingEnrichedMealUpdates"
+                     ref="bookingService"
+                     method="getFlightRefForBooking"/>
+
+  <channel id="bookingEnrichedMealUpdates"/>
+
+  <beans:bean id="updateRequestTransformer"
+                class="com.manning.siia.coupling
+                .MealPreferenceRequestTransformer"/>
+
+    <service-activator input-channel="bookingEnrichedMealUpdates"
+                       output-channel="xmlMealUpdates"
+                       ref="updateRequestTransformer"
+                       method="buildMealPreferenceUpdateRequest"/>
+
+    <channel id="xmlMealUpdates"/>
+
+  <!--
+       This example uses a simplified version of the meal update action.
+        Instead of a web service invocation (as shown in the example
+        below, on the fictional service exposed at
+        http://example.com/mealupdates), we will use a stream channel
+         adapter which -sends the MealPreference objects to stdout -->
+
+    <!--<ws:outbound-gateway uri="http://example.com/mealupdates"
+                             request-channel="xmlMealUpdates" />-->
+
+    <stream:stdout-channel-adapter append-newline="true"
+                                   channel="xmlMealUpdates"/>
+
+</beans:beans>
