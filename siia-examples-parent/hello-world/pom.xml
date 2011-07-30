@@ -10,7 +10,7 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>simple-injection</artifactId>
+    <artifactId>hello-world</artifactId>
     <description>Supporting code for Chapter 1</description>
 
     <dependencies>

@@ -204,7 +204,7 @@
         <module>integration</module>
         <module>trip-diary</module>
         <module>webapp</module>
-        <module>simple-injection</module>
+        <module>hello-world</module>
         <module>coupling</module>
         <module>business</module>
         <module>batch</module>

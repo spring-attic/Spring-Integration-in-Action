@@ -8,13 +8,16 @@
 			http://www.springframework.org/schema/integration/spring-integration.xsd">
 
 
-    <gateway id="helloGateway" service-interface="com.manning.siia.injection.HelloService"
-             default-request-channel="names"/>
+  <gateway id="helloGateway"
+           service-interface="siia.helloworld.gateway.HelloService"
+           default-request-channel="names"/>
 
-    <channel id="names"/>
+  <channel id="names"/>
 
-    <service-activator input-channel="names" ref="helloService" method="sayHello"/>
+  <service-activator input-channel="names" ref="helloService"
+                     method="sayHello"/>
 
-    <beans:bean id="helloService" class="com.manning.siia.injection.MyHelloService"/>
+  <beans:bean id="helloService"
+              class="siia.helloworld.channel.MyHelloService"/>
 
 </beans:beans>
