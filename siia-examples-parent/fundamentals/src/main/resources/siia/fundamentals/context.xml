@@ -15,7 +15,8 @@
   <channel id="mealPreferenceUpdatesChannel"/>
 
   <beans:bean id="bookingService"
-              class="siia.fundamentals.BookingService">
+              class="siia.fundamentals
+              .BookingServiceWithDependencyInjection">
       <beans:constructor-arg ref="bookingDao"/>
   </beans:bean>
 

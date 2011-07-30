@@ -8,8 +8,8 @@ public class BookingService {
     this.bookingDao = bookingDao;
   }
 
-  public MealPreference getFlightRefForBooking(MealPreference
-                                                   mealPreference) {
+  public MealPreference populatePreference(MealPreference
+                                               mealPreference) {
     Booking booking = bookingDao.getBookingById(
         mealPreference.getBookingReference());
     mealPreference.setFlightReference(booking.getFlightRef());
