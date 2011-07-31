@@ -1,4 +1,7 @@
-package com.manning.siia.business;
+package siia.business;
+
+import siia.business.FrequentFlyerService;
+import siia.business.Profile;
 
 /**
  * @author Marius Bogoevici

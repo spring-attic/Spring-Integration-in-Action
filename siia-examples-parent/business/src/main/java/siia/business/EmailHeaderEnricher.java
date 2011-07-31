@@ -1,10 +1,9 @@
-package com.manning.siia.business;
+package siia.business;
 
 import org.springframework.integration.Message;
 import org.springframework.integration.annotation.Headers;
 import org.springframework.integration.annotation.MessageEndpoint;
 import org.springframework.integration.mail.MailHeaders;
-import org.springframework.integration.mapping.MessageMappingException;
 import org.springframework.integration.support.MessageBuilder;
 
 import java.util.Map;

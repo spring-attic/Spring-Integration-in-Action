@@ -1,7 +1,4 @@
-package com.manning.siia.business;
-
-import java.util.ArrayList;
-import java.util.List;
+package siia.business;
 
 /**
  * @author Marius Bogoevici

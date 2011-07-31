@@ -1,4 +1,4 @@
-package com.manning.siia.business;
+package siia.business;
 
 import com.sun.xml.internal.bind.v2.schemagen.xmlschema.TypeHost;
 

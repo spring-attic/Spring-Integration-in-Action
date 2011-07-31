@@ -1,4 +1,4 @@
-package com.manning.siia.business;
+package siia.business;
 
 /**
  * @author Marius Bogoevici

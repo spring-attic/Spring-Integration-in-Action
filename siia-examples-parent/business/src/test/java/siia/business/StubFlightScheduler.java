@@ -1,4 +1,7 @@
-package com.manning.siia.business;
+package siia.business;
+
+import siia.business.Flight;
+import siia.business.FlightScheduler;
 
 import java.util.Date;
 

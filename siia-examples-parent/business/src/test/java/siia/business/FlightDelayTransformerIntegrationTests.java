@@ -1,4 +1,4 @@
-package com.manning.siia.business;
+package siia.business;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,6 +9,7 @@ import org.springframework.integration.core.PollableChannel;
 import org.springframework.integration.support.MessageBuilder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import siia.business.FlightDelayEvent;
 
 import java.util.Date;
 

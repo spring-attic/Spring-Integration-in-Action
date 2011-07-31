@@ -1,4 +1,4 @@
-package com.manning.siia.business;
+package siia.business;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,6 +10,8 @@ import org.springframework.integration.mail.MailHeaders;
 import org.springframework.integration.support.MessageBuilder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import siia.business.Passenger;
+import siia.business.Profile;
 
 import static org.junit.Assert.assertEquals;
 
