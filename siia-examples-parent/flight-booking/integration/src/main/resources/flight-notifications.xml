@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:i="http://www.springframework.org/schema/integration"
-       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns="http://www.springframework.org/schema/integration"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 			http://www.springframework.org/schema/beans/spring-beans.xsd
 			http://www.springframework.org/schema/integration
@@ -10,30 +9,30 @@
 			">
 
     <!-- contains non personalized notifications about flights -->
-    <i:channel id="flightNotifications"/>
+    <channel id="flightNotifications"/>
 
-    <i:chain input-channel="flightNotifications"
+    <chain input-channel="flightNotifications"
              output-channel="tripNotifications">
-        <i:header-enricher>
-            <i:header name="affectedTrips" expression="payload.findRelatedTrips(@tripRepository)"/>
-        </i:header-enricher>
-        <i:splitter>
-            <bean class="siia.booking.integration.notifications
-            .FlightToTripNotificationsSplitter"/>
-        </i:splitter>
-    </i:chain>
+        <header-enricher>
+            <header name="affectedTrips" expression="payload.findRelatedTrips(@tripRepository)"/>
+        </header-enricher>
+        <splitter>
+            <beans:bean
+                class="siia.booking.integration.notifications.FlightToTripNotificationsSplitter"/>
+        </splitter>
+    </chain>
 
     <!-- <start id="trip-notifications-to-sms-notifier"/> -->
-    <i:publish-subscribe-channel id="tripNotifications"
+    <publish-subscribe-channel id="tripNotifications"
                                  datatype="siia.booking.domain
                                  .notifications.TripNotification"
                                  task-executor="taskScheduler"/>
 
-    <i:outbound-channel-adapter id="smsNotifier" channel="tripNotifications" ref="smsNotifierBean" method="notify"/>
+    <outbound-channel-adapter id="smsNotifier" channel="tripNotifications" ref="smsNotifierBean" method="notify"/>
     <!-- <end id="trip-notifications-to-sms-notifier"/> -->
 
-    <bean id="tripRepository" class="siia.booking.domain.trip.TripRepository"/>
+    <beans:bean id="tripRepository" class="siia.booking.domain.trip.TripRepository"/>
 
-    <bean id="smsNotifierBean" class="siia.booking.domain.notifications.SmsNotifiable"/>
+    <beans:bean id="smsNotifierBean" class="siia.booking.domain.notifications.SmsNotifiable"/>
 
-</beans>
+</beans:beans>

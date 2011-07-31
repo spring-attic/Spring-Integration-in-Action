@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- <start id="main-message-flow-header"/> -->
-<beans xmlns="http://www.springframework.org/schema/beans"
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:i="http://www.springframework.org/schema/integration"
-       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns="http://www.springframework.org/schema/integration"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 			http://www.springframework.org/schema/beans/spring-beans.xsd
 			http://www.springframework.org/schema/integration
@@ -12,20 +11,21 @@
     <!-- <end id="main-message-flow-header"/> -->
 
     <!-- incoming posts from the trip UI end up here -->
-    <i:channel id="tripCommands"/>
+    <channel id="tripCommands"/>
 
-    <i:splitter id="tripCommandSplitter" expression="payload.subCommands"
+    <splitter id="tripCommandSplitter" expression="payload.subCommands"
             input-channel="tripCommands" output-channel="javaLegQuoteCommands"/>
     <!-- leg commands will be sent out for quotes -->
 
 
     <!-- leg quotes will be aggregated back to trips -->
-    <i:channel id="legQuotes"/>
+    <channel id="legQuotes"/>
 
-    <i:aggregator id="legQuoteAggregator"
+    <aggregator id="legQuoteAggregator"
                   input-channel="legQuotes" output-channel="tripQuotes">
-        <bean class="siia.booking.integration.purchases.LegQuoteAggregator"/>
-    </i:aggregator>
+        <beans:bean class="siia.booking.integration.purchases
+        .LegQuoteAggregator"/>
+    </aggregator>
 
-    <i:channel id="tripQuotes"/>
-</beans>
+    <channel id="tripQuotes"/>
+</beans:beans>

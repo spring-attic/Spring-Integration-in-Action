@@ -1,6 +1,6 @@
-<beans xmlns="http://www.springframework.org/schema/beans"
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:si="http://www.springframework.org/schema/integration"
+       xmlns="http://www.springframework.org/schema/integration"
        xmlns:si-xml="http://www.springframework.org/schema/integration/xml"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 			http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -9,63 +9,72 @@
 			http://www.springframework.org/schema/integration/xml
             http://www.springframework.org/schema/integration/xml/spring-integration-xml.xsd">
 
-    <bean id="legMarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
-        <property name="classesToBeBound"
+    <beans:bean id="legMarshaller"
+                class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+        <beans:property name="classesToBeBound"
                   value="siia.booking.domain.trip.LegQuoteCommand"/>
-    </bean>
+    </beans:bean>
 
-    <si:channel id="javaLegQuoteCommands"/>
+    <channel id="javaLegQuoteCommands"/>
 
-    <si-xml:marshalling-transformer input-channel="javaLegQuoteCommands" output-channel="xmlLegQuotes"
-                                    marshaller="legMarshaller" result-transformer="resultToDocumentTransformer"
-                                    result-type="StringResult"/>
+    <si-xml:marshalling-transformer
+        input-channel="javaLegQuoteCommands"
+        output-channel="xmlLegQuotes"
+        marshaller="legMarshaller"
+        result-transformer="resultToDocumentTransformer"
+        result-type="StringResult"/>
 
-    <bean id="resultToDocumentTransformer"
+    <beans:bean id="resultToDocumentTransformer"
           class="org.springframework.integration.xml.transformer.ResultToDocumentTransformer"/>
 
-    <si:channel id="xmlLegQuotes"/>
+    <channel id="xmlLegQuotes"/>
 
-    <si-xml:xslt-transformer input-channel="xmlLegQuotes" output-channel="xslTransformedLegQuote"
-                             xsl-resource="classpath:/xsl/enrichCriteriaWithLeg.xsl"/>
+    <si-xml:xslt-transformer
+        input-channel="xmlLegQuotes"
+        output-channel="xslTransformedLegQuote"
+        xsl-resource="classpath:/xsl/enrichCriteriaWithLeg.xsl"/>
 
-    <si:channel id="xslTransformedLegQuote"/>
+    <channel id="xslTransformedLegQuote"/>
 
     <si-xml:xpath-splitter create-documents="true" input-channel="xslTransformedLegQuote" output-channel="splitQuotes">
         <si-xml:xpath-expression expression="/legQuote/*"/>
     </si-xml:xpath-splitter>
 
-    <si:channel id="splitQuotes"/>
-    <si-xml:xpath-router id="quoteRequestRouter" input-channel="splitQuotes" evaluate-as-string="true">
+    <channel id="splitQuotes"/>
+    <si-xml:xpath-router id="quoteRequestRouter"
+                         input-channel="splitQuotes"
+                         evaluate-as-string="true">
         <si-xml:xpath-expression expression="local-name(/*)"/>
         <si-xml:mapping value="carQuote" channel="carQuoteChannel"/>
         <si-xml:mapping value="flightQuote" channel="flightQuoteChannel"/>
         <si-xml:mapping value="hotelQuote" channel="hotelQuoteChannel"/>
     </si-xml:xpath-router>
 
-    <si:channel id="carQuoteChannel">
-        <si:queue/>
-    </si:channel>
+    <channel id="carQuoteChannel">
+        <queue/>
+    </channel>
+
+    <channel id="invalidRequests">
+        <queue/>
+    </channel>
+
+    <channel id="flightQuoteChannel"/>
+
+    <si-xml:validating-filter
+        id="flightQuoteValidator"
+        input-channel="flightQuoteChannel"
+        output-channel="validFlightQuoteChannel"
+        discard-channel="invalidRequests"
+        schema-location="classpath:xsd/flightQuote.xsd"/>
 
 
-
-    <si:channel id="invalidRequests">
-        <si:queue/>
-    </si:channel>
-
-
-    <si:channel id="flightQuoteChannel"/>
-    <si-xml:validating-filter id="flightQuoteValidator" input-channel="flightQuoteChannel"
-                              output-channel="validFlightQuoteChannel" discard-channel="invalidRequests"
-                              schema-location="classpath:xsd/flightQuote.xsd"/>
+    <channel id="validFlightQuoteChannel">
+        <queue/>
+    </channel>
 
 
-    <si:channel id="validFlightQuoteChannel">
-        <si:queue/>
-    </si:channel>
+    <channel id="hotelQuoteChannel">
+        <queue/>
+    </channel>
 
-
-    <si:channel id="hotelQuoteChannel">
-        <si:queue/>
-    </si:channel>
-
-</beans>
+</beans:beans>

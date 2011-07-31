@@ -1,34 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- <start id="main-message-flow-header"/> -->
-<beans xmlns="http://www.springframework.org/schema/beans"
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:i="http://www.springframework.org/schema/integration"
+       xmlns="http://www.springframework.org/schema/integration"
        xmlns:util="http://www.springframework.org/schema/util"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 			http://www.springframework.org/schema/beans/spring-beans.xsd
 			http://www.springframework.org/schema/integration
 			http://www.springframework.org/schema/integration/spring-integration.xsd">
 
-    <import resource="flight-notifications.xml"/>
+    <beans:import resource="flight-notifications.xml"/>
 
     <!-- <start id="sms-notifier-mock" /> -->
-    <bean id="smsNotifierBean" class="org.mockito.Mockito" factory-method="mock">
-        <constructor-arg value="siia.booking.domain.notifications.SmsNotifiable"/>
-    </bean>
+    <beans:bean id="smsNotifierBean" class="org.mockito.Mockito"
+           factory-method="mock">
+        <beans:constructor-arg
+            value="siia.booking.domain.notifications.SmsNotifiable"/>
+    </beans:bean>
     <!-- <end id="sms-notifier-mock" /> -->
 
-    <bean id="tripRepository" class="org.mockito.Mockito" factory-method="mock">
-        <constructor-arg value="siia.booking.domain.trip.TripRepository"/>
-    </bean>
+    <beans:bean id="tripRepository" class="org.mockito.Mockito"
+           factory-method="mock">
+        <beans:constructor-arg
+            value="siia.booking.domain.trip.TripRepository"/>
+    </beans:bean>
 
-    <i:bridge input-channel="tripNotifications" output-channel="interceptedTripNotifications"/>
+    <bridge input-channel="tripNotifications" output-channel="interceptedTripNotifications"/>
 
-    <i:channel id="interceptedTripNotifications">
-        <i:queue capacity="42"/>
-    </i:channel>
+    <channel id="interceptedTripNotifications">
+        <queue capacity="42"/>
+    </channel>
 
-    <i:poller default="true">
-        <i:interval-trigger interval="100"/>
-    </i:poller>
+    <poller default="true">
+        <interval-trigger interval="100"/>
+    </poller>
 
-</beans>
+</beans:beans>
