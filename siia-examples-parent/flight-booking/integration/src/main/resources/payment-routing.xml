@@ -21,19 +21,18 @@
 
   <router method="routePaymentSettlement" input-channel="payments">
     <beans:bean
-        class="siia.booking.integration.routing
-        .PaymentSettlementRouter"/>
+        class="siia.booking.integration.routing.PaymentSettlementRouter"/>
   </router>
 
-  <channel id="visa-payments">
+  <channel id="VISA-payments">
     <queue/>
   </channel>
 
-  <channel id="american-express-payments">
+  <channel id="AMERICAN_EXPRESS-payments">
     <queue/>
   </channel>
 
-  <channel id="mastercard-payments">
+  <channel id="MASTERCARD-payments">
     <queue/>
   </channel>
 
@@ -43,6 +42,6 @@
           input-channel="credit-card-payments"/>
 
   <beans:bean id="creditCardPaymentsChannelResolver"
-              class="sii.booking.integration.routing.CreditCardPaymentChannelResolver"/>
+              class="siia.booking.integration.routing.CreditCardPaymentChannelResolver"/>
 
 </beans:beans>

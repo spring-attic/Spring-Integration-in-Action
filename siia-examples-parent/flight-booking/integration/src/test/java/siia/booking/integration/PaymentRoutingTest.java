@@ -1,5 +1,7 @@
 package siia.booking.integration;
 
+import siia.booking.domain.payment.CreditCardPayment;
+import siia.booking.domain.payment.CreditCardType;
 import siia.booking.domain.payment.Invoice;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,4 +29,11 @@ public class PaymentRoutingTest {
 
     }
 
+
+    @Test
+    public void testCreditCardRouting() {
+      CreditCardPayment payment = new CreditCardPayment();
+      payment.setCreditCardType(CreditCardType.MASTERCARD);
+      payments.send(MessageBuilder.withPayload(payment).build());
+    }
 }

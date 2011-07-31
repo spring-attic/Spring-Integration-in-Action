@@ -18,6 +18,6 @@ public class CancellationRequestFilter {
 
     public boolean accept(CancellationRequest cancellationRequest) {
         return (cancellationRequest.getReservationCode() != null) &&
-                pattern.matcher(cancellationRequest.getReservationCode()).matches();
+           pattern.matcher(cancellationRequest.getReservationCode()).matches();
     }
 }

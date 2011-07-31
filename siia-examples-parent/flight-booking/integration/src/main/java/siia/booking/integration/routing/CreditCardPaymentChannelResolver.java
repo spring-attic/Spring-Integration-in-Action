@@ -5,11 +5,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.integration.MessageChannel;
 import org.springframework.integration.support.channel.ChannelResolver;
 
-/**
- * A simple example of a {@link ChannelResolver}
- *
- * @author Marius Bogoevici
- */
 public class CreditCardPaymentChannelResolver implements ChannelResolver
 {
 
