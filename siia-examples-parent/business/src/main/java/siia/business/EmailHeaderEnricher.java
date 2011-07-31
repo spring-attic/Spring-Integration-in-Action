@@ -8,15 +8,14 @@ import org.springframework.integration.support.MessageBuilder;
 
 import java.util.Map;
 
-/**
- * @author Marius Bogoevici
- */
 @MessageEndpoint
 public class EmailHeaderEnricher {
 
-    public Message<Passenger> populateEmailHeader(Passenger passenger, @Headers Map<String, Object> headers) {
+    public Message<Passenger> populateEmailHeader(Passenger passenger,
+                               @Headers Map<String, Object> headers) {
 
-        MessageBuilder<Passenger> responseBuilder = MessageBuilder.withPayload(passenger).copyHeaders(headers);
+        MessageBuilder<Passenger> responseBuilder =
+            MessageBuilder.withPayload(passenger).copyHeaders(headers);
         Profile profile = passenger.getProfile();
         if (profile != null) {
             String emailAddress = profile.getEmailAddress();

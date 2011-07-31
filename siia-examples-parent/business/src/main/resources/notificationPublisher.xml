@@ -11,7 +11,7 @@
        http://www.springframework.org/schema/integration/file http://www.springframework.org/schema/integration/mail/spring-integration-file.xsd
        http://www.springframework.org/schema/integration/jms http://www.springframework.org/schema/integration/jms/spring-integration-jms.xsd">
 
-    <gateway service-interface="com.manning.siia.FlightStatusNotificationPublisher">
+    <gateway service-interface="siia.business.FlightStatusNotificationPublisher">
         <method name="notify" request-channel="flightStatusNotifications"/>
     </gateway>
 

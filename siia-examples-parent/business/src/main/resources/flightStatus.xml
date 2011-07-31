@@ -6,5 +6,6 @@
              http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd">
 
     <service-activator input-channel="flightDelays" ref="flightStatusService" method="updateStatus"/>
-    <beans:bean id="flightStatusService" class="com.manning.siia.business.SimpleFlightStatusService"/>
+    <beans:bean id="flightStatusService" class="siia.business
+    .SimpleFlightStatusService"/>
 </beans:beans>

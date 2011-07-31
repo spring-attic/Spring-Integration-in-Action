@@ -9,16 +9,12 @@ import org.springframework.integration.core.PollableChannel;
 import org.springframework.integration.support.MessageBuilder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import siia.business.FlightDelayEvent;
 
 import java.util.Date;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-/**
- * @author Marius Bogoevici
- */
 @ContextConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
 public class FlightDelayTransformerIntegrationTests {

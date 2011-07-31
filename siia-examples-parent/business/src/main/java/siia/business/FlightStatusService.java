@@ -1,6 +1,6 @@
 package siia.business;
 
 public interface FlightStatusService {
-    FlightStatus updateStatus(FlightDelayEvent flightDelayEvent);
+    void updateStatus(FlightDelayEvent flightDelayEvent);
 }
 

@@ -18,9 +18,9 @@
            <mail:to expression="payload.profile?.emailAddress"/>
        </mail:header-enricher>
 
-       <beans:bean class="com.manning.siia.business.StubFlightScheduler"/>
+       <beans:bean class="siia.business.StubFlightScheduler"/>
 
-        <beans:bean class="com.manning.siia.business.StubFrequentFlyerService"/>
+        <beans:bean class="siia.business.StubFrequentFlyerService"/>
 
 
 </beans:beans>

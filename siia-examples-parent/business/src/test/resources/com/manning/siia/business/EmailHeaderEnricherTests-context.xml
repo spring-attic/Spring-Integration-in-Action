@@ -17,8 +17,8 @@
 
        <transformer input-channel="input" output-channel="output" ref="emailHeaderEnricher" method="populateEmailHeader"/>
 
-       <beans:bean class="com.manning.siia.business.StubFlightScheduler"/>
+       <beans:bean class="siia.business.StubFlightScheduler"/>
 
-       <beans:bean class="com.manning.siia.business.StubFrequentFlyerService"/>
+       <beans:bean class="siia.business.StubFrequentFlyerService"/>
 
 </beans:beans>
