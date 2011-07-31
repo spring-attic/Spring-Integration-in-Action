@@ -1,13 +1,11 @@
 package com.manning.siia.soap;
 
-import com.manning.siia.domain.Location;
-import com.manning.siia.domain.trip.Leg;
-import com.manning.siia.domain.trip.LegQuoteCommand;
+import siia.booking.domain.Location;
+import siia.booking.domain.trip.Leg;
+import siia.booking.domain.trip.LegQuoteCommand;
 import org.joda.time.DateTime;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.ws.client.core.WebServiceOperations;
-import org.springframework.xml.transform.StringResult;
-import org.springframework.xml.transform.StringSource;
 
 public class SoapTripTestClient {
 

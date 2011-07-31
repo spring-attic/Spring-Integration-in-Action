@@ -23,7 +23,7 @@
     <bean id="jaxbMarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
        <property name="classesToBeBound">
             <list>
-                <value>com.manning.siia.domain.trip.LegQuoteCommand</value>
+                <value>siia.booking.domain.trip.LegQuoteCommand</value>
                 <value>com.manning.siia.OkResponse</value>
             </list>
         </property>

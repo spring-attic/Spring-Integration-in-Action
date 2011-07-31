@@ -1,12 +1,11 @@
 package com.manning.siia;
 
-import com.manning.siia.domain.trip.LegQuoteCommand;
+import siia.booking.domain.trip.LegQuoteCommand;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.xml.transform.StringResult;
 import org.springframework.xml.transform.StringSource;
 
-import javax.xml.transform.Result;
 import javax.xml.transform.Source;
 
 

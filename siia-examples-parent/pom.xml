@@ -209,6 +209,7 @@
         <module>business</module>
         <module>batch</module>
         <module>home-cooking</module>
+      <module>flight-booking</module>
     </modules>
     <build>
         <plugins>
