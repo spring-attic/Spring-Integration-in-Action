@@ -23,8 +23,7 @@
 
     <aggregator id="legQuoteAggregator"
                   input-channel="legQuotes" output-channel="tripQuotes">
-        <beans:bean class="siia.booking.integration.purchases
-        .LegQuoteAggregator"/>
+        <beans:bean class="siia.booking.integration.purchases.LegQuoteAggregator"/>
     </aggregator>
 
     <channel id="tripQuotes"/>

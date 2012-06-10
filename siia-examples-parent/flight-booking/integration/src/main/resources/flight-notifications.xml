@@ -24,8 +24,7 @@
 
     <!-- <start id="trip-notifications-to-sms-notifier"/> -->
     <publish-subscribe-channel id="tripNotifications"
-                                 datatype="siia.booking.domain
-                                 .notifications.TripNotification"
+                                 datatype="siia.booking.domain.notifications.TripNotification"
                                  task-executor="taskScheduler"/>
 
     <outbound-channel-adapter id="smsNotifier" channel="tripNotifications" ref="smsNotifierBean" method="notify"/>

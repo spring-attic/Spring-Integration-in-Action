@@ -39,7 +39,7 @@
 
 
 
-    <service-activator id="goldCancellationsProcessor" input-channel="inbound" ref="cancellationsService"
+    <service-activator id="goldCancellationsProcessor" input-channel="validated" ref="cancellationsService"
                        method="cancel" output-channel="confirmed"/>
 
     <beans:bean id="cancellationsService"
