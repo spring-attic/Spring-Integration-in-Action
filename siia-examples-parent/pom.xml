@@ -200,16 +200,14 @@
         </dependencies>
     </dependencyManagement>
     <modules>
-        <module>domain</module>
-        <module>integration</module>
+        <module>batch</module>
+        <module>business</module>
+        <module>flight-booking</module>
+        <module>fundamentals</module>
+        <module>hello-world</module>
+        <module>home-cooking</module>
         <module>trip-diary</module>
         <module>webapp</module>
-        <module>hello-world</module>
-        <module>fundamentals</module>
-        <module>business</module>
-        <module>batch</module>
-        <module>home-cooking</module>
-      <module>flight-booking</module>
     </modules>
     <build>
         <plugins>
