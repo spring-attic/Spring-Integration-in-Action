@@ -23,7 +23,7 @@
             <version>2.1.3.RELEASE</version>
         </dependency>
 
-         <dependency>
+        <dependency>
             <groupId>
                 org.springframework.batch
             </groupId>
@@ -52,7 +52,7 @@
                     <groupId>org.springframework</groupId>
                     <artifactId>spring-aop</artifactId>
                 </exclusion>
-             </exclusions>
+            </exclusions>
         </dependency>
 
         <dependency>
@@ -140,13 +140,5 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
-    <repositories>
-        <repository>
-        <id>spring-snapshots</id>
-        <name>Spring Maven Snapshot Repository</name>
-        <url>http://s3.amazonaws.com/maven.springframework.org/snapshot</url>
-</repository>
-    </repositories>
 
 </project>

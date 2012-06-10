@@ -94,8 +94,11 @@
                 <bean class="org.springframework.batch.core.step.item.SimpleChunkProcessor">
                     <property name="itemWriter">
                         <bean class="com.manning.siia.batch.PaymentWriter">
-                            <property name="dataSource" ref="dataSource"/>
+                            <constructor-arg ref="dataSource"/>
                         </bean>
+                    </property>
+                    <property name="itemProcessor">
+                        <bean class="org.springframework.batch.item.support.PassThroughItemProcessor"/>
                     </property>
                 </bean>
             </property>

@@ -64,7 +64,7 @@
     <bean id="chunkItemWriter" class="org.springframework.batch.integration.chunk.ChunkMessageChannelItemWriter">
         <property name="messagingOperations" >
             <bean class="org.springframework.integration.core.MessagingTemplate">
-                <property name="defaultChannel" value="chunks"/>
+                <property name="defaultChannel" ref="chunks"/>
             </bean>
         </property>
     </bean>
