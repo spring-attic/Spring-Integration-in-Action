@@ -15,21 +15,19 @@
   <channel id="mealPreferenceUpdatesChannel"/>
 
   <beans:bean id="bookingService"
-              class="siia.fundamentals
-              .BookingServiceWithDependencyInjection">
+              class="siia.fundamentals.BookingService">
       <beans:constructor-arg ref="bookingDao"/>
   </beans:bean>
 
   <service-activator input-channel="mealPreferenceUpdatesChannel"
                      output-channel="bookingEnrichedMealUpdates"
                      ref="bookingService"
-                     method="getFlightRefForBooking"/>
+                     method="populatePreference"/>
 
   <channel id="bookingEnrichedMealUpdates"/>
 
   <beans:bean id="updateRequestTransformer"
-                class="com.manning.siia.coupling
-                .MealPreferenceRequestTransformer"/>
+                class="siia.fundamentals.MealPreferenceRequestTransformer"/>
 
     <service-activator input-channel="bookingEnrichedMealUpdates"
                        output-channel="xmlMealUpdates"
