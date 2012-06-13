@@ -26,12 +26,7 @@
     </build>
 
     <dependencies>
-        <!-- SIIA modules -->
-        <dependency>
-            <groupId>com.manning.siia</groupId>
-            <artifactId>trip-diary</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
+
         <dependency>
             <groupId>com.manning.siia</groupId>
             <artifactId>integration</artifactId>
