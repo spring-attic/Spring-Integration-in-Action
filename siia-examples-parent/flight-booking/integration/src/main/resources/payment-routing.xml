@@ -24,24 +24,21 @@
         class="siia.booking.integration.routing.PaymentSettlementRouter"/>
   </router>
 
-  <channel id="VISA-payments">
+  <channel id="VISA">
     <queue/>
   </channel>
 
-  <channel id="AMERICAN_EXPRESS-payments">
+  <channel id="AMERICAN_EXPRESS">
     <queue/>
   </channel>
 
-  <channel id="MASTERCARD-payments">
+  <channel id="MASTERCARD">
     <queue/>
   </channel>
 
 
   <router expression="payload.creditCardType"
-          channel-resolver="creditCardPaymentsChannelResolver"
           input-channel="credit-card-payments"/>
 
-  <beans:bean id="creditCardPaymentsChannelResolver"
-              class="siia.booking.integration.routing.CreditCardPaymentChannelResolver"/>
 
 </beans:beans>

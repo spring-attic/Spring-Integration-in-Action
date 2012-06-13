@@ -31,8 +31,5 @@
         <queue capacity="42"/>
     </channel>
 
-    <poller default="true">
-        <interval-trigger interval="100"/>
-    </poller>
-
+    <poller default="true" fixed-rate="100"/>
 </beans:beans>
