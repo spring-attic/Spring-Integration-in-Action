@@ -9,7 +9,7 @@
 
 	<i:chain id="ingredientsToShoppingLists" input-channel="ingredients" output-channel="shoppinglists">
 		<i:header-enricher>
-			<i:header name="$sequenceSize" expression="headers[recipe].itemsOfType(payload.type)" overwrite="true"/>
+			<i:header name="sequenceSize" expression="headers[recipe].itemsOfType(payload.type)" overwrite="true"/>
 		</i:header-enricher>
 		<i:aggregator ref="shoppingListWriter" release-strategy="shoppingListWriter" />
 	</i:chain>

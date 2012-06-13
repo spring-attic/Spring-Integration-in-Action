@@ -9,7 +9,7 @@
            http://www.springframework.org/schema/integration/file http://www.springframework.org/schema/integration/file/spring-integration-file.xsd http://www.springframework.org/schema/integration/xml http://www.springframework.org/schema/integration/xml/spring-integration-xml.xsd">
 
 	<file:inbound-channel-adapter id="recipebook" directory="#{conf.get('recipebook.location')}"
-	                              filename-pattern=".*\.xml$" channel="recipeFiles"
+	                              filename-pattern="*.xml" channel="recipeFiles"
 	                              auto-create-directory="true"/>
 
 	<i:channel id="recipeFiles" />

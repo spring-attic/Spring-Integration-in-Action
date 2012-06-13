@@ -14,7 +14,7 @@ import java.util.List;
  * 
  * @author Jeroen van Erp
  */
-public class ShoppingListWriter implements org.springframework.integration.aggregator.ReleaseStrategy {
+public class ShoppingListWriter {
 
     @Aggregator
     public ShoppingList sendShoppingList(List<Ingredient> ingredients) {
@@ -31,8 +31,4 @@ public class ShoppingListWriter implements org.springframework.integration.aggre
         return ingredient.getType();
     }
 
-	@Override
-	public boolean canRelease(final MessageGroup group) {
-		return group.isComplete();
-	}
 }
