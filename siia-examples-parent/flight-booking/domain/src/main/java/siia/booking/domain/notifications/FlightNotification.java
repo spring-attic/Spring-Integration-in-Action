@@ -14,7 +14,7 @@ public class FlightNotification {
     private final String message;
     private final Flight flight;
 
-    private Priority priority;
+    private int priority;
 
     public FlightNotification(String message, Flight flight) {
         this.message = message;
@@ -33,11 +33,11 @@ public class FlightNotification {
         return tripRepository.findTripsRelatedTo(this.flight);
     }
 
-    public Priority getPriority() {
+    public int getPriority() {
         return priority;
     }
 
-    public void setPriority(Priority priority) {
+    public void setPriority(int priority) {
         this.priority = priority;
     }
 }
