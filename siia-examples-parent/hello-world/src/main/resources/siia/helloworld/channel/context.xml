@@ -8,10 +8,6 @@
 			http://www.springframework.org/schema/integration/spring-integration.xsd">
 
 
-  <gateway id="helloGateway"
-           service-interface="siia.helloworld.channel.HelloService"
-           default-request-channel="names"/>
-
   <channel id="names"/>
 
   <service-activator input-channel="names" ref="helloService"
