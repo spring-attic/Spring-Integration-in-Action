@@ -1,11 +1,19 @@
+<!--
+   NOTE: this example contains namespace definitions for both xmlns:ws and xmlns:stream
+   namespaces, although only one is intended to be used at a time.
+   Please feel free to add or remove the unused namespace definitions as necessary
+-->
 <beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xmlns="http://www.springframework.org/schema/integration"
              xmlns:stream="http://www.springframework.org/schema/integration/stream"
+             xmlns:ws="http://www.springframework.org/schema/integration/ws"
              xsi:schemaLocation="http://www.springframework.org/schema/beans
 			http://www.springframework.org/schema/beans/spring-beans.xsd
 			http://www.springframework.org/schema/integration
 			http://www.springframework.org/schema/integration/spring-integration.xsd
+            http://www.springframework.org/schema/integration/ws
+			http://www.springframework.org/schema/integration/ws/spring-integration-ws.xsd
 			http://www.springframework.org/schema/integration/stream
 			http://www.springframework.org/schema/integration/stream/spring-integration-stream.xsd">
 
