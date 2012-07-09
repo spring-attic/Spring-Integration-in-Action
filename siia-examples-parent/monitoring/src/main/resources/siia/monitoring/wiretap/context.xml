@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://www.springframework.org/schema/integration"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/integration
+        http://www.springframework.org/schema/integration/spring-integration.xsd">
+
+	<channel id="debitChannel">
+		<interceptors>
+			<wire-tap channel="auditChannel"/>
+		</interceptors>
+	</channel>
+
+	<service-activator input-channel="debitChannel" method="process">
+		<beans:bean class="siia.monitoring.wiretap.DebitService"/>
+	</service-activator>
+
+	<filter input-channel="auditChannel"
+			expression="payload.amount > 10000"
+			output-channel="logger"/>
+
+	<logging-channel-adapter id="logger"
+			expression="'auditing debit: ' + payload"/>
+
+</beans:beans>
