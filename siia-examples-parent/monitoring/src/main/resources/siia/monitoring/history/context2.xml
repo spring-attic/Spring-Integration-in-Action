@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://www.springframework.org/schema/integration"
+    xmlns:groovy="http://www.springframework.org/schema/integration/groovy"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/integration
+        http://www.springframework.org/schema/integration/spring-integration.xsd
+        http://www.springframework.org/schema/integration/groovy
+        http://www.springframework.org/schema/integration/groovy/spring-integration-groovy.xsd">
+
+	<message-history/>
+
+	<inbound-channel-adapter id="poller" channel="transformChannel"
+			expression="'foo'">
+		<poller fixed-delay="10000"/>
+	</inbound-channel-adapter>
+
+	<channel id="transformChannel"/>
+
+	<transformer input-channel="transformChannel"
+			expression="payload.toUpperCase()"
+			output-channel="logChannel"/>
+
+	<channel id="logChannel"/>
+
+	<service-activator id="logger" input-channel="logChannel">
+		<groovy:script>
+			headers.history.each { println it }
+			println '=' * 80
+		</groovy:script>
+	</service-activator>
+
+</beans:beans>

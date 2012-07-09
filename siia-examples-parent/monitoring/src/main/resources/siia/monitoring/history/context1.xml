@@ -7,12 +7,21 @@
         http://www.springframework.org/schema/integration
         http://www.springframework.org/schema/integration/spring-integration.xsd">
 
-  <channel id="names"/>
+	<message-history/>
 
-  <service-activator input-channel="names" ref="helloService"
-                     method="sayHello"/>
+	<inbound-channel-adapter id="poller" channel="transformChannel"
+			expression="'foo'">
+		<poller fixed-delay="10000"/>
+	</inbound-channel-adapter>
 
-  <beans:bean id="helloService"
-              class="siia.helloworld.channel.MyHelloService"/>
+	<channel id="transformChannel"/>
+
+	<transformer input-channel="transformChannel"
+			expression="payload.toUpperCase()" output-channel="logChannel"/>
+
+	<channel id="logChannel"/>
+
+	<logging-channel-adapter id="logger" channel="logChannel"
+			expression="headers.history"/>
 
 </beans:beans>
