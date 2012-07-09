@@ -19,7 +19,7 @@ public class Debit {
 	public String getAccountId() {
 		return this.accountId;
 	}
-	
+
 	public String toString() {
 		return "[amount=" + this.amount + ", accountId=" + accountId + "]";
 	}

@@ -21,5 +21,5 @@ public class WireTapDemo {
 		debitChannel.send(message1);
 		debitChannel.send(message2);
 	}
-	
+
 }
