@@ -22,6 +22,8 @@
 
 	<beans:bean id="numberHolder" class="siia.monitoring.controlbus.NumberHolder"/>
 
+	<beans:bean id="filePoller" class="siia.monitoring.controlbus.FilePoller"/>
+
 	<task:executor id="myExecutor" pool-size="5"/>
 
 </beans:beans>
