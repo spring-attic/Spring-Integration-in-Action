@@ -13,12 +13,10 @@
         http://www.springframework.org/schema/integration/jmx
         http://www.springframework.org/schema/integration/jmx/spring-integration-jmx.xsd">
 
-	<jmx:mbean-export default-domain="demo"/>
+	<context:mbean-export/>
 
-	<context:mbean-server/>
+	<control-bus input-channel="controlChannel"/>
 
-	<channel id="channel">
-		<queue/>
-	</channel>
+	<beans:bean id="numberHolder" class="siia.monitoring.controlbus.NumberHolder"/>
 
 </beans:beans>
