@@ -31,13 +31,9 @@ public class BatchTest {
     public void runBatch() throws Exception {
         //120 s should provide enough time for the poller to detect the file and process it
         JobExecution jobExecution = ((Message<JobExecution>) statusesChannel.receive(120000)).getPayload();
-
         ExitStatus exitStatus = jobExecution.getExitStatus();
-
-        Assert.assertEquals(exitStatus, ExitStatus.COMPLETED);
-
+        Assert.assertEquals(ExitStatus.COMPLETED, exitStatus);
         int count = jdbcTemplate.queryForInt("select count(*) from payments");
-
         Assert.assertEquals(27, count);
     }
 }

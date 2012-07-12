@@ -21,9 +21,7 @@
             </batch:tasklet>
         </batch:step>
         <batch:listeners>
-            <batch:listener>
-                <bean class="com.manning.siia.batch.PaymentJobExecutionListener"/>
-            </batch:listener>
+            <batch:listener ref="notificationExecutionsListener"/>
             <batch:listener>
                 <bean class="com.manning.siia.batch.PaymentChunkListener"/>
             </batch:listener>
