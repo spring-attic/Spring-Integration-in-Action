@@ -3,31 +3,32 @@
        xmlns:batch="http://www.springframework.org/schema/batch"
        xmlns:jdbc="http://www.springframework.org/schema/jdbc"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-       http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
-       http://www.springframework.org/schema/batch
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       	   http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/jdbc
+           http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+           http://www.springframework.org/schema/batch
            http://www.springframework.org/schema/batch/spring-batch.xsd">
 
-   <batch:job id="importPayments">
-       <batch:step id="loadPayments">
-           <batch:tasklet>
-               <batch:chunk reader="itemReader" writer="itemWriter" commit-interval="5">
-                   <!--<batch:skippable-exception-classes>-->
-                       <!--<batch:include class="org.springframework.batch.item.file.FlatFileParseException"/>-->
-                   <!--</batch:skippable-exception-classes>-->
-               </batch:chunk>
-           </batch:tasklet>
-       </batch:step>
-       <batch:listeners>
-           <batch:listener>
-               <bean class="com.manning.siia.batch.PaymentJobExecutionListener"/>
-           </batch:listener>
+    <batch:job id="importPayments">
+        <batch:step id="loadPayments">
+            <batch:tasklet>
+                <batch:chunk reader="itemReader" writer="itemWriter" commit-interval="5">
+                    <!--<batch:skippable-exception-classes>-->
+                        <!--<batch:include class="org.springframework.batch.item.file.FlatFileParseException"/>-->
+                    <!--</batch:skippable-exception-classes>-->
+                </batch:chunk>
+            </batch:tasklet>
+        </batch:step>
+        <batch:listeners>
             <batch:listener>
-               <bean class="com.manning.siia.batch.PaymentChunkListener"/>
-           </batch:listener>
-       </batch:listeners>
-   </batch:job>
-
+                <bean class="com.manning.siia.batch.PaymentJobExecutionListener"/>
+            </batch:listener>
+            <batch:listener>
+                <bean class="com.manning.siia.batch.PaymentChunkListener"/>
+            </batch:listener>
+        </batch:listeners>
+    </batch:job>
 
     <bean id="itemReader" class="org.springframework.batch.item.file.FlatFileItemReader" scope="step">
         <property name="resource" value="file:///#{jobParameters['input.file.name']}" />
@@ -69,20 +70,15 @@
         </property>
     </bean>
 
+    <batch:job-repository data-source="dataSource" id="jobRepository"
+            transaction-manager="transactionManager" table-prefix="BATCH_"/>
 
-
-    <batch:job-repository data-source="dataSource" id="jobRepository" transaction-manager="transactionManager"
-            table-prefix="BATCH_"/>
-    
     <bean id="jobRunner" class="org.springframework.batch.core.launch.support.SimpleJobLauncher">
         <property name="jobRepository" ref="jobRepository"/>
-
     </bean>
 
     <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
         <property name="dataSource" ref="dataSource"/>
     </bean>
-
-
     
 </beans>

@@ -13,8 +13,7 @@
 			http://www.springframework.org/schema/integration/stream
 			http://www.springframework.org/schema/integration/stream/spring-integration-stream.xsd
 			http://www.springframework.org/schema/integration/file
-			http://www.springframework.org/schema/integration/file/spring-integration-file.xsd
-       ">
+			http://www.springframework.org/schema/integration/file/spring-integration-file.xsd">
 
     <si:poller default="true" fixed-rate="10000"/>
 
@@ -42,9 +41,8 @@
 
     <si:channel id="chunkExecutions"/>
 
-
     <si:service-activator method="launch" input-channel="requests" output-channel="statuses">
-        <bean id="messageHandler" class="org.springframework.batch.integration.launch.JobLaunchingMessageHandler">
+        <bean class="org.springframework.batch.integration.launch.JobLaunchingMessageHandler">
             <constructor-arg ref="jobRunner"/>
         </bean>
     </si:service-activator>
@@ -69,21 +67,20 @@
     </si:transformer>
 
     <si-mail:outbound-channel-adapter id="notificationsSender" channel="mailNotifications" mail-sender="mailSender"/>
-    
-     <bean id="mailSender" class="com.manning.siia.batch.StubJavaMailSender">
-		<constructor-arg>
-			<bean class="javax.mail.internet.MimeMessage">
-				<constructor-arg type="javax.mail.Session"><null/></constructor-arg>
-			</bean>
-		</constructor-arg>
-	</bean>
+
+    <bean id="mailSender" class="com.manning.siia.batch.StubJavaMailSender">
+        <constructor-arg>
+            <bean class="javax.mail.internet.MimeMessage">
+                <constructor-arg type="javax.mail.Session"><null/></constructor-arg>
+            </bean>
+        </constructor-arg>
+    </bean>
 
     <si:chain input-channel="jobRestarts">
-    <si:delayer default-delay="10000"/>
-    <si:service-activator >
-        <bean class="com.manning.siia.batch.JobRestart"/>
-    </si:service-activator>
-
+        <si:delayer default-delay="10000"/>
+        <si:service-activator>
+            <bean class="com.manning.siia.batch.JobRestart"/>
+        </si:service-activator>
     </si:chain>
 
     <si-stream:stdout-channel-adapter channel="chunkExecutions"/>

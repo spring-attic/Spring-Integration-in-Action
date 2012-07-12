@@ -1,13 +1,10 @@
 package com.manning.siia.batch;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.batch.core.*;
-import org.springframework.batch.core.launch.JobLauncher;
+import org.springframework.batch.core.ExitStatus;
+import org.springframework.batch.core.JobExecution;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.integration.Message;
@@ -30,10 +27,10 @@ public class BatchTest {
     private QueueChannel statusesChannel;
 
     @Test
-    public void runBatch() throws Exception
-    {
+    @SuppressWarnings("unchecked")
+    public void runBatch() throws Exception {
         //120 s should provide enough time for the poller to detect the file and process it
-        JobExecution jobExecution = ((Message<JobExecution>)statusesChannel.receive(120000)).getPayload();
+        JobExecution jobExecution = ((Message<JobExecution>) statusesChannel.receive(120000)).getPayload();
 
         ExitStatus exitStatus = jobExecution.getExitStatus();
 
