@@ -33,6 +33,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.integration.Message;
 import org.springframework.integration.MessageChannel;
+import org.springframework.integration.MessageHeaders;
 import org.springframework.integration.core.PollableChannel;
 import org.springframework.integration.support.MessageBuilder;
 import org.springframework.test.context.ContextConfiguration;
@@ -77,6 +78,27 @@ public class BookingHeaderTests {
 		assertThat(message, hasHeader("command", notNullValue()));
 		assertThat(message, hasHeader("command", is(BookFlightCommand.class)));
 		assertThat(message, hasHeader("command", testBookFlightCommand));
+	}
+
+	@Test
+	public void bookExample() {
+		BookFlightCommand testBookFlightCommand =
+				new BookFlightCommand("SFO", "ORD");
+		Message<?> testMessage =
+				MessageBuilder.withPayload(testBookFlightCommand)
+					.setCorrelationId("ABC")
+					.build();
+		inputChannel.send(testMessage);
+		Message<?> reply = outputChannel.receive();
+		assertThat(reply, hasHeaderKey("command"));
+		assertThat(reply, hasHeader("command", notNullValue()));
+		assertThat(reply, hasHeader("command", is(BookFlightCommand.class)));
+		assertThat(reply, hasHeader("command", testBookFlightCommand));
+		assertThat(reply, hasCorrelationId("ABC"));
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("command", testBookFlightCommand);
+		map.put(MessageHeaders.CORRELATION_ID, "ABC");
+		assertThat(reply, hasAllHeaders(map));
 	}
 
 	/*
