@@ -21,8 +21,7 @@
         input-channel="javaLegQuoteCommands"
         output-channel="xmlLegQuotes"
         marshaller="legMarshaller"
-        result-transformer="resultToDocumentTransformer"
-        result-type="StringResult"/>
+        result-transformer="resultToDocumentTransformer"/>
 
     <beans:bean id="resultToDocumentTransformer"
           class="org.springframework.integration.xml.transformer.ResultToDocumentTransformer"/>
