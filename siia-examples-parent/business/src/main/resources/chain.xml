@@ -13,10 +13,9 @@
     <chain input-channel="passengers">
         <transformer ref="frequentFlyerService"
                      method="configureProfile"/>
-        <header-enricher>
-            <header name="#{MailHeaders.TO}"
-                    value="#{payload.emailAddress}"/>
-        </header-enricher>
+        <mail:header-enricher>
+            <mail:to expression="payload.emailAddress"/>
+        </mail:header-enricher>
         <mail:outbound-channel-adapter mail-sender="mailSender"/>
     </chain>
 

@@ -11,15 +11,17 @@
        http://www.springframework.org/schema/integration/file http://www.springframework.org/schema/integration/mail/spring-integration-file.xsd
        http://www.springframework.org/schema/integration/jms http://www.springframework.org/schema/integration/jms/spring-integration-jms.xsd">
 
-    <gateway service-interface="siia.business.FlightStatusNotificationPublisher">
-        <method name="notify" request-channel="flightStatusNotifications"/>
-    </gateway>
+    <gateway request-channel="flightStatusNotifications"
+             interface-name="siia.business.FlightStatusNotificationPublisher"/>
 
-    <mail:outbound-channel-adapter channel="flightStatusNotifications" mail-sender="mailSender"/>
-
-    <jms:outbound-channel-adapter channel="flightStatusNotifications" destination="flightStatusQueue"/>
-
-    <file:file-to-string-transformer input-channel="flightStatusNotifications" output-channel="flightStatusFilesOut"/>
-
-    <file:outbound-channel-adapter channel="flightStatusFilesOut" directory="/siia/flightStatus/"/>
+    <publish-subscribe-channel id="flightStatusNotifications"/>
+    <mail:outbound-channel-adapter channel="flightStatusNotifications"
+                                   mail-sender="mailSender"/>
+    <jms:outbound-channel-adapter channel="flightStatusNotifications"
+                                  destination="flightStatusQueue"/>
+    <file:file-to-string-transformer
+            input-channel="flightStatusNotifications"
+            output-channel="flightStatusFilesOut"/>
+    <file:outbound-channel-adapter channel="flightStatusFilesOut"
+                                   directory="/siia/flightStatus/"/>
 </beans:beans>

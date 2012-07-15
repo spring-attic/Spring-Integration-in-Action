@@ -18,7 +18,6 @@ public class PassengerProfileEnricher {
         if (ffNumber != null) {
             Profile profile = this.frequentFlyerService.lookupProfile(ffNumber);
             if (profile != null) {
-
                 passenger.addProfile(profile);
                 return passenger;
             }

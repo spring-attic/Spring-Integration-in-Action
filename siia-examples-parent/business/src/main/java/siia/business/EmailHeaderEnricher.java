@@ -22,7 +22,6 @@ public class EmailHeaderEnricher {
             if (emailAddress != null) {
                 responseBuilder.setHeader(MailHeaders.TO, emailAddress);
             }
-
         }
         return responseBuilder.build();
     }
