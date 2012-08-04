@@ -1,27 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
-             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-             xmlns="http://www.springframework.org/schema/integration"
-             xmlns:mail="http://www.springframework.org/schema/integration/mail"
-             xmlns:jms="http://www.springframework.org/schema/integration/jms"
-             xmlns:file="http://www.springframework.org/schema/integration/file"
-             xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-       http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/mail/spring-integration.xsd
+<beans:beans xmlns="http://www.springframework.org/schema/integration"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mail="http://www.springframework.org/schema/integration/mail"
+	xmlns:jms="http://www.springframework.org/schema/integration/jms"
+	xmlns:file="http://www.springframework.org/schema/integration/file"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd
        http://www.springframework.org/schema/integration/mail http://www.springframework.org/schema/integration/mail/spring-integration-mail.xsd
-       http://www.springframework.org/schema/integration/file http://www.springframework.org/schema/integration/mail/spring-integration-file.xsd
+       http://www.springframework.org/schema/integration/file http://www.springframework.org/schema/integration/file/spring-integration-file.xsd
        http://www.springframework.org/schema/integration/jms http://www.springframework.org/schema/integration/jms/spring-integration-jms.xsd">
 
-    <gateway request-channel="flightStatusNotifications"
-             interface-name="siia.business.FlightStatusNotificationPublisher"/>
+	<gateway default-request-channel="flightStatusNotifications"
+		service-interface="siia.business.FlightStatusNotificationPublisher"/>
 
-    <publish-subscribe-channel id="flightStatusNotifications"/>
-    <mail:outbound-channel-adapter channel="flightStatusNotifications"
-                                   mail-sender="mailSender"/>
-    <jms:outbound-channel-adapter channel="flightStatusNotifications"
-                                  destination="flightStatusQueue"/>
-    <file:file-to-string-transformer
-            input-channel="flightStatusNotifications"
-            output-channel="flightStatusFilesOut"/>
-    <file:outbound-channel-adapter channel="flightStatusFilesOut"
-                                   directory="/siia/flightStatus/"/>
+	<object-to-string-transformer input-channel="flightStatusNotifications"
+		output-channel="flightStatusStrings"/>
+
+	<publish-subscribe-channel id="flightStatusStrings"/>
+ 
+	<mail:outbound-channel-adapter channel="flightStatusStrings"
+								   mail-sender="mailSender"/>
+
+	<jms:outbound-channel-adapter channel="flightStatusStrings"
+								  destination="flightStatusQueue"/>
+
+	<file:outbound-channel-adapter channel="flightStatusStrings"
+								   directory="/siia/flightStatus/"/>
+
 </beans:beans>
