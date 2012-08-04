@@ -33,8 +33,7 @@ public class FlightDelayTransformerIntegrationTests {
         flightDelayInput.send(message);
         Message<?> transformed = delayEvents.receive(0);
         assertNotNull(transformed);
-        Object payload =
-                transformed.getPayload();
+        Object payload = transformed.getPayload();
         assertNotNull(payload);
         assertEquals(FlightDelayEvent.class, payload.getClass());
         Date estimatedDeparture =
