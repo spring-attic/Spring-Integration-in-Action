@@ -18,8 +18,10 @@ import static org.junit.Assert.assertNotNull;
 @ContextConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
 public class FlightDelayTransformerIntegrationTests {
+
     @Autowired
     private MessageChannel flightDelayInput;
+
     @Autowired
     private PollableChannel delayEvents;
 

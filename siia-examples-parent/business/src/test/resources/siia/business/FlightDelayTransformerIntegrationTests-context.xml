@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:context="http://www.springframework.org/schema/context"
-       xmlns="http://www.springframework.org/schema/integration"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
-       http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd">
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns="http://www.springframework.org/schema/integration"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd">
 
-    <context:component-scan base-package="com.manning.siia.business"/>
+    <context:component-scan base-package="siia.business"/>
 
-     <channel id="flightDelayInput"/>
+    <channel id="flightDelayInput"/>
 
     <channel id="delayEvents">
         <queue/>
     </channel>
-
 
     <transformer input-channel="flightDelayInput"
                  ref="flightEventTransformer" method="convertToDelayEvent"
@@ -23,4 +22,5 @@
     <beans:bean class="siia.business.StubFlightScheduler"/>
 
     <beans:bean class="siia.business.StubFrequentFlyerService"/>
+
 </beans:beans>
