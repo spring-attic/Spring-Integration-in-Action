@@ -19,6 +19,12 @@
 
 	<publish-subscribe-channel id="flightStatusStrings"/>
  
+ <!-- the following is used for verifying the main flow without external systems -->
+
+	<logging-channel-adapter channel="flightStatusStrings" expression="'status: ' + payload"/> 
+ 
+ <!-- the following are in the book example, but would require external resources
+ 
 	<mail:outbound-channel-adapter channel="flightStatusStrings"
 								   mail-sender="mailSender"/>
 
@@ -27,5 +33,7 @@
 
 	<file:outbound-channel-adapter channel="flightStatusStrings"
 								   directory="/siia/flightStatus/"/>
+
+-->
 
 </beans:beans>
