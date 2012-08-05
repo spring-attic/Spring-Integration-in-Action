@@ -1,6 +1,5 @@
 package siia.business;
 
-
 import org.springframework.integration.annotation.Payload;
 import org.springframework.integration.annotation.Publisher;
 
@@ -9,10 +8,9 @@ import org.springframework.integration.annotation.Publisher;
  */
 public class SimpleFlightStatusService implements FlightStatusService {
 
-    @Override
     @Publisher(channel = "statisticsChannel")
-    public void updateStatus(@Payload FlightDelayEvent
-                             flightDelayEvent) {
+    public FlightStatus updateStatus(@Payload FlightDelayEvent flightDelayEvent) {
         // update status
+    	return new FlightStatus();
     }
 }

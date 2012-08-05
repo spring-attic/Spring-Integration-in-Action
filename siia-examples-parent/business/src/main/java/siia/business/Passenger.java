@@ -9,6 +9,10 @@ public class Passenger {
 
     private Profile profile;
 
+    public void setFrequentFlyerNumber(String frequentFlyerNumber) {
+        this.frequentFlyerNumber = frequentFlyerNumber;
+    }
+
     public String getFrequentFlyerNumber() {
         return frequentFlyerNumber;
     }

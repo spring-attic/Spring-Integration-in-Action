@@ -15,12 +15,11 @@
        </channel>
 
        <mail:header-enricher input-channel="input" output-channel="output">
-           <mail:to expression="payload.profile?.emailAddress"/>
+           <mail:to expression="payload?.profile?.emailAddress"/>
        </mail:header-enricher>
-
+       
        <beans:bean class="siia.business.StubFlightScheduler"/>
 
-        <beans:bean class="siia.business.StubFrequentFlyerService"/>
-
+       <beans:bean class="siia.business.StubFrequentFlyerService"/>
 
 </beans:beans>
