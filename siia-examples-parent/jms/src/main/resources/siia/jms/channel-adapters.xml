@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://www.springframework.org/schema/integration"
+    xmlns:jms="http://www.springframework.org/schema/integration/jms"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/integration
+        http://www.springframework.org/schema/integration/spring-integration.xsd
+        http://www.springframework.org/schema/integration/jms
+        http://www.springframework.org/schema/integration/jms/spring-integration-jms.xsd">
+
+	<channel id="toJMS"/>
+
+	<jms:outbound-channel-adapter channel="toJMS" destination-name="siia.examples.echo"/>
+
+	<jms:message-driven-channel-adapter channel="fromJMS" destination-name="siia.examples.echo"/>
+
+	<channel id="fromJMS">
+		<queue/>
+	</channel>
+
+	<beans:bean id="connectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+		<beans:property name="brokerURL" value="vm://localhost"/>
+	</beans:bean>
+
+</beans:beans>
