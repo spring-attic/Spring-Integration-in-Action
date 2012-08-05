@@ -22,24 +22,29 @@
              default-request-channel="input"/>
 
 
-    <!--<filter id="cancellationsFilter" input-channel="input" ref="cancellationsFilterBean" method="accept"-->
-            <!--discard-channel="rejected"-->
-            <!--output-channel="validated"/>-->
+    <filter id="cancellationsFilter"
+            input-channel="input"
+            ref="cancellationsFilterBean"
+            method="accept"
+            discard-channel="rejected"
+            output-channel="validated"/>
 
-    <!--<beans:bean id="cancellationsFilterBean"-->
-                <!--class="siia.booking.integration.cancellation.CancellationRequestFilter">-->
-       <!--<beans:property name="pattern" value="GOLD[A-Z0-9]{6}+"/>-->
-    <!--</beans:bean>-->
+    <beans:bean id="cancellationsFilterBean"
+                class="siia.booking.integration.cancellation.CancellationRequestFilter">
+       <beans:property name="pattern" value="GOLD[A-Z0-9]{6}+"/>
+    </beans:bean>
 
-    <!-- An expression based filter bean - could replace the two bean definitions above -->
+<!-- An expression based filter bean - could replace the two bean definitions above
     <filter id="cancellationsFilter" input-channel="input"
             discard-channel="rejected"
             expression="payload?.reservationCode matches 'GOLD[A-Z0-9]{6}+'"
             output-channel="validated"/>
+-->
 
 
-
-    <service-activator id="goldCancellationsProcessor" input-channel="validated" ref="cancellationsService"
+    <service-activator id="goldCancellationsProcessor"
+                       input-channel="validated"
+                       ref="cancellationsService"
                        method="cancel" output-channel="confirmed"/>
 
     <beans:bean id="cancellationsService"

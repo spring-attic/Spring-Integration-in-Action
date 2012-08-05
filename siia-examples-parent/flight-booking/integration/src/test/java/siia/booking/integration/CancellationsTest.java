@@ -1,5 +1,7 @@
 package siia.booking.integration;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import siia.booking.domain.cancellation.CancellationConfirmation;
 import siia.booking.domain.cancellation.CancellationRequest;
 import org.junit.Test;
@@ -32,12 +34,13 @@ public class CancellationsTest {
     @Test
     public void testCancellations() {
         CancellationRequest cancellationRequest = new CancellationRequest();
-        cancellationRequest.setReservationCode("GOLD1");
+        cancellationRequest.setReservationCode("GOLD123456");
         input.send(MessageBuilder.withPayload(cancellationRequest).build());
-
-        Message<CancellationConfirmation> confirmedMessage
-                = (Message<CancellationConfirmation>) confirmed.receive(0);
-
-
+        Message<?> confirmedMessage = confirmed.receive(0);
+        assertNotNull(confirmedMessage);
+        assertEquals(CancellationConfirmation.class, confirmedMessage.getPayload().getClass());
+        CancellationConfirmation confirmation = (CancellationConfirmation) confirmedMessage.getPayload();
+        assertEquals("GOLD123456", confirmation.getReservationCode());
     }
+
 }
