@@ -1,12 +1,10 @@
 package siia.booking.domain.binding;
 
-import org.joda.time.Chronology;
 import org.joda.time.DateTime;
 import org.joda.time.chrono.ISOChronology;
 
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.TimeZone;
 
