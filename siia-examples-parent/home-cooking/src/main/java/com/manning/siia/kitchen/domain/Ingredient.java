@@ -22,6 +22,10 @@ public class Ingredient {
 	@XStreamAsAttribute
 	private Type type;
 
+	public Ingredient() {
+		// no-arg constructor for unmarshalling
+	}
+
 	public Ingredient(final String name, final Amount amount, final Type type) {
 		this.name = name;
 		this.amount = amount;
@@ -32,12 +36,24 @@ public class Ingredient {
 		return product.satisfies(name, amount, type);
 	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public String getName() {
 		return name;
 	}
 
+	public void setAmount(Amount amount) {
+		this.amount = amount;
+	}
+
 	public Amount getAmount() {
 		return amount;
+	}
+
+	public void setType(Type type) {
+		this.type = type;
 	}
 
 	public Type getType() {

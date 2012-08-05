@@ -23,7 +23,15 @@ public class Recipe {
 	@XStreamAlias("ingredients")
 	private List<Ingredient> ingredients = Lists.newArrayList();
 
+	public Recipe() {
+		// no-arg constructor for unmarshalling
+	}
+
 	public Recipe(final String name) {
+		this.name = name;
+	}
+
+	public void setName(String name) {
 		this.name = name;
 	}
 
