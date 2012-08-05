@@ -19,7 +19,7 @@ public class BookingServiceWithInjection {
         mealPreferenceWebServiceInvoker;
   }
 
-  public void getBooking(MealPreference mealPreference) {
+  public void updateMeal(MealPreference mealPreference) {
     Booking booking = bookingDao.getBookingById(
         mealPreference.getBookingReference());
     Source mealUpdateSource = populatePreference(
