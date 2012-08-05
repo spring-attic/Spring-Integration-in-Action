@@ -10,10 +10,13 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 
+/**
+ * @author Mark Fisher
+ */
 public class StubMailSender implements JavaMailSender {
 
 	private final AtomicLong counter = new AtomicLong();
-
+	private volatile String lastMessageText;
 
 	public long getCount() {
 		return counter.get();
@@ -48,6 +51,7 @@ public class StubMailSender implements JavaMailSender {
 	}
 
 	public void send(SimpleMailMessage message) throws MailException {
+		this.lastMessageText = message.getText();
 		counter.incrementAndGet();
 	}
 
@@ -56,5 +60,8 @@ public class StubMailSender implements JavaMailSender {
 			counter.addAndGet(messages.length);
 		}
 	}
-	
+
+	public String getLastMessageText() {
+		return this.lastMessageText;
+	}
 }

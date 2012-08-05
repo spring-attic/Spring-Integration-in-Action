@@ -41,6 +41,7 @@ public class CancellationsWithNotificationTest {
         Message<?> confirmedMessage = confirmed.receive(0);
         assertNull(confirmedMessage);
         assertEquals(1, mailSender.getCount());
+        assertEquals("BRONZE123 has been rejected", mailSender.getLastMessageText());
     }
 
 }

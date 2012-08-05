@@ -39,8 +39,9 @@
 		<mail:to expression="payload.requestor?.emailAddress"/>
 	</mail:header-enricher>
 
-	<object-to-string-transformer input-channel="mailTransformer"
-	                              output-channel="rejectionMail"/>
+	<transformer input-channel="mailTransformer"
+	             expression="payload.reservationCode + ' has been rejected'"
+	             output-channel="rejectionMail"/>
 
 	<mail:outbound-channel-adapter id="rejectionMail" mail-sender="mailSender"/>	
 
