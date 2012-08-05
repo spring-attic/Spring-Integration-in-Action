@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:i="http://www.springframework.org/schema/integration"
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+       xmlns="http://www.springframework.org/schema/integration"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="
            http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
            http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd
        ">
 
-	<i:chain id="ingredientsToShops" input-channel="shoppinglists">
-		<i:header-enricher>
-			<i:header name="delayMe" expression="(headers['sequenceNumber'] != null ? headers['sequenceNumber'] : 1) * 2000"/>
-		</i:header-enricher>
-		<i:router expression="payload.type">
-			<i:mapping value="Meat" channel="meat"/>
-			<i:mapping value="Vegetable" channel="vegetables"/>
-			<i:mapping value="Grocery" channel="groceries"/>
-		</i:router>
-	</i:chain>
+	<chain id="ingredientsToShops" input-channel="shoppinglists">
+		<header-enricher>
+			<header name="delayMe" expression="(headers['sequenceNumber'] != null ? headers['sequenceNumber'] : 1) * 2000"/>
+		</header-enricher>
+		<router expression="payload.type">
+			<mapping value="Meat" channel="meat"/>
+			<mapping value="Vegetable" channel="vegetables"/>
+			<mapping value="Grocery" channel="groceries"/>
+		</router>
+	</chain>
 
-	<i:transformer input-channel="meat" ref="butcher" output-channel="walkTheStreet"/>
-	<i:transformer input-channel="groceries" ref="supermarket" output-channel="walkTheStreet"/>
-	<i:transformer input-channel="vegetables" ref="greenGrocer" output-channel="walkTheStreet"/>
+	<transformer input-channel="meat" ref="butcher" output-channel="walkTheStreet"/>
+	<transformer input-channel="groceries" ref="supermarket" output-channel="walkTheStreet"/>
+	<transformer input-channel="vegetables" ref="greenGrocer" output-channel="walkTheStreet"/>
 
-	<i:channel id="walkTheStreet"/>
+	<channel id="walkTheStreet"/>
 
-	<i:delayer default-delay="2000" delay-header-name="delayMe" input-channel="walkTheStreet" output-channel="grocerybags" />
+	<delayer default-delay="2000" delay-header-name="delayMe" input-channel="walkTheStreet" output-channel="grocerybags" />
 
-	<bean id="butcher" class="com.manning.siia.kitchen.shop.Butcher"/>
-	<bean id="supermarket" class="com.manning.siia.kitchen.shop.Supermarket"/>
-	<bean id="greenGrocer" class="com.manning.siia.kitchen.shop.GreenGrocer"/>
-</beans>
+	<beans:bean id="butcher" class="com.manning.siia.kitchen.shop.Butcher"/>
+	<beans:bean id="supermarket" class="com.manning.siia.kitchen.shop.Supermarket"/>
+	<beans:bean id="greenGrocer" class="com.manning.siia.kitchen.shop.GreenGrocer"/>
+</beans:beans>

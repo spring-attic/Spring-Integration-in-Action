@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:i="http://www.springframework.org/schema/integration"
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+       xmlns="http://www.springframework.org/schema/integration"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="
            http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
            http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd
        ">
 
-	<i:chain id="grocerybagUnpacker" input-channel="grocerybags" output-channel="products">
-		<i:splitter expression="payload.unpack()"/>
-		<i:header-enricher>
-			<i:header name="sequenceSize" expression="headers['recipe'].ingredients.size()" overwrite="true"/>
-			<i:header name="sequenceNumber" value="0" type="java.lang.Integer" overwrite="true"/>
-		</i:header-enricher>
-	</i:chain>
+	<chain id="grocerybagUnpacker" input-channel="grocerybags" output-channel="products">
+		<splitter expression="payload.unpack()"/>
+		<header-enricher>
+			<header name="sequenceSize" expression="headers['recipe'].ingredients.size()" overwrite="true"/>
+			<header name="sequenceNumber" value="0" type="java.lang.Integer" overwrite="true"/>
+		</header-enricher>
+	</chain>
 
-</beans>
+</beans:beans>
