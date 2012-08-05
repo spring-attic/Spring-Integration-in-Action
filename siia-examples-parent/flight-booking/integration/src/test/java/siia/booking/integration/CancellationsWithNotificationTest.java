@@ -1,6 +1,7 @@
 package siia.booking.integration;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
@@ -14,6 +15,7 @@ import org.springframework.integration.support.MessageBuilder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import siia.booking.domain.cancellation.CancellationConfirmation;
 import siia.booking.domain.cancellation.CancellationRequest;
 
 /**
@@ -32,6 +34,18 @@ public class CancellationsWithNotificationTest {
 
     @Autowired
     StubMailSender mailSender;
+
+    @Test
+    public void testCancellationsSuccessful() {
+        CancellationRequest cancellationRequest = new CancellationRequest();
+        cancellationRequest.setReservationCode("GOLD123456");
+        input.send(MessageBuilder.withPayload(cancellationRequest).build());
+        Message<?> confirmedMessage = confirmed.receive(0);
+        assertNotNull(confirmedMessage);
+        assertEquals(CancellationConfirmation.class, confirmedMessage.getPayload().getClass());
+        CancellationConfirmation confirmation = (CancellationConfirmation) confirmedMessage.getPayload();
+        assertEquals("GOLD123456", confirmation.getReservationCode());
+    }
 
     @Test
     public void testCancellationNotification() {
