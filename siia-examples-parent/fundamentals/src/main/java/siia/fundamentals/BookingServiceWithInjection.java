@@ -21,15 +21,15 @@ public class BookingServiceWithInjection {
 
   public void updateMeal(MealPreference mealPreference) {
     Booking booking = bookingDao.getBookingById(
-        mealPreference.getBookingReference());
-    Source mealUpdateSource = populatePreference(
+        mealPreference.getBookingId());
+    Source mealUpdateSource = buildMealPreferenceUpdateRequest(
         booking, mealPreference);
     StringResult result = new StringResult();
     mealPreferenceWebServiceInvoker.sendSourceAndReceiveToResult(
         mealUpdateSource, result);
   }
 
-  public Source populatePreference(Booking booking,
+  public Source buildMealPreferenceUpdateRequest(Booking booking,
                                    MealPreference
                                        mealPreference) {
 

@@ -32,7 +32,7 @@ public class BookingServiceWithStrongCoupling {
 
   public void updateMeal(MealPreference mealPreference) {
     Booking booking = bookingDao.getBookingById(
-        mealPreference.getBookingReference());
+        mealPreference.getBookingId());
     Source mealUpdateSource = buildMealPreferenceUpdateRequest(
         booking, mealPreference);
 

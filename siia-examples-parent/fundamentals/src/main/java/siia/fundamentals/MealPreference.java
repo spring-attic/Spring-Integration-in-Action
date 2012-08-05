@@ -2,12 +2,12 @@ package siia.fundamentals;
 
 public class MealPreference {
 
-    private Long bookingReference;
+    private Long bookingId;
 
     private Long flightReference;
 
-    public Long getBookingReference() {
-        return bookingReference;
+    public Long getBookingId() {
+        return bookingId;
     }
 
     public Long getFlightReference() {
@@ -21,7 +21,7 @@ public class MealPreference {
     @Override
     public String toString() {
         return "MealPreference{" +
-                "bookingReference=" + bookingReference +", " +
+                "bookingId=" + bookingId +", " +
                 "flightReference=" + flightReference + '}';
     }
 }
