@@ -94,7 +94,6 @@ public class FlightNotificationsTest {
     }
     /* <end id="trip-notifications-to-sms-notifier-test"/> */
 
-
     /* <start id="counts-down-latch"/> */
     private Answer countsDownLatch(final CountDownLatch notifierInvoked) {
         return new Answer() {
@@ -107,6 +106,5 @@ public class FlightNotificationsTest {
         };
     }
     /* <end id="counts-down-latch"/> */
-
 
 }

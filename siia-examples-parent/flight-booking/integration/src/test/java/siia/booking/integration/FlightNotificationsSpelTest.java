@@ -31,9 +31,9 @@ import static org.mockito.Mockito.*;
 /**
  * @author Iwein Fuld
  */
-@ContextConfiguration("classpath:TEST-flight-notifications-header-enricher-bean.xml")
+@ContextConfiguration("classpath:TEST-flight-notifications-spel.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
-public class FlightNotificationsWithHeaderEnricherBeanTest {
+public class FlightNotificationsSpelTest {
 
     @Test
     public void shouldLoadContext() {

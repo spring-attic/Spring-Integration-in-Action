@@ -10,11 +10,12 @@
     <!-- contains non personalized notifications about flights -->
     <channel id="flightNotifications"/>
 
-	<!-- see flight-notifications-header-enricher-bean.xml for the non-SpEL example -->
     <chain input-channel="flightNotifications"
            output-channel="tripNotifications">
         <header-enricher>
-            <header name="affectedTrips" expression="payload.findRelatedTrips(@tripRepository)"/>
+            <header name="affectedTrips"
+                    ref="relatedTripsHeaderEnricher"
+                    method="relatedTripsForFlight"/>
         </header-enricher>
         <splitter>
             <beans:bean
@@ -29,6 +30,10 @@
 
     <outbound-channel-adapter id="smsNotifier" channel="tripNotifications" ref="smsNotifierBean" method="notify"/>
     <!-- <end id="trip-notifications-to-sms-notifier"/> -->
+
+	<beans:bean id="relatedTripsHeaderEnricher" class="siia.booking.integration.notifications.RelatedTripsHeaderEnricher">
+		<beans:property name="tripRepository" ref="tripRepository"/>
+	</beans:bean>
 
     <beans:bean id="tripRepository" class="siia.booking.domain.trip.TripRepository"/>
 
