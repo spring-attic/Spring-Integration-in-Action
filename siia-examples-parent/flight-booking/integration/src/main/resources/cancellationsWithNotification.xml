@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns="http://www.springframework.org/schema/integration"
+             xmlns:mail="http://www.springframework.org/schema/integration/mail"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+             http://www.springframework.org/schema/integration
+             http://www.springframework.org/schema/integration/spring-integration.xsd
+             http://www.springframework.org/schema/integration/mail
+             http://www.springframework.org/schema/integration/mail/spring-integration-mail.xsd">
+
+    <channel id="input"/>
+
+    <channel id="validated"/>
+
+    <channel id="confirmed">
+        <queue/>
+    </channel>
+
+    <channel id="rejected"/>
+
+    <gateway id="cancellationsGateway"
+             service-interface="siia.booking.integration.cancellation.CancellationsGateway"
+             default-request-channel="input"/>
+
+    <filter id="cancellationsFilter"
+            input-channel="input"
+            ref="cancellationsFilterBean"
+            method="accept"
+            discard-channel="rejected"
+            output-channel="validated"/>
+
+    <beans:bean id="cancellationsFilterBean"
+                class="siia.booking.integration.cancellation.CancellationRequestFilter">
+       <beans:property name="pattern" value="GOLD[A-Z0-9]{6}+"/>
+    </beans:bean>
+
+	<mail:header-enricher input-channel="rejected" output-channel="mailTransformer">
+		<mail:to expression="payload.requestor?.emailAddress"/>
+	</mail:header-enricher>
+
+	<object-to-string-transformer input-channel="mailTransformer"
+	                              output-channel="rejectionMail"/>
+
+	<mail:outbound-channel-adapter id="rejectionMail" mail-sender="mailSender"/>	
+
+    <service-activator id="goldCancellationsProcessor"
+                       input-channel="validated"
+                       ref="cancellationsService"
+                       method="cancel" output-channel="confirmed"/>
+
+    <beans:bean id="cancellationsService"
+                class="siia.booking.domain.cancellation.StubCancellationsService"/>
+
+	<beans:bean id="mailSender" class="siia.booking.integration.StubMailSender"/>
+
+</beans:beans>

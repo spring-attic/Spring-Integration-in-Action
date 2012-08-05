@@ -51,6 +51,10 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.integration</groupId>
+            <artifactId>spring-integration-mail</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.integration</groupId>
             <artifactId>spring-integration-ws</artifactId>
         </dependency>
         <!-- also relates to INT-955 which should be fixed in M3 -->
@@ -70,6 +74,16 @@
         <dependency>
             <groupId>org.springframework.ws</groupId>
             <artifactId>spring-xml</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>2.1</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mailapi</artifactId>
+            <version>1.4.3</version>
         </dependency>
         <dependency>
             <artifactId>log4j</artifactId>
