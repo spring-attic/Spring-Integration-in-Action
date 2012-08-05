@@ -10,8 +10,8 @@
 	<i:chain id="grocerybagUnpacker" input-channel="grocerybags" output-channel="products">
 		<i:splitter expression="payload.unpack()"/>
 		<i:header-enricher>
-			<i:header name="$sequenceSize" expression="headers[recipe].ingredients.size()" overwrite="true"/>
-			<i:header name="$sequenceNumber" value="0" type="java.lang.Integer" overwrite="true"/>
+			<i:header name="sequenceSize" expression="headers['recipe'].ingredients.size()" overwrite="true"/>
+			<i:header name="sequenceNumber" value="0" type="java.lang.Integer" overwrite="true"/>
 		</i:header-enricher>
 	</i:chain>
 

@@ -9,7 +9,7 @@
 
 	<i:chain id="ingredientsToShops" input-channel="shoppinglists">
 		<i:header-enricher>
-			<i:header name="delayMe" expression="(headers[$sequenceNumber] != null ? headers[$sequenceNumber] : 1) * 2000"/>
+			<i:header name="delayMe" expression="(headers['sequenceNumber'] != null ? headers['sequenceNumber'] : 1) * 2000"/>
 		</i:header-enricher>
 		<i:router expression="payload.type">
 			<i:mapping value="Meat" channel="meat"/>
