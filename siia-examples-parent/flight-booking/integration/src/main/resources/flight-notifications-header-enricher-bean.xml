@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/integration"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/integration
+			http://www.springframework.org/schema/integration/spring-integration.xsd">
+
+    <!-- contains non personalized notifications about flights -->
+    <channel id="flightNotifications"/>
+
+    <chain input-channel="flightNotifications"
+           output-channel="tripNotifications">
+        <header-enricher>
+            <header name="affectedTrips"
+                    ref="relatedTripsHeaderEnricher"
+                    method="relatedTripsForFlight"/>
+        </header-enricher>
+        <splitter>
+            <beans:bean
+                class="siia.booking.integration.notifications.FlightToTripNotificationsSplitter"/>
+        </splitter>
+    </chain>
+
+    <!-- <start id="trip-notifications-to-sms-notifier"/> -->
+    <publish-subscribe-channel id="tripNotifications"
+                               datatype="siia.booking.domain.notifications.TripNotification"
+                               task-executor="taskScheduler"/>
+
+    <outbound-channel-adapter id="smsNotifier" channel="tripNotifications" ref="smsNotifierBean" method="notify"/>
+    <!-- <end id="trip-notifications-to-sms-notifier"/> -->
+
+	<beans:bean id="relatedTripsHeaderEnricher" class="siia.booking.integration.notifications.RelatedTripsHeaderEnricher">
+		<beans:property name="tripRepository" ref="tripRepository"/>
+	</beans:bean>
+
+    <beans:bean id="tripRepository" class="siia.booking.domain.trip.TripRepository"/>
+
+    <beans:bean id="smsNotifierBean" class="siia.booking.domain.notifications.SmsNotifiable"/>
+
+</beans:beans>

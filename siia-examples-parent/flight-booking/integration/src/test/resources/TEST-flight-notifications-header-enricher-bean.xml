@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <start id="main-message-flow-header"/> -->
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/integration"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/integration
+			http://www.springframework.org/schema/integration/spring-integration.xsd">
+
+    <beans:import resource="flight-notifications-header-enricher-bean.xml"/>
+
+    <beans:bean id="smsNotifierBean" class="org.mockito.Mockito"
+           factory-method="mock">
+        <beans:constructor-arg
+            value="siia.booking.domain.notifications.SmsNotifiable"/>
+    </beans:bean>
+
+    <beans:bean id="tripRepository" class="org.mockito.Mockito"
+           factory-method="mock">
+        <beans:constructor-arg
+            value="siia.booking.domain.trip.TripRepository"/>
+    </beans:bean>
+
+    <bridge input-channel="tripNotifications" output-channel="interceptedTripNotifications"/>
+
+    <channel id="interceptedTripNotifications">
+        <queue capacity="42"/>
+    </channel>
+
+    <poller default="true" fixed-rate="100"/>
+</beans:beans>
