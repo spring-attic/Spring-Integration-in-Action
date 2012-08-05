@@ -9,8 +9,8 @@ import org.springframework.integration.support.MessageBuilder;
 public class HelloWorldExample {
 
   public static void main(String args[]) {
-    ApplicationContext context =
-      new ClassPathXmlApplicationContext("siia/helloworld/channel/context.xml");
+	String cfg = "siia/helloworld/channel/context.xml";
+    ApplicationContext context = new ClassPathXmlApplicationContext(cfg);
     MessageChannel channel = context.getBean("names", MessageChannel.class);
     Message<String> message = MessageBuilder.withPayload("World").build();
     channel.send(message);

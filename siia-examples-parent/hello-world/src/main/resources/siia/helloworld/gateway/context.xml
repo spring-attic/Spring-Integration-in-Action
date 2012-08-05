@@ -18,6 +18,6 @@
                      method="sayHello"/>
 
   <beans:bean id="helloService"
-              class="siia.helloworld.channel.MyHelloService"/>
+              class="siia.helloworld.gateway.MyHelloService"/>
 
 </beans:beans>
