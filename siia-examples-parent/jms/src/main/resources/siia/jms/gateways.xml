@@ -12,11 +12,18 @@
 
 	<channel id="toJMS"/>
 
-	<jms:outbound-channel-adapter channel="toJMS" destination-name="siia.adapters.echo"/>
+	<jms:outbound-gateway request-channel="toJMS"
+			reply-channel="jmsReplies"
+			request-destination-name="siia.gateways.echo"/>
 
-	<jms:message-driven-channel-adapter channel="fromJMS" destination-name="siia.adapters.echo"/>
+	<jms:inbound-gateway request-channel="fromJMS"
+			request-destination-name="siia.gateways.echo"/>
 
-	<channel id="fromJMS">
+	<service-activator input-channel="fromJMS" method="exclaim">
+		<beans:bean class="siia.jms.Exclaimer"/>
+	</service-activator>
+
+	<channel id="jmsReplies">
 		<queue/>
 	</channel>
 
