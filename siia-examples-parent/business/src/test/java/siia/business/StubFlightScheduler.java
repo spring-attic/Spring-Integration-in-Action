@@ -2,9 +2,6 @@ package siia.business;
 
 import java.util.Date;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public class StubFlightScheduler implements FlightScheduler {
 
   public Flight nextFlightForNumber(String flightNumber) {

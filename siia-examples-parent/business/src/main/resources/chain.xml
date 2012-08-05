@@ -44,4 +44,8 @@
 
     <beans:bean id="mailSender" class="siia.business.StubMailSender"/>
 
+    <beans:bean class="siia.business.StubFlightScheduler"/>
+
+    <beans:bean class="siia.business.StubFrequentFlyerService"/>
+       
 </beans:beans>

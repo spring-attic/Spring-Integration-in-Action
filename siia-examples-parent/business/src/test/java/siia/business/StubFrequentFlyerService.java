@@ -1,13 +1,8 @@
 package siia.business;
 
-import org.springframework.stereotype.Component;
-import siia.business.FrequentFlyerService;
-import siia.business.Profile;
-
 /**
  * @author Marius Bogoevici
  */
-@Component
 public class StubFrequentFlyerService implements FrequentFlyerService {
 
     @Override
