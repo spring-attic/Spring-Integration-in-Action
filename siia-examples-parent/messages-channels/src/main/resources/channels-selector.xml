@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns="http://www.springframework.org/schema/integration"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd">
+
+    <annotation-config/>
+
+    <channel id="bookingConfirmationRequests"/>
+    <service-activator input-channel="bookingConfirmationRequests"
+                       output-channel="chargedBookings"
+                       ref="billForBookingService" />
+
+
+    <channel id="chargedBookings">
+        <interceptors>
+            <beans:ref bean="typeSelectorInterceptor"/>
+        </interceptors>
+    </channel>
+
+    <service-activator input-channel="chargedBookings"
+                       output-channel="emailConfirmationRequests"
+                       ref="seatAvailabilityService" />
+
+
+    <channel id="emailConfirmationRequests" />
+    <outbound-channel-adapter channel="emailConfirmationRequests"
+                              ref="emailConfirmationService" />
+
+    <beans:bean id="billForBookingService" class="siia.channels.BillForBookingService"/>
+    <beans:bean id="seatAvailabilityService" class="siia.channels.SeatAvailabilityService"/>
+    <beans:bean id="emailConfirmationService" class="siia.channels.StubEmailConfirmationService"/>
+    <beans:bean id="customerPriorityComparator" class="siia.channels.CustomerPriorityComparator"/>
+    <beans:bean id="typeSelectorInterceptor" class="org.springframework.integration.channel.interceptor.MessageSelectingInterceptor">
+        <beans:constructor-arg>
+            <beans:bean class="org.springframework.integration.selector.PayloadTypeSelector">
+                <beans:constructor-arg>
+                    <beans:list>
+                        <beans:value>siia.channels.ChargedBooking</beans:value>
+                    </beans:list>
+                </beans:constructor-arg>
+            </beans:bean>
+        </beans:constructor-arg>
+    </beans:bean>
+</beans:beans>
