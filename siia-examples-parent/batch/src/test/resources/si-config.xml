@@ -65,11 +65,21 @@
         <bean class="com.manning.siia.batch.JobExecutionsRouter"/>
     </si:router>
 
-    <si:transformer id="mailBodyTransformer" input-channel="notifiableExecutions" output-channel="mailNotifications">
+    <si:chain input-channel="jobRestarts">
+        <si:delayer default-delay="10000"/>
+        <si:service-activator>
+            <bean class="com.manning.siia.batch.JobRestart"/>
+        </si:service-activator>
+    </si:chain>
+    
+    <si:transformer id="mailBodyTransformer"
+                    input-channel="notifiableExecutions"
+                    output-channel="mailNotifications">
         <bean class="com.manning.siia.batch.ExecutionsToMailTransformer"/>
     </si:transformer>
 
-    <si-mail:outbound-channel-adapter id="notificationsSender" channel="mailNotifications" mail-sender="mailSender"/>
+    <si-mail:outbound-channel-adapter id="notificationsSender"
+    				channel="mailNotifications" mail-sender="mailSender"/>
 
     <bean id="mailSender" class="com.manning.siia.batch.StubJavaMailSender">
         <constructor-arg>
@@ -78,13 +88,6 @@
             </bean>
         </constructor-arg>
     </bean>
-
-    <si:chain input-channel="jobRestarts">
-        <si:delayer default-delay="10000"/>
-        <si:service-activator>
-            <bean class="com.manning.siia.batch.JobRestart"/>
-        </si:service-activator>
-    </si:chain>
 
     <si-stream:stdout-channel-adapter channel="chunkExecutions"/>
 
