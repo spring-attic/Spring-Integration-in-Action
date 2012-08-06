@@ -20,7 +20,7 @@
     <bean id="onlyNewChangesFilter" class="org.springframework.integration.file.filters.CompositeFileListFilter">
         <constructor-arg>
             <list>
-                <bean class="org.springframework.integration.file.filters.AcceptAllFileListFilter"/>
+                <bean class="org.springframework.integration.file.filters.AcceptOnceFileListFilter"/>
                 <bean class="com.manning.siia.trip.diary.RefuseWrittenByThisProcess">
                     <constructor-arg value="#{config.processId}"/>
                 </bean>
