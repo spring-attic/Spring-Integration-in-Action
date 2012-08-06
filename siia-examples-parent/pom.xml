@@ -222,6 +222,7 @@
         <module>hello-world</module>
         <module>home-cooking</module>
         <module>jms</module>
+        <module>twitter</module>
         <module>monitoring</module>
         <module>trip-diary</module>
         <module>webapp</module>
