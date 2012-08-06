@@ -6,24 +6,25 @@
 
     <annotation-config/>
 
-    <channel id="bookingConfirmationRequests"/>
+    <poller default="true" fixed-rate="1000"/>
+
+    <channel id="bookingConfirmationRequests">
+        <priority-queue comparator="customerPriorityComparator" />
+    </channel>
+
     <service-activator input-channel="bookingConfirmationRequests"
                        output-channel="chargedBookings"
                        ref="billForBookingService" />
-
-
-    <channel id="chargedBookings">
-        <interceptors>
-            <beans:ref bean="typeSelectorInterceptor"/>
-        </interceptors>
-    </channel>
-
+    <channel id="chargedBookings" />
     <service-activator input-channel="chargedBookings"
-                       output-channel="emailConfirmationRequests"
+                       output-channel="completedBookings"
                        ref="seatAvailabilityService" />
-
-
-    <channel id="emailConfirmationRequests" />
+    <publish-subscribe-channel id="completedBookings" />
+    <bridge input-channel="completedBookings"
+            output-channel="emailConfirmationRequests" />
+    <channel id="emailConfirmationRequests">
+        <queue />
+    </channel>
     <outbound-channel-adapter channel="emailConfirmationRequests"
                               ref="emailConfirmationService" />
 
@@ -31,10 +32,5 @@
     <beans:bean id="seatAvailabilityService" class="siia.channels.SeatAvailabilityService"/>
     <beans:bean id="emailConfirmationService" class="siia.channels.StubEmailConfirmationService"/>
     <beans:bean id="customerPriorityComparator" class="siia.channels.CustomerPriorityComparator"/>
-    <beans:bean id="typeSelector" class="org.springframework.integration.selector.PayloadTypeSelector">
-        <beans:constructor-arg value="siia.channels.ChargedBooking"/>
-    </beans:bean>
-    <beans:bean id="typeSelectorInterceptor" class="org.springframework.integration.channel.interceptor.MessageSelectingInterceptor">
-        <beans:constructor-arg ref="typeSelector"/>
-    </beans:bean>
+
 </beans:beans>
