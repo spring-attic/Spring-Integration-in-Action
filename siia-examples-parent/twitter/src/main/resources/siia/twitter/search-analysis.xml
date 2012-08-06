@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:int="http://www.springframework.org/schema/integration"
+    xmlns:int-twitter="http://www.springframework.org/schema/integration/twitter"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/integration
+        http://www.springframework.org/schema/integration/spring-integration.xsd
+        http://www.springframework.org/schema/integration/twitter
+        http://www.springframework.org/schema/integration/twitter/spring-integration-twitter.xsd">
+
+	<int-twitter:search-inbound-channel-adapter channel="searchResults"
+			query="#springintegration">
+		<int:poller fixed-rate="60" time-unit="SECONDS"/>
+	</int-twitter:search-inbound-channel-adapter>
+
+	<int:transformer input-channel="searchResults" output-channel="tweets"
+			expression="payload.fromUser + ': ' + payload.text + ' [' + payload.createdAt + ']'"/>
+
+	<int:service-activator input-channel="tweets" ref="searchResultAnalyzer" method="addResult"/>
+
+	<bean id="searchResultAnalyzer" class="siia.twitter.SearchResultAnalzyer"/>
+
+</beans>
