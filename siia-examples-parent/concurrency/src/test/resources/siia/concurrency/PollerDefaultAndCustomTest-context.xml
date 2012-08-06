@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns="http://www.springframework.org/schema/integration"
+             xsi:schemaLocation=
+                     "http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                     http://www.springframework.org/schema/integration/file http://www.springframework.org/schema/integration/file/spring-integration-file.xsd
+                     http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd"
+             xmlns:file="http://www.springframework.org/schema/integration/file">
+
+    <poller id="defaultPoller" fixed-delay="500" default="true"/>
+    <channel id="input">
+        <queue capacity="10"/>
+    </channel>
+
+    <service-activator id="activator"
+                       input-channel="input" ref="service"/>
+
+    <file:inbound-channel-adapter id="fileAdapter"
+                                  directory="${java.io.tmpdir}"
+                                  filter="filter"
+                                  comparator="comparator"
+                                  auto-startup="false">
+        <poller fixed-rate="10000"/>
+    </file:inbound-channel-adapter>
+
+    <beans:bean id="service" class="siia.concurrency.StubService"/>
+    <beans:bean id="comparator" class="siia.concurrency.StubComparator"/>
+    <beans:bean id="filter" class="siia.concurrency.StubFilter"/>
+</beans:beans>

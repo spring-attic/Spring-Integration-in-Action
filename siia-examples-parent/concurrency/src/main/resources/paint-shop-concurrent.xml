@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns="http://www.springframework.org/schema/integration"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd">
+
+    <poller default="true" fixed-rate="500"/>
+
+    <channel id="input"/>
+    <channel id="paint">
+        <queue capacity="10"/>
+    </channel>
+    <channel id="output"/>
+
+    <gateway id="supplyInput"
+             service-interface="com.manning.siia.pipeline.SupplyInput"
+             default-request-channel="input"/>
+
+    <service-activator id="assemblyLine" input-channel="input"
+                       output-channel="paint">
+        <beans:bean
+                class="com.manning.siia.pipeline.AssemblyLine"/>
+    </service-activator>
+    <service-activator id="paintShop" input-channel="paint"
+                       output-channel="output">
+        <beans:bean class="com.manning.siia.pipeline.PaintShop"/>
+    </service-activator>
+    <service-activator id="exitCounter" input-channel="output"
+                       ref="counter"/>
+    <beans:bean id="counter"
+                class="com.manning.siia.pipeline.Counter"/>
+</beans:beans>

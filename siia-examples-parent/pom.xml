@@ -227,6 +227,7 @@
         <module>trip-diary</module>
         <module>webapp</module>
         <module>messages-channels</module>
+        <module>concurrency</module>
     </modules>
     <build>
         <plugins>
