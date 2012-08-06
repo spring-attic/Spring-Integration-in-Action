@@ -43,7 +43,7 @@
 
     <si:service-activator method="launch" input-channel="requests" output-channel="statuses">
         <bean class="org.springframework.batch.integration.launch.JobLaunchingMessageHandler">
-            <constructor-arg ref="jobRunner"/>
+            <constructor-arg ref="jobLauncher"/>
         </bean>
     </si:service-activator>
 

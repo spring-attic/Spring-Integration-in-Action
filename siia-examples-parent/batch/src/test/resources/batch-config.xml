@@ -71,7 +71,7 @@
     <batch:job-repository data-source="dataSource" id="jobRepository"
             transaction-manager="transactionManager" table-prefix="BATCH_"/>
 
-    <bean id="jobRunner" class="org.springframework.batch.core.launch.support.SimpleJobLauncher">
+    <bean id="jobLauncher" class="org.springframework.batch.core.launch.support.SimpleJobLauncher">
         <property name="jobRepository" ref="jobRepository"/>
     </bean>
 
