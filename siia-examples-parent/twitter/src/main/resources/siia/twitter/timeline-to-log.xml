@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:int="http://www.springframework.org/schema/integration"
+    xmlns:int-twitter="http://www.springframework.org/schema/integration/twitter"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/integration
+        http://www.springframework.org/schema/integration/spring-integration.xsd
+        http://www.springframework.org/schema/integration/twitter
+        http://www.springframework.org/schema/integration/twitter/spring-integration-twitter.xsd">
+
+	<context:property-placeholder location="classpath:siia/twitter/oauth.properties"/>
+
+	<int-twitter:inbound-channel-adapter id="timelineReadingAdapter"
+			twitter-template="twitterTemplate" channel="inboundTweets">
+		<int:poller fixed-rate="10" time-unit="SECONDS" max-messages-per-poll="25" />
+	</int-twitter:inbound-channel-adapter>
+
+	<int:logging-channel-adapter id="inboundTweets" expression="payload.fromUser +
+			': ' + payload.text + ' [' + payload.createdAt + ']'"/>
+
+	<bean id="twitterTemplate"
+			class="org.springframework.social.twitter.api.impl.TwitterTemplate">
+		<constructor-arg value="${twitter.oauth.consumerKey}" />
+		<constructor-arg value="${twitter.oauth.consumerSecret}" />
+		<constructor-arg value="${twitter.oauth.accessToken}" />
+		<constructor-arg value="${twitter.oauth.accessTokenSecret}" />
+	</bean>
+
+</beans>
