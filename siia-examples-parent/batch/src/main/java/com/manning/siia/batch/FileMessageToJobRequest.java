@@ -11,7 +11,7 @@ import org.springframework.integration.annotation.Transformer;
 /**
  * @author Marius Bogoevici
  */
-public class FileMessageToJobRequestTransformer {
+public class FileMessageToJobRequest {
 
     private Job job;
 
@@ -29,6 +29,6 @@ public class FileMessageToJobRequestTransformer {
     public JobLaunchRequest toRequest(Message<File> message) {
         JobParametersBuilder jobParametersBuilder = new JobParametersBuilder();
         jobParametersBuilder.addString(fileParameterName, message.getPayload().getAbsolutePath());
-        return new JobLaunchRequest(job,jobParametersBuilder.toJobParameters());
+        return new JobLaunchRequest(job, jobParametersBuilder.toJobParameters());
     }
 }

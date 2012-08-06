@@ -17,7 +17,7 @@
 
     <si:poller default="true" fixed-rate="10000"/>
 
-    <si-file:inbound-channel-adapter directory="classpath:/data/paymentImport" channel="files"/>
+    <si:channel id="files"/>
 
     <si:channel id="requests"/>
 
@@ -25,7 +25,23 @@
         <si:queue capacity="10"/>
     </si:channel>
 
-    <si:channel id="files"/>
+    <si-file:inbound-channel-adapter
+    			directory="classpath:/data/paymentImport"
+    			channel="files"/>
+
+    <si:transformer input-channel="files" output-channel="requests">
+        <bean class="com.manning.siia.batch.FileMessageToJobRequest">
+            <property name="job" ref="importPayments"/>
+            <property name="fileParameterName" value="input.file.name"/>
+        </bean>
+    </si:transformer>
+
+    <si:service-activator method="launch" input-channel="requests"
+    					  output-channel="statuses">
+        <bean class="org.springframework.batch.integration.launch.JobLaunchingMessageHandler">
+            <constructor-arg ref="jobLauncher"/>
+        </bean>
+    </si:service-activator>
 
     <si:channel id="jobExecutions"/>
 
@@ -40,19 +56,6 @@
     <si:channel id="notifiableExecutions"/>
 
     <si:channel id="chunkExecutions"/>
-
-    <si:service-activator method="launch" input-channel="requests" output-channel="statuses">
-        <bean class="org.springframework.batch.integration.launch.JobLaunchingMessageHandler">
-            <constructor-arg ref="jobLauncher"/>
-        </bean>
-    </si:service-activator>
-
-    <si:transformer input-channel="files" output-channel="requests">
-        <bean class="com.manning.siia.batch.FileMessageToJobRequestTransformer">
-            <property name="job" ref="importPayments"/>
-            <property name="fileParameterName" value="input.file.name"/>
-        </bean>
-    </si:transformer>
 
     <si:gateway id="notificationExecutionsListener"
                 service-interface="org.springframework.batch.core.JobExecutionListener"
