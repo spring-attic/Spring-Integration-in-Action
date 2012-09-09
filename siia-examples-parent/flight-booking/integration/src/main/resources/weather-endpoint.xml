@@ -10,7 +10,7 @@
             http://www.springframework.org/schema/integration
 			http://www.springframework.org/schema/integration/spring-integration.xsd">
 
-    <http:outbound-gateway url="http://www.google.com/ig/api?weather=${location}"
+    <http:outbound-gateway url="http://www.google.com/ig/api?weather={location}"
                            request-channel="weatherRequests"
                            http-method="GET" >
         <http:uri-variable name="location" expression="payload" />

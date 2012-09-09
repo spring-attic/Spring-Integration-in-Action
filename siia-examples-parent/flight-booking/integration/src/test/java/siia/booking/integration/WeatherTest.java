@@ -1,5 +1,6 @@
 package siia.booking.integration;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class WeatherTest {
         this.channelTemplate = new MessagingTemplate(messageChannel);
     }
 
-    @Test
+    @Test @Ignore
     public void testCambridge(){
         Message message = MessageBuilder.withPayload("cambridge,uk").build();
         Message response = channelTemplate.sendAndReceive(message);
