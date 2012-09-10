@@ -4,7 +4,6 @@ import com.manning.siia.kitchen.domain.Ingredient;
 import com.manning.siia.kitchen.domain.ShoppingList;
 import org.springframework.integration.annotation.Aggregator;
 import org.springframework.integration.annotation.CorrelationStrategy;
-import org.springframework.integration.store.MessageGroup;
 
 import java.util.List;
 
