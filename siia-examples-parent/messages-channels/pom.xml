@@ -9,7 +9,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>messages-channels</artifactId>
+    <artifactId>messages-channels</artifactId> 
+    <name>messages-channels</name>
 
     <dependencies>
         <dependency>

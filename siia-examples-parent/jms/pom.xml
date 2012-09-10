@@ -11,6 +11,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>jms</artifactId>
+    <name>jms</name>
     <description>Supporting code for Chapter 9</description>
 
     <dependencies>

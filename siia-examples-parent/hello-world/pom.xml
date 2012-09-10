@@ -11,6 +11,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>hello-world</artifactId>
+    <name>hello-world</name>
     <description>Supporting code for Chapter 1</description>
 
     <dependencies>

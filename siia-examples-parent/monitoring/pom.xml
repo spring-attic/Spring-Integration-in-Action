@@ -11,6 +11,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>monitoring</artifactId>
+    <name>monitoring</name>
     <description>Supporting code for Chapter 14</description>
 
     <dependencies>

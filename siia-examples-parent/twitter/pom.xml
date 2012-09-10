@@ -11,6 +11,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>twitter</artifactId>
+    <name>twitter</name>
     <description>Supporting code for Chapter 13</description>
 
     <dependencies>
