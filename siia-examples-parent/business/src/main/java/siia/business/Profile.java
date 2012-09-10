@@ -1,7 +1,5 @@
 package siia.business;
 
-import com.sun.xml.internal.bind.v2.schemagen.xmlschema.TypeHost;
-
 /**
  * @author Marius Bogoevici
  */
