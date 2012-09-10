@@ -20,9 +20,13 @@ public class TripQuoteRequestProcessor {
         return new StringSource(res.toString());
     }
 
+    public OkResponse processTripRequest(String requestSource) throws Exception{
+        logger.info("Trip request recevied");
+        return new OkResponse();
+    }
+
      public OkResponse processTripRequest(LegQuoteCommand legQuoteCommand) throws Exception{
         logger.info("Trip request received:" + legQuoteCommand);
-        StringResult res = new StringResult();
         return new OkResponse();
     }
 
