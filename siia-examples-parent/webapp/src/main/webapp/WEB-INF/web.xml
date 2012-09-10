@@ -42,7 +42,7 @@
 
     <servlet>
         <servlet-name>httpTripInboundGateway</servlet-name>
-        <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
             <param-name>contextConfigLocation</param-name>
             <param-value>
@@ -54,7 +54,7 @@
 
     <servlet-mapping>
         <servlet-name>httpTripInboundGateway</servlet-name>
-        <url-pattern>/httpquote</url-pattern>
+        <url-pattern>/httpquote/*</url-pattern>
     </servlet-mapping>
 
 </web-app>

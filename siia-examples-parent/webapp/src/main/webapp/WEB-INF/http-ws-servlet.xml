@@ -7,8 +7,10 @@
        http://www.springframework.org/schema/integration/http
             http://www.springframework.org/schema/integration/http/spring-integration-http.xsd">
 
-    <si-http:inbound-gateway id="httpTripInboundGateway"
+	<bean class="org.springframework.integration.http.inbound.UriPathHandlerMapping"/>
+
+	<si-http:inbound-gateway id="httpTripInboundGateway" path="/"    
                              request-channel="tripQuoteRequestsChannel"
-                             reply-channel="tripQuoteResponseChannel" />
+                             reply-channel="tripQuoteResponseChannel"/>
    
 </beans>

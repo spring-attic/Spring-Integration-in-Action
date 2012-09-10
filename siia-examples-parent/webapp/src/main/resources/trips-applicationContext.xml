@@ -7,13 +7,11 @@
 			http://www.springframework.org/schema/integration
 			http://www.springframework.org/schema/integration/spring-integration.xsd">
 
-    
-
     <si:channel id="tripQuoteRequestsChannel"/>
     <si:channel id="tripQuoteResponseChannel" />
     
-    
     <bean id="tripQuoteProcessor" class="com.manning.siia.TripQuoteRequestProcessor"/>
+
     <si:service-activator ref="tripQuoteProcessor" method="processTripRequest" input-channel="tripQuoteRequestsChannel"
                           output-channel="tripQuoteResponseChannel" />
 
