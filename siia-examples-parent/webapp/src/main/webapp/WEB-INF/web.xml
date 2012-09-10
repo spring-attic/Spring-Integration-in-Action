@@ -37,19 +37,11 @@
         <url-pattern>/soapquoteservice</url-pattern>
     </servlet-mapping>
 
-
     <!-- HTTP services -->
 
     <servlet>
         <servlet-name>httpTripInboundGateway</servlet-name>
-        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-        <init-param>
-            <param-name>contextConfigLocation</param-name>
-            <param-value>
-                classpath:trips-applicationContext.xml
-                /WEB-INF/http-ws-servlet.xml
-            </param-value>
-        </init-param>
+        <servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>

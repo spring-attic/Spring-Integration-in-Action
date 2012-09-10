@@ -5,11 +5,9 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/integration/http
-            http://www.springframework.org/schema/integration/http/spring-integration-http.xsd">
+       http://www.springframework.org/schema/integration/http/spring-integration-http.xsd">
 
-	<bean class="org.springframework.integration.http.inbound.UriPathHandlerMapping"/>
-
-	<si-http:inbound-gateway id="httpTripInboundGateway" path="/"    
+	<si-http:inbound-gateway id="httpTripInboundGateway"   
                              request-channel="tripQuoteRequestsChannel"
                              reply-channel="tripQuoteResponseChannel"/>
    
