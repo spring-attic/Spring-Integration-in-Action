@@ -25,9 +25,10 @@ public class WeatherTest {
         this.channelTemplate = new MessagingTemplate(messageChannel);
     }
 
-    @Test @Ignore
-    public void testCambridge(){
-        Message message = MessageBuilder.withPayload("cambridge,uk").build();
+    @Test
+    public void testToronto(){
+        // 4118 is the Yahoo! WOEID (Where On Earth ID) for Toronto, Canada
+        Message message = MessageBuilder.withPayload("4118").build();
         Message response = channelTemplate.sendAndReceive(message);
         System.out.println(response.getPayload());
     }

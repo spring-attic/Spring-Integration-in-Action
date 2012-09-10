@@ -10,7 +10,13 @@
             http://www.springframework.org/schema/integration
 			http://www.springframework.org/schema/integration/spring-integration.xsd">
 
-    <http:outbound-gateway url="http://www.google.com/ig/api?weather={location}"
+    <!--
+    NOTE: In this example we use a different URL than in the book. The original service was
+    discontinued since the book went to print, therefore this running example uses an
+    alternative URL. All the other aspects of the example are identical, and the example
+    in the book remains, in principle, correct
+    -->
+    <http:outbound-gateway url="http://weather.yahooapis.com/forecastrss?w={location}"
                            request-channel="weatherRequests"
                            http-method="GET" >
         <http:uri-variable name="location" expression="payload" />
