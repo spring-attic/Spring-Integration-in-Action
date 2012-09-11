@@ -17,7 +17,6 @@
             input-channel="tripCommands" output-channel="javaLegQuoteCommands"/>
     <!-- leg commands will be sent out for quotes -->
 
-
     <!-- leg quotes will be aggregated back to trips -->
     <channel id="legQuotes"/>
 
@@ -27,4 +26,5 @@
     </aggregator>
 
     <channel id="tripQuotes"/>
+
 </beans:beans>

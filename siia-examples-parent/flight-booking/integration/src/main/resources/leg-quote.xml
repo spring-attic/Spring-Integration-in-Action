@@ -66,11 +66,9 @@
         discard-channel="invalidRequests"
         schema-location="classpath:xsd/flightQuote.xsd"/>
 
-
     <channel id="validFlightQuoteChannel">
         <queue/>
     </channel>
-
 
     <channel id="hotelQuoteChannel">
         <queue/>
