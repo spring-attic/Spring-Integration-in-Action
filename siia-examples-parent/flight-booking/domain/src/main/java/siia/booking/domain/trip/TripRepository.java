@@ -5,7 +5,6 @@ import siia.booking.domain.flight.Flight;
 import java.util.List;
 
 /**
- *
  * @author Iwein Fuld
  */
 public class TripRepository {

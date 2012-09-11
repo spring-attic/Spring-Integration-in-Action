@@ -3,7 +3,6 @@ package siia.booking.domain.notifications;
 import siia.booking.domain.trip.Trip;
 
 /**
- *
  * @author Iwein Fuld
  */
 public class TripNotification {

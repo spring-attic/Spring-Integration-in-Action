@@ -2,11 +2,9 @@ package siia.booking.domain.trip;
 
 import java.util.List;
 
-
 /**
  * @author Jonas Partner
  */
-
 public class TripQuoteRequest {
 
     private List<LegQuoteCommand> legQuoteCommands;

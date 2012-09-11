@@ -1,7 +1,12 @@
 package siia.booking.domain.trip;
 
 import static org.junit.Assert.*;
+import static org.custommonkey.xmlunit.XMLAssert.assertXMLEqual;
 
+import org.joda.time.DateTime;
+import org.junit.Before;
+import org.junit.Test;
+import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import siia.booking.domain.Location;
 import siia.booking.domain.car.CarCriteria;
 import siia.booking.domain.car.CarType;
@@ -9,10 +14,6 @@ import siia.booking.domain.flight.FlightCriteria;
 import siia.booking.domain.flight.FlightSeatClass;
 import siia.booking.domain.hotel.HotelCriteria;
 import siia.booking.domain.hotel.RoomType;
-import org.joda.time.DateTime;
-import org.junit.Before;
-import org.junit.Test;
-import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import siia.booking.domain.trip.Leg;
 import siia.booking.domain.trip.LegQuoteCommand;
 
@@ -20,8 +21,6 @@ import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 import java.io.StringReader;
 import java.io.StringWriter;
-
-import static org.custommonkey.xmlunit.XMLAssert.assertXMLEqual;
 
 /**
  * @author Jonas Partner
@@ -83,9 +82,7 @@ public class LegQuoteMarshallingTest {
         Object unmarshalled = marshaller.unmarshal(source);
         assertEquals("Wrong class returned by unmrshalling", LegQuoteCommand.class, unmarshalled.getClass());
         LegQuoteCommand legQuoteReq = (LegQuoteCommand)unmarshalled;
-        assertEquals("Wrong leg location",exampleLegQuote.getLeg(), legQuoteReq.getLeg()  );
-
+        assertEquals("Wrong leg location", exampleLegQuote.getLeg(), legQuoteReq.getLeg());
     }
-
 
 }

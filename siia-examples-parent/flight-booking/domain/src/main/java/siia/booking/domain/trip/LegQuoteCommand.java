@@ -27,7 +27,7 @@ public class LegQuoteCommand implements Command {
     private LegQuoteCommand(){}
 
     public LegQuoteCommand(Leg leg){
-        this.leg= leg;
+        this.leg = leg;
     }
 
     public Leg getLeg() {

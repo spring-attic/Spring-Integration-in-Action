@@ -45,7 +45,7 @@ public class FinancialAmount {
 
     @Override
     public int hashCode() {
-        return super.hashCode();    //To change body of overridden methods use File | Settings | File Templates.
+        return super.hashCode();
     }
 
     @Override
@@ -53,6 +53,6 @@ public class FinancialAmount {
         if(!(obj instanceof FinancialAmount)){
             return false;
         }
-        return super.equals(obj);    //To change body of overridden methods use File | Settings | File Templates.
+        return super.equals(obj);
     }
 }

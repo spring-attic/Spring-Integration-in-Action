@@ -10,7 +10,7 @@
     </parent>
     <artifactId>domain</artifactId>
     <name>domain</name>
-    <url>http://maven.apache.org</url>
+
     <dependencies>
         <dependency>
             <groupId>junit</groupId>

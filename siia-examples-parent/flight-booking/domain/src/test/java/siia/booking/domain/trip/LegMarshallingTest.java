@@ -40,7 +40,7 @@ public class LegMarshallingTest {
         StreamResult res = new StreamResult(writer);
         marshaller.marshal(leg, res);
 
-        assertXMLEqual("Leg marshalling incorrect",marshalledLeg, writer.getBuffer().toString());
+        assertXMLEqual("Leg marshalling incorrect", marshalledLeg, writer.getBuffer().toString());
     }
 
 }
