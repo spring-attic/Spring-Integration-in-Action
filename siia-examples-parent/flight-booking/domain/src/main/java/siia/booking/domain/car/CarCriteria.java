@@ -1,7 +1,7 @@
 package siia.booking.domain.car;
 
 /**
- * 
+ *  @author Jonas Partner
  */
 public class CarCriteria {
 

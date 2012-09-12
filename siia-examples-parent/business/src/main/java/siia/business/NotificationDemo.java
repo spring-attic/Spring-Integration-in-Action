@@ -3,6 +3,9 @@ package siia.business;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+/**
+ * @author Mark Fisher
+ */
 public class NotificationDemo {
 
 	public static void main(String[] args) {

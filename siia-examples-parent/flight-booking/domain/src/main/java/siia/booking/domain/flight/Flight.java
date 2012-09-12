@@ -4,7 +4,9 @@ import siia.booking.domain.Location;
 
 import java.util.List;
 
-
+/**
+ * @author Jonas Partner
+ */
 public class Flight {
 
     private final List<FlightSchedule> flightSchedules;

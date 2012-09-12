@@ -3,6 +3,9 @@ package siia.business;
 import java.util.Date;
 import java.util.Map;
 
+/**
+ * @author Mark Fisher
+ */
 public class Flight {
     private String number;
     private Date scheduledDeparture;

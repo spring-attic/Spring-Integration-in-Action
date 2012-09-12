@@ -2,7 +2,9 @@ package siia.booking.domain.car;
 
 import siia.booking.domain.FinancialAmount;
 
-
+/**
+ * @author Jonas Partner
+ */
 public class CarRentalBooking {
 
     private final String confirmationId;

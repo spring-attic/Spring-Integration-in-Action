@@ -6,6 +6,9 @@ import org.springframework.util.Assert;
 
 import java.util.Calendar;
 
+/**
+ * @author Mark Fisher
+ */
 @MessageEndpoint
 public class FlightEventTransformer {
   private final FlightScheduler flightScheduler;

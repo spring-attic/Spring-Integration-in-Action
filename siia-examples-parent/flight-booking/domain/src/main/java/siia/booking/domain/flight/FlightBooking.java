@@ -2,7 +2,9 @@ package siia.booking.domain.flight;
 
 import org.joda.time.DateTime;
 
-
+/**
+ * @author Jonas Partner
+ */
 public class FlightBooking {
 
     private final DateTime bookingDateTime;

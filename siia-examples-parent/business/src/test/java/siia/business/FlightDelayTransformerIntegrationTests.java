@@ -15,6 +15,9 @@ import java.util.Date;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+/**
+ * @author Mark Fisher
+ */
 @ContextConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
 public class FlightDelayTransformerIntegrationTests {

@@ -5,6 +5,8 @@ import org.joda.time.*;
 
 /**
  * Flight schedule
+ *
+ * @author Jonas Partner
  */
 public class FlightSchedule {
 

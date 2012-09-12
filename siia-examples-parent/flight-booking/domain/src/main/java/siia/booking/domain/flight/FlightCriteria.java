@@ -1,6 +1,8 @@
 package siia.booking.domain.flight;
 
-
+/**
+ * @author Jonas Partner
+ */
 public class FlightCriteria {
 
     private FlightSeatClass requiredSeatClass = FlightSeatClass.Economy;

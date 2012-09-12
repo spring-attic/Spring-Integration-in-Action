@@ -3,6 +3,9 @@ package siia.business;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.integration.annotation.MessageEndpoint;
 
+/**
+ * @author Mark Fisher
+ */
 @MessageEndpoint
 public class PassengerProfileEnricher {
 

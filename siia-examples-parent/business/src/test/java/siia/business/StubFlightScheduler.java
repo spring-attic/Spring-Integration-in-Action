@@ -2,6 +2,9 @@ package siia.business;
 
 import java.util.Date;
 
+/**
+ * @author Mark Fisher
+ */
 public class StubFlightScheduler implements FlightScheduler {
 
   public Flight nextFlightForNumber(String flightNumber) {

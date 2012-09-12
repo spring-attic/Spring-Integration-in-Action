@@ -8,6 +8,9 @@ import org.springframework.integration.support.MessageBuilder;
 
 import java.util.Map;
 
+/**
+ * @author Mark Fisher
+ */
 @MessageEndpoint
 public class EmailHeaderEnricher {
 

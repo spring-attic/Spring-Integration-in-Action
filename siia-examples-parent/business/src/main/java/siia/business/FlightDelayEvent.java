@@ -2,6 +2,9 @@ package siia.business;
 
 import java.util.Date;
 
+/**
+ * @author Mark Fisher
+ */
 public class FlightDelayEvent {
     private Flight flight;
     private Date estimatedDeparture;
