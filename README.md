@@ -17,7 +17,6 @@ The modules of the 'siia-examples' are as follows:
 | batch | Batch processing application using Spring Batch and Spring Integration | 16 |
 | business | Business logic invocation (transformers, service activators) | 5 |
 | concurrency | Concurrency configuration (pollers, task executors)  | 15 |
-| email | Sending and receiving emails with POP3 and IMAP | 10 |
 | flight-booking | More complex example of routing, XML processing and testing | 6, 8, 18 | 
 | fundamentals | Basic introduction to decoupled code and dependency injection | 2 |
 | hello-world  |  Introductory example to Spring and Spring Integration  |   1  |
