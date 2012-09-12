@@ -2,10 +2,11 @@
 <beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xmlns="http://www.springframework.org/schema/integration"
+             xmlns:context="http://www.springframework.org/schema/context"
              xsi:schemaLocation=
                      "http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
                      http://www.springframework.org/schema/integration/file http://www.springframework.org/schema/integration/file/spring-integration-file.xsd
-                     http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd"
+                     http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd"
              xmlns:file="http://www.springframework.org/schema/integration/file">
 
     <poller id="defaultPoller" fixed-delay="500" default="true"/>
@@ -27,4 +28,6 @@
     <beans:bean id="service" class="siia.concurrency.StubService"/>
     <beans:bean id="comparator" class="siia.concurrency.StubComparator"/>
     <beans:bean id="filter" class="siia.concurrency.StubFilter"/>
+
+    <context:property-placeholder/>
 </beans:beans>
