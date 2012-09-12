@@ -6,6 +6,9 @@ import org.springframework.integration.MessageChannel;
 import org.springframework.integration.core.MessagingTemplate;
 import org.springframework.integration.core.PollableChannel;
 
+/**
+ * @author Mark Fisher
+ */
 public class GatewayDemo {
 
 	public static void main(String[] args) {

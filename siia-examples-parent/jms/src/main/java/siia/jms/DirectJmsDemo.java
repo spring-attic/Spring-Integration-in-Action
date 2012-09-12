@@ -13,6 +13,9 @@ import javax.jms.TextMessage;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.command.ActiveMQQueue;
 
+/**
+ * @author Mark Fisher
+ */
 public class DirectJmsDemo {
 
 	public static void main(String[] args) {

@@ -4,6 +4,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jms.core.JmsTemplate;
 
+/**
+ * @author Mark Fisher
+ */
 public class MessageDrivenPojoDemo {
 
 	public static void main(String[] args) {

@@ -6,6 +6,9 @@ import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.command.ActiveMQQueue;
 import org.springframework.jms.core.JmsTemplate;
 
+/**
+ * @author Mark Fisher
+ */
 public class JmsTemplateDemo {
 	
 	public static void main(String[] args) {
