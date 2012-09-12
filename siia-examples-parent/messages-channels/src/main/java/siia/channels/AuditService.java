@@ -14,7 +14,7 @@ public class AuditService {
       auditRecords.add(new AuditRecord(auditedPayload));
   }
 
-    public List<AuditRecord> getAuditRecords() {
-        return auditRecords;
-    }
+  public List<AuditRecord> getAuditRecords() {
+      return auditRecords;
+  }
 }

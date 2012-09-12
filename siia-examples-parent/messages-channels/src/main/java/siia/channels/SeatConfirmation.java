@@ -10,7 +10,6 @@ public class SeatConfirmation {
     private Seat seat;
 
     public SeatConfirmation(ChargedBooking chargedBooking, Seat seat) {
-
         this.chargedBooking = chargedBooking;
         this.seat = seat;
     }
