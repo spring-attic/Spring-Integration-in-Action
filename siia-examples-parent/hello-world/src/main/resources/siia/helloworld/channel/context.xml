@@ -7,7 +7,6 @@
 			http://www.springframework.org/schema/integration
 			http://www.springframework.org/schema/integration/spring-integration.xsd">
 
-
   <channel id="names"/>
 
   <service-activator input-channel="names" ref="helloService"

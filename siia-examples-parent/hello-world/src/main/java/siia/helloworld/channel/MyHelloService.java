@@ -1,5 +1,8 @@
 package siia.helloworld.channel;
 
+/**
+ * @author Mark Fisher
+ */
 public class MyHelloService implements HelloService {
 
   @Override

@@ -6,6 +6,9 @@ import org.springframework.integration.Message;
 import org.springframework.integration.MessageChannel;
 import org.springframework.integration.support.MessageBuilder;
 
+/**
+ * @author Mark Fisher
+ */
 public class HelloWorldExample {
 
   public static void main(String args[]) {

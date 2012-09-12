@@ -1,5 +1,8 @@
 package siia.helloworld.gateway;
 
+/**
+ * @author Mark Fisher
+ */
 public class MyHelloService implements HelloService {
 
   @Override

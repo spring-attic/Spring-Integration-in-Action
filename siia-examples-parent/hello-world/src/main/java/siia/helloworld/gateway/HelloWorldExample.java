@@ -3,7 +3,9 @@ package siia.helloworld.gateway;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-
+/**
+ * @author Mark Fisher
+ */
 public class HelloWorldExample {
 
   public static void main(String args[]) {
