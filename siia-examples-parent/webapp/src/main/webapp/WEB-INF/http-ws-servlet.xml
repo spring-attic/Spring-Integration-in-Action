@@ -7,6 +7,9 @@
        http://www.springframework.org/schema/integration/http
        http://www.springframework.org/schema/integration/http/spring-integration-http.xsd">
 
+	<!-- for demo purposes only; this should not share the same reply channel
+	     as the SOAP inbound gateway since they would both be subscribed to it -->
+
 	<si-http:inbound-gateway id="httpTripInboundGateway"   
                              request-channel="tripQuoteRequestsChannel"
                              reply-channel="tripQuoteResponseChannel"/>

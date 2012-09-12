@@ -7,7 +7,6 @@
         <property name="defaultUri" value="http://localhost:8080/siia-webapp/soapquoteservice"/>
         <property name="marshaller" ref="jaxbMarshaller" />
         <property name="unmarshaller" ref="jaxbMarshaller" />
-
     </bean>
 
     <bean id="jaxbMarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
