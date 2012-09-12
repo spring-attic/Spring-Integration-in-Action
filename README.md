@@ -4,6 +4,8 @@ This project contains the code examples from the book "Spring Integration in Act
 
 To build and run tests, change into the 'siia-examples' directory and execute: mvn test
 
+To install artifacts into your local Maven repository execute: mvn install
+
 To explore the code, we recommend importing the projects (located in the sub-directories) into an IDE such as Eclipse or IntelliJ Idea.
 
 For more information about the book, visit http://manning.com/fisher.
@@ -21,7 +23,7 @@ The modules of the 'siia-examples' are as follows:
 | fundamentals | Basic introduction to decoupled code and dependency injection | 2 |
 | hello-world  |  Introductory example to Spring and Spring Integration  |   1  |
 | home-cooking | Splitters and aggregators | 7 |
-| jms | JMS processing | 9 |
+| jms | JMS integration | 9 |
 | messages-channels | Introduction to messages and channels | 3 | 
 | monitoring | Monitoring patterns - MessageBus, History, WireTap and JMX integration | 14 |
 | trip-diary | File-based integration | 11 |

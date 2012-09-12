@@ -1,5 +1,5 @@
 /*
- * Copyright 2009-2012 the original author or authors.
+ * Copyright 2012 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.manning.siia.trip.diary;
 
 import static com.manning.siia.trip.diary.TextChanges.deletion;
@@ -20,10 +21,6 @@ import static com.manning.siia.trip.diary.TextChanges.insertion;
 
 /**
  * @author Iwein Fuld
- *         <p/>
- *         User: iwein
- *         Date: Aug 30, 2009
- *         Time: 1:07:46 PM
  */
 public class EditableText {
     private String currentText;
