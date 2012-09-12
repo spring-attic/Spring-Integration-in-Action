@@ -5,7 +5,6 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>trip-diary</artifactId>
     <name>trip-diary</name>
-    <url>http://maven.apache.org</url>
     <parent>
         <artifactId>siia-parent</artifactId>
         <groupId>com.manning.siia</groupId>
