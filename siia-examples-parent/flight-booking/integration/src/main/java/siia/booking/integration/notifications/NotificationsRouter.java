@@ -6,6 +6,9 @@ import siia.booking.domain.notifications.Priority;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Marius Bogoevici
+ */
 public class NotificationsRouter {
   public String[] routeNotification(FlightNotification notification) {
 

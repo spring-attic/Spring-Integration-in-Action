@@ -30,6 +30,9 @@ import javax.annotation.Resource;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 
+/**
+ * @author Jonas Partner
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"/leg-quote.xml"})
 public class LegQuoteIntegrationTest {

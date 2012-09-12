@@ -16,6 +16,8 @@ import javax.xml.transform.Source;
  * <li>The meal preference update is strongly tied to a web service
  * invocation</li>
  * </ul>
+ *
+ * @author Marius Bogoevici
  */
 public class BookingServiceWithStrongCoupling {
   private final BookingDao bookingDao;

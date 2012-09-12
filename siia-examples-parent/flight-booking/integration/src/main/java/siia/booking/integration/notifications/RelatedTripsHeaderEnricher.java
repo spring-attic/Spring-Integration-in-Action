@@ -8,6 +8,9 @@ import siia.booking.domain.notifications.FlightNotification;
 import siia.booking.domain.trip.Trip;
 import siia.booking.domain.trip.TripRepository;
 
+/**
+ * @author Iwein Fuld
+ */
 public class RelatedTripsHeaderEnricher {
 
 	private TripRepository tripRepository;

@@ -4,7 +4,9 @@ import siia.booking.domain.FinancialAmount;
 
 import java.util.Date;
 
-
+/**
+ * @author Jonas Partner
+ */
 public class HotelBooking {
 
     private final Hotel hotel;

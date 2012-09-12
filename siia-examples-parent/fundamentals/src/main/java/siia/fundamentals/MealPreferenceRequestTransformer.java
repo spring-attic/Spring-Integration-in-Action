@@ -4,6 +4,9 @@ import org.springframework.xml.transform.StringSource;
 
 import javax.xml.transform.Source;
 
+/**
+ * @author Marius Bogoevici
+ */
 public class MealPreferenceRequestTransformer {
 
   public Source buildMealPreferenceUpdateRequest(MealPreference

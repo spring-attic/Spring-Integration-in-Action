@@ -2,7 +2,6 @@ package siia.booking.domain.flight;
 
 import org.joda.time.*;
 
-
 /**
  * Flight schedule
  *

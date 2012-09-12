@@ -2,7 +2,9 @@ package siia.booking.domain.hotel;
 
 import siia.booking.domain.Location;
 
-
+/**
+ * @author Jonas Partner
+ */
 public class Hotel {
 
     private long hotelId;

@@ -1,5 +1,8 @@
 package siia.fundamentals;
 
+/**
+ * @author Marius Bogoevici
+ */
 public class BookingReportingService {
 
     private final BookingDao bookingDao;

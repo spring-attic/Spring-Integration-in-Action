@@ -4,7 +4,9 @@ import siia.booking.domain.car.CarRentalBooking;
 import siia.booking.domain.flight.FlightBooking;
 import siia.booking.domain.hotel.HotelBooking;
 
-
+/**
+ * @author Jonas Partner
+ */
 public class BookedLeg {
 
     private FlightBooking outboundFlightBooking;

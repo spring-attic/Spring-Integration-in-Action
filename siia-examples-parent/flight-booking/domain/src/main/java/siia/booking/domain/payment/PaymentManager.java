@@ -1,5 +1,8 @@
 package siia.booking.domain.payment;
 
+/**
+ * @author Marius Bogoevici
+ */
 public class PaymentManager {
 
   public void processPayment(Invoice invoice) {

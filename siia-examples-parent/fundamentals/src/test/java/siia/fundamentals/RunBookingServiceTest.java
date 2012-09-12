@@ -9,6 +9,9 @@ import org.springframework.integration.support.MessageBuilder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+/**
+ * @author Marius Bogoevici
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:siia/fundamentals/context.xml")
 public class RunBookingServiceTest {

@@ -13,7 +13,9 @@ import siia.booking.domain.trip.Leg;
 import javax.xml.transform.stream.StreamResult;
 import java.io.StringWriter;
 
-
+/**
+ * @author Jonas Partner
+ */
 public class LegMarshallingTest {
 
     final String marshalledLeg = "<?xml version='1.0' encoding='UTF-8' standalone='yes'?>" +

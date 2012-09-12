@@ -7,7 +7,6 @@ import siia.booking.domain.trip.TripRepository;
 import java.util.List;
 
 /**
- *
  * @author Iwein Fuld
  */
 public class FlightNotification {

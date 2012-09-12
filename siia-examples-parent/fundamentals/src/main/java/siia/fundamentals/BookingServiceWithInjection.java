@@ -6,6 +6,9 @@ import org.springframework.xml.transform.StringSource;
 
 import javax.xml.transform.Source;
 
+/**
+ * @author Marius Bogoevici
+ */
 public class BookingServiceWithInjection {
 
   private final BookingDao bookingDao;

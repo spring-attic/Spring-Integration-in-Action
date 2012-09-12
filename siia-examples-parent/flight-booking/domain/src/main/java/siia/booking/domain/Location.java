@@ -4,7 +4,9 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 
 import javax.xml.bind.annotation.XmlAttribute;
 
-
+/**
+ * @author Jonas Partner
+ */
 public class Location {
 
     @XmlAttribute

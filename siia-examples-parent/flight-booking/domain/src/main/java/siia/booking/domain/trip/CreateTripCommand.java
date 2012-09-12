@@ -9,7 +9,7 @@ import java.util.List;
  * Command that is sent by the form when a user is starting to plan a trip. It contains subcommands for all the
  * components of the trip (e.g. its legs)
  *
- * @author iwein
+ * @author Iwein Fuld
  */
 public class CreateTripCommand {
 
