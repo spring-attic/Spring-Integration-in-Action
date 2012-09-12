@@ -7,11 +7,13 @@
        http://www.springframework.org/schema/integration/http
        http://www.springframework.org/schema/integration/http/spring-integration-http.xsd">
 
-	<!-- for demo purposes only; this should not share the same reply channel
-	     as the SOAP inbound gateway since they would both be subscribed to it -->
+    <!-- In the book, the channel names are the same for the REST and SOAP gateways
+         ('tripQuoteRequestsChannel' and 'tripQuoteResponseChannel'), but here we are
+         adding the 'rest' prefix as a qualifier so that the gateways do not collide.
+         See the trips-applicationContext.xml file for more detail. -->
 
 	<si-http:inbound-gateway id="httpTripInboundGateway"   
-                             request-channel="tripQuoteRequestsChannel"
-                             reply-channel="tripQuoteResponseChannel"/>
+                             request-channel="restTripQuoteRequestsChannel"
+                             reply-channel="restTripQuoteResponseChannel"/>
    
 </beans>

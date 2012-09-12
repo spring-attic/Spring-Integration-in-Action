@@ -10,9 +10,6 @@
 			http://www.springframework.org/schema/integration/ws
             http://www.springframework.org/schema/integration/ws/spring-integration-ws.xsd">
 
-    <!-- for demo purposes only; this should not share the same reply channel
-         as the REST inbound gateway since they would both be subscribed to it -->
-			
     <si-ws:inbound-gateway id="tripInboundGateway"
                            request-channel="tripQuoteRequestsChannel"
                            reply-channel="tripQuoteResponseChannel" marshaller="jaxbMarshaller"

@@ -8,11 +8,24 @@
 			http://www.springframework.org/schema/integration/spring-integration.xsd">
 
     <si:channel id="tripQuoteRequestsChannel"/>
-    <si:channel id="tripQuoteResponseChannel" />
+    <si:channel id="tripQuoteResponseChannel"/>
     
     <bean id="tripQuoteProcessor" class="com.manning.siia.TripQuoteRequestProcessor"/>
 
     <si:service-activator ref="tripQuoteProcessor" method="processTripRequest" input-channel="tripQuoteRequestsChannel"
                           output-channel="tripQuoteResponseChannel" />
+
+
+    <!-- These "rest" qualified channels exist to support the REST gateway.
+         In the book, the channel names are the same for the REST and SOAP gateways,
+         but here we are adding the qualifier so that the gateways do not collide. -->
+
+    <si:channel id="restTripQuoteRequestsChannel"/>
+    <si:channel id="restTripQuoteResponseChannel"/>
+
+    <si:service-activator ref="tripQuoteProcessor"
+                          method="processTripRequest"
+                          input-channel="restTripQuoteRequestsChannel"
+                          output-channel="restTripQuoteResponseChannel" />
 
 </beans>
