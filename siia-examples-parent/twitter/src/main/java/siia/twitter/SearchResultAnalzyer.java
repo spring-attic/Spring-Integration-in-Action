@@ -1,5 +1,8 @@
 package siia.twitter;
 
+/**
+ * @author Mark Fisher
+ */
 public class SearchResultAnalzyer {
 
 	public void addResult(String tweet) {
