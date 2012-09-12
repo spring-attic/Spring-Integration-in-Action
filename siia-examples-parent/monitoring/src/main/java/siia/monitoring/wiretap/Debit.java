@@ -2,6 +2,9 @@ package siia.monitoring.wiretap;
 
 import java.math.BigDecimal;
 
+/**
+ * @author Mark Fisher
+ */
 public class Debit {
 
 	private final BigDecimal amount;

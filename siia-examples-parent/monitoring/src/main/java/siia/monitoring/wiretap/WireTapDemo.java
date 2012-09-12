@@ -7,6 +7,9 @@ import org.springframework.integration.Message;
 import org.springframework.integration.MessageChannel;
 import org.springframework.integration.support.MessageBuilder;
 
+/**
+ * @author Mark Fisher
+ */
 public class WireTapDemo {
 
 	public static void main(String[] args) {

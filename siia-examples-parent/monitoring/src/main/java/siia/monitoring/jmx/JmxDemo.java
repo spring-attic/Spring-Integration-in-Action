@@ -4,6 +4,9 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.integration.MessageChannel;
 import org.springframework.integration.support.MessageBuilder;
 
+/**
+ * @author Mark Fisher
+ */
 public class JmxDemo {
 
 	public static void main(String[] args) throws InterruptedException {

@@ -5,6 +5,8 @@ import org.springframework.context.Lifecycle;
 /**
  * This does not poll files. It simply demonstrates that any
  * Lifecycle implementation can be managed via the control bus.
+ *
+ * @author Mark Fisher
  */
 public class FilePoller implements Lifecycle {
 

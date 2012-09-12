@@ -7,6 +7,9 @@ import org.springframework.integration.MessageChannel;
 import org.springframework.integration.support.MessageBuilder;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
+/**
+ * @author Mark Fisher
+ */
 public class ControlBusDemo {
 
 	public static void main(String[] args) {

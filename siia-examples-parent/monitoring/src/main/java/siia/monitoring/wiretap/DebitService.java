@@ -1,5 +1,8 @@
 package siia.monitoring.wiretap;
 
+/**
+ * @author Mark Fisher
+ */
 public class DebitService {
 
 	public void process(Debit debit) {
