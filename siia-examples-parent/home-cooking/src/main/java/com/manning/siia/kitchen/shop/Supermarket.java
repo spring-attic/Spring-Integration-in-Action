@@ -7,6 +7,7 @@ import com.manning.siia.kitchen.domain.ShoppingList;
 import org.springframework.integration.annotation.Transformer;
 
 /**
+ * @author Iwein Fuld
  */
 public class Supermarket {
 
@@ -21,7 +22,6 @@ public class Supermarket {
         for (Ingredient ingredient : shoppingList.getItems()) {
             groceryBag.put(sell(ingredient));
         }
-
         return groceryBag;
     }
 

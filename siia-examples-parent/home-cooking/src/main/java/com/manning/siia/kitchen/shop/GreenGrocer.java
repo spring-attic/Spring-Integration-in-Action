@@ -6,7 +6,8 @@ import com.manning.siia.kitchen.domain.ShoppingList;
 import com.manning.siia.kitchen.domain.Vegetable;
 import org.springframework.integration.annotation.Transformer;
 
-/**
+/** 
+ * @author Iwein Fuld
  */
 public class GreenGrocer {
 
@@ -21,7 +22,6 @@ public class GreenGrocer {
         for (Ingredient ingredient : shoppingList.getItems()) {
             groceryBag.put(sell(ingredient));
         }
-
         return groceryBag;
     }
 

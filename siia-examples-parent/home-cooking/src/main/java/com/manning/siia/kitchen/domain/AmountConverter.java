@@ -10,6 +10,7 @@ import com.thoughtworks.xstream.io.HierarchicalStreamWriter;
 import static com.manning.siia.kitchen.domain.Amount.Unit;
 
 /**
+ * @author Iwein Fuld
  */
 public class AmountConverter implements Converter {
 	public void marshal(final Object source, final HierarchicalStreamWriter writer, final MarshallingContext context) {

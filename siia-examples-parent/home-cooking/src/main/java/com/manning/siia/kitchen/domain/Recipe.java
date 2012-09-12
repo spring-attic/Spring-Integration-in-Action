@@ -12,6 +12,8 @@ import java.util.List;
 
 /**
  * A Recipe consists of Ingredients and has a name.
+ *
+ * @author Iwein Fuld
  */
 @XStreamAlias("recipe")
 public class Recipe {

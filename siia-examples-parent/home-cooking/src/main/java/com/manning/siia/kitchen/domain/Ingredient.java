@@ -6,6 +6,9 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
 import com.thoughtworks.xstream.annotations.XStreamConverter;
 
+/**
+ * @author Iwein Fuld
+ */
 @XStreamAlias("ingredient")
 public class Ingredient {
 

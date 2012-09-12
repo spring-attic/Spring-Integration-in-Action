@@ -1,13 +1,13 @@
 package com.manning.siia.kitchen.shop;
 
-
 import com.manning.siia.kitchen.domain.GroceryBag;
 import com.manning.siia.kitchen.domain.Ingredient;
 import com.manning.siia.kitchen.domain.Meat;
 import com.manning.siia.kitchen.domain.ShoppingList;
 import org.springframework.integration.annotation.Transformer;
 
-/**
+/** 
+ * @author Iwein Fuld
  */
 public class Butcher {
 
@@ -22,7 +22,6 @@ public class Butcher {
         for (Ingredient ingredient : shoppingList.getItems()) {
             groceryBag.put(sell(ingredient));
         }
-
         return groceryBag;
     }
 }

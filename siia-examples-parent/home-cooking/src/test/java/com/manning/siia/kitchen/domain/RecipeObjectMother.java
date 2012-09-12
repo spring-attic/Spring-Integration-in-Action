@@ -4,7 +4,8 @@ import com.manning.siia.kitchen.domain.Amount;
 import com.manning.siia.kitchen.domain.Ingredient;
 import com.manning.siia.kitchen.domain.Recipe;
 
-/**
+/** 
+ * @author Iwein Fuld
  */
 public class RecipeObjectMother {
 

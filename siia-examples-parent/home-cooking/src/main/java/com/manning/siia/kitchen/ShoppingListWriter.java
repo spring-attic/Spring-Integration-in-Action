@@ -21,7 +21,6 @@ public class ShoppingListWriter {
         for (Ingredient ingredient : ingredients) {
             list.addItem(ingredient);
         }
-
         return list;
     }
 

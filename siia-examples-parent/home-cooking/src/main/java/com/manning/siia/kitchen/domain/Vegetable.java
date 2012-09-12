@@ -2,6 +2,9 @@ package com.manning.siia.kitchen.domain;
 
 import com.manning.siia.kitchen.domain.Amount;
 
+/**
+ * @author Iwein Fuld
+ */
 public class Vegetable extends Product {
 
 	public Vegetable(final String name, final Amount amount) {

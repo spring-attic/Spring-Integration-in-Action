@@ -18,7 +18,8 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
-/**
+/** 
+ * @author Iwein Fuld
  */
 @ContextConfiguration(locations = "/home-dinner-flow.xml")
 @RunWith(SpringJUnit4ClassRunner.class)

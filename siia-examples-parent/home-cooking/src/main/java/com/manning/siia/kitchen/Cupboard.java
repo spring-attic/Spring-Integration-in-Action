@@ -8,7 +8,8 @@ import org.springframework.integration.annotation.Filter;
 import javax.annotation.PostConstruct;
 import java.util.List;
 
-/**
+/** 
+ * @author Iwein Fuld
  */
 public class Cupboard {
 

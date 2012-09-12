@@ -20,6 +20,7 @@ import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 
 /**
+ * @author Iwein Fuld
  */
 @ContextConfiguration(locations = {"/home-dinner-flow.xml", "/TEST-shopping.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)

@@ -6,6 +6,7 @@ import org.springframework.util.Assert;
 import java.util.List;
 
 /**
+ * @author Iwein Fuld
  */
 public class Meal {
 

@@ -5,6 +5,7 @@ import com.google.common.collect.Sets;
 import java.util.Set;
 
 /**
+ * @author Iwein Fuld
  */
 public class GroceryBag<T extends Product> {
 

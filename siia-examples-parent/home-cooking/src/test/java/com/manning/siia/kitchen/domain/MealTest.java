@@ -26,9 +26,8 @@ public class MealTest {
 		given(recipe.isSatisfiedBy(Arrays.asList(soleProduct))).willReturn(true);
 
 		meal.cook(soleProduct);
-
+        
 		assertThat(meal.isDone(), is(true));
-
 	}
 
 }
