@@ -23,8 +23,8 @@ The modules of the 'siia-examples' are as follows:
 | hello-world  |  Introductory example to Spring and Spring Integration  |   1  |
 | home-cooking | Splitters and aggregators | 7 |
 | jms | JMS processing | 9 |
-| messages-channels | | 3 | 
-| monitoring | | 14 |
-| trip-diary | | 11 |
-| twitter | | 13 |
-| webapp | | 12 | 
+| messages-channels | Introduction to messages and channels | 3 | 
+| monitoring | Monitoring patterns - MessageBus, History, WireTap and JMX integration | 14 |
+| trip-diary | File-based integration | 11 |
+| twitter | Twitter integration | 13 |
+| webapp | SOAP and RESTful web services | 12 | 
