@@ -19,11 +19,11 @@
        xmlns:http="http://www.springframework.org/schema/integration/http"
        xmlns="http://www.springframework.org/schema/integration"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-			http://www.springframework.org/schema/beans/spring-beans.xsd
+			https://www.springframework.org/schema/beans/spring-beans.xsd
 			http://www.springframework.org/schema/integration/http
-			http://www.springframework.org/schema/integration/http/spring-integration-http.xsd
+			https://www.springframework.org/schema/integration/http/spring-integration-http.xsd
             http://www.springframework.org/schema/integration
-			http://www.springframework.org/schema/integration/spring-integration.xsd">
+			https://www.springframework.org/schema/integration/spring-integration.xsd">
 
     <!--
     NOTE: In this example we use a different URL than in the book. The original service was
@@ -31,7 +31,7 @@
     alternative URL. All the other aspects of the example are identical, and the example
     in the book remains, in principle, correct
     -->
-    <http:outbound-gateway url="http://weather.yahooapis.com/forecastrss?w={location}"
+    <http:outbound-gateway url="https://weather.yahooapis.com/forecastrss?w={location}"
                            request-channel="weatherRequests"
                            http-method="GET" >
         <http:uri-variable name="location" expression="payload" />

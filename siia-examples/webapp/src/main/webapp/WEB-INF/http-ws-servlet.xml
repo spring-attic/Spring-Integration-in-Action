@@ -18,9 +18,9 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:si-http="http://www.springframework.org/schema/integration/http"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-       http://www.springframework.org/schema/beans/spring-beans.xsd
+       https://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/integration/http
-       http://www.springframework.org/schema/integration/http/spring-integration-http.xsd">
+       https://www.springframework.org/schema/integration/http/spring-integration-http.xsd">
 
     <!-- In the book, the channel names are the same for the REST and SOAP gateways
          ('tripQuoteRequestsChannel' and 'tripQuoteResponseChannel'), but here we are
