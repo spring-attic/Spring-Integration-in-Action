@@ -20,15 +20,15 @@
     xmlns:groovy="http://www.springframework.org/schema/integration/groovy"
     xmlns:task="http://www.springframework.org/schema/task"
     xsi:schemaLocation="http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans.xsd
+        https://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
-        http://www.springframework.org/schema/context/spring-context.xsd
+        https://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/task
-        http://www.springframework.org/schema/task/spring-task.xsd
+        https://www.springframework.org/schema/task/spring-task.xsd
         http://www.springframework.org/schema/integration
-        http://www.springframework.org/schema/integration/spring-integration.xsd
+        https://www.springframework.org/schema/integration/spring-integration.xsd
         http://www.springframework.org/schema/integration/groovy
-        http://www.springframework.org/schema/integration/groovy/spring-integration-groovy.xsd">
+        https://www.springframework.org/schema/integration/groovy/spring-integration-groovy.xsd">
 
 	<groovy:control-bus input-channel="controlChannel"/>
 
