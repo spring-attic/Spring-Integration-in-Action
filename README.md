@@ -8,7 +8,7 @@ To install artifacts into your local Maven repository execute: mvn install
 
 To explore the code, we recommend importing the projects (located in the sub-directories) into an IDE such as Eclipse or IntelliJ Idea.
 
-For more information about the book, visit http://manning.com/fisher.
+For more information about the book, visit https://manning.com/fisher.
 
 ## Modules
 
