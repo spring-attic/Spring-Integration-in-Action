@@ -25,7 +25,7 @@
     <url>http://manning.com/springintegrationinaction</url>
     <properties>
         <junit.version>4.7</junit.version>
-        <spring.version>3.1.2.RELEASE</spring.version>
+        <spring.version>5.3.19</spring.version>
         <spring.webservices.version>1.5.9</spring.webservices.version>
         <spring.integration.version>2.1.3.RELEASE</spring.integration.version>
         <joda.time.version>1.6</joda.time.version>
