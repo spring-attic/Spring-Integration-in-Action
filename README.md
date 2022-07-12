@@ -1,3 +1,6 @@
+# This repository is no longer actively maintained by VMware, Inc.
+
+
 # Spring Integration in Action
 
 This project contains the code examples from the book "Spring Integration in Action" (Manning, 2012).
